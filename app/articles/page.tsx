@@ -1,7 +1,7 @@
-import { ButtonLink } from "@/components/Button";
-import { getArticles } from "@/services/fs";
 import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
+import { ButtonLink } from "../../components/Button";
+import { getArticles } from "../../services/fs";
 
 export default async function ArticlesPage() {
   const articles = await getArticles();

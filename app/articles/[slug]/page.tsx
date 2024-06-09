@@ -1,8 +1,8 @@
-import { CommentSection } from "@/components/CommentSection";
-import { HighlightPageCode } from "@/components/HighlightPageCode";
-import { getArticle, getArticles } from "@/services/fs";
 import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
+import { CommentSection } from "../../../components/CommentSection";
+import { HighlightPageCode } from "../../../components/HighlightPageCode";
+import { getArticle, getArticles } from "../../../services/fs";
 
 export async function generateStaticParams() {
   const articles = await getArticles();

@@ -1,6 +1,5 @@
-import { DisableScroll } from "@/components/DisableScroll";
-import {} from "@pigment-css/react";
 import { AboutMeSection } from "../components/AboutMeSection";
+import { DisableScroll } from "../components/DisableScroll";
 import { Header } from "../components/Header";
 import { ShowoffSection } from "../components/ShowoffSection";
 import styles from "./page.module.css";
