@@ -1,0 +1,36 @@
+.button {
+  font-size: var(--font-size-1);
+  --_highlight: hsl(var(--gray-1-hsl) / 5%);
+}
+
+.ghost {
+  --_bg: transparent;
+  transition: background 0.1s var(--ease-in-out-2);
+  border: none;
+  box-shadow: none;
+  &:hover {
+    --_bg: var(--surface-1);
+  }
+  --_text: var(--pink-2);
+}
+
+.subtle {
+  --_bg: transparent;
+  transition: background 0.1s var(--ease-in-out-2);
+  &:hover {
+    --_bg: var(--surface-1);
+  }
+  --_text: var(--pink-2);
+}
+.primary {
+  --_bg: var(--indigo-7);
+  --_border: var(--indigo-5);
+}
+
+.sm {
+  font-size: var(--font-size-0);
+}
+
+.lg {
+  font-size: var(--font-size-2);
+}

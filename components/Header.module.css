@@ -1,0 +1,11 @@
+.header {
+}
+.chevron {
+  margin: auto auto 0 auto;
+  width: 2rem;
+  height: 2rem;
+  animation: var(--animation-bounce);
+  animation-timing-function: var(--ease-elastic-in-out-3);
+  animation-duration: 3s;
+  stroke: var(--pink-5);
+}

@@ -1,0 +1,48 @@
+@keyframes lowerArmAnim {
+  from {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+  50% {
+    transform: rotate(0.5deg) translate(0px, -6px);
+  }
+  to {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+}
+
+@keyframes lowerRightArmAnim {
+  from {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+  50% {
+    transform: rotate(0deg) translate(1px, -3px);
+  }
+  to {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+}
+.svg {
+  --skin-color: #ffd7c1;
+  --screen-color: #728485;
+  max-width: 50vw;
+  height: auto;
+  transform-origin: bottom right;
+  path#LEFT_LOWER_ARM {
+    will-change: transform;
+    animation: lowerArmAnim 1.5s ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  path#RIGHT_LOWER_ARM {
+    will-change: transform;
+    animation: lowerRightArmAnim 1.5s ease-in-out;
+    animation-iteration-count: infinite;
+    animation-delay: 0.5s;
+  }
+  path#SHIRT {
+    transform: translate(-0.2%, 0px);
+  }
+  path#SCREEN,
+  path#SHIRT {
+    transition: fill 0.1s ease-out;
+  }
+}

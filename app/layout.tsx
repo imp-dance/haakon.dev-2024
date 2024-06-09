@@ -1,3 +1,4 @@
+import "@pigment-css/react/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -16,7 +17,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/themes/prism-tomorrow.min.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/open-props"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/open-props/normalize.min.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/open-props/buttons.min.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/open-props/masks.edges.min.css"
+        />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/open-props/masks.corner-cuts.min.css"
+        />
+      </head>
       <body className={inter.className}>{children}</body>
+      <script src="/lib/prism/prism.js" async />
     </html>
   );
 }
