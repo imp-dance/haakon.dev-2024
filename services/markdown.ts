@@ -1,9 +1,14 @@
 import fm from "front-matter";
-import { marked } from "marked";
+import showdown from "showdown";
+
+function parseMarkdown(markdown: string) {
+  const converter = new showdown.Converter();
+  return converter.makeHtml(markdown);
+}
 
 export async function parseShowoffMd(file: string) {
   const { attributes, body } = fm(file);
-  const content = await marked.parse(body);
+  const content = parseMarkdown(body);
 
   return {
     frontMatter: attributes as {
@@ -20,7 +25,7 @@ export async function parseShowoffMd(file: string) {
 
 export async function parseArticleMd(file: string) {
   const { attributes, body } = fm(file);
-  const content = await marked.parse(body);
+  const content = parseMarkdown(body);
 
   return {
     frontMatter: attributes as {

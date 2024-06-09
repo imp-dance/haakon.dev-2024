@@ -12,14 +12,15 @@
     "@giscus/react": "^3.0.0",
     "@pigment-css/react": "^0.0.12",
     "@types/prismjs": "^1.26.4",
+    "@types/showdown": "^2.0.6",
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
     "front-matter": "^4.0.2",
-    "marked": "^12.0.2",
     "next": "14.2.3",
     "prismjs": "^1.29.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "showdown": "^2.1.0"
   },
   "devDependencies": {
     "@pigment-css/nextjs-plugin": "^0.0.12",
