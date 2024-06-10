@@ -1,10 +1,13 @@
 import fs from "fs";
 import { redirect } from "next/navigation";
+import path from "path";
 import { parseArticleMd, parseShowoffMd } from "./markdown";
 
+const base = process.cwd();
+
 export const paths = {
-  showoff: "./public/showoff",
-  articles: "./public/articles",
+  showoff: path.join(base, "./public/showoff"),
+  articles: path.join(base, "./public/articles"),
 };
 
 export async function getShowoffFiles() {
