@@ -58,3 +58,7 @@ I'm a sentimental and nostalgic person. So I can't just let the old website diss
 ![Screenshot #4](/old_website/4.jpg)
 ![Screenshot #5](/old_website/5.jpg)
 ![Screenshot #6](/old_website/6.jpg)
+
+### What about the old articles?
+
+For now, I redirect directly to the old wordpress instance for 404 article routes. I will migrate old articles (and probably pick and choose a bit) eventually.

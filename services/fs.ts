@@ -1,4 +1,5 @@
 import fs from "fs";
+import { redirect } from "next/navigation";
 import { parseArticleMd, parseShowoffMd } from "./markdown";
 
 export const paths = {
@@ -51,13 +52,17 @@ export async function getArticles() {
 }
 
 export async function getArticle(name: string) {
-  const contents = fs.readFileSync(
-    `${paths.articles}/${name}.md`,
-    "utf-8"
-  );
-  const md = await parseArticleMd(contents);
-  return {
-    name,
-    ...md,
-  };
+  try {
+    const contents = fs.readFileSync(
+      `${paths.articles}/${name}.md`,
+      "utf-8"
+    );
+    const md = await parseArticleMd(contents);
+    return {
+      name,
+      ...md,
+    };
+  } catch (err) {
+    redirect(`https://impedans.me/web/${name}`);
+  }
 }

@@ -27,9 +27,10 @@ export function LightmodeToggle(props: {
       <Button
         type="submit"
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "var(--size-2)",
           right: "var(--size-2)",
+          zIndex: 10,
         }}
         onClick={() => {
           setIsLightmode(!isLightmode);
