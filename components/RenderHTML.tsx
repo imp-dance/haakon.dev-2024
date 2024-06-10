@@ -31,6 +31,6 @@ const HTMLStyles = styled.div`
   ol {
     font-size: var(--font-size-3);
     line-height: var(--font-lineheight-2);
-    color: var(--gray-4);
+    color: var(--text-4);
   }
 `;

@@ -1,7 +1,7 @@
+import { ButtonLink } from "@/components/Button";
 import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
 import { CommentSection } from "../../../components/CommentSection";
-import { HighlightPageCode } from "../../../components/HighlightPageCode";
 import { getArticle, getArticles } from "../../../services/fs";
 
 export async function generateStaticParams() {
@@ -27,6 +27,17 @@ export default async function ArticlePage(props: PageProps) {
       <header>
         <h1>{article.frontMatter.title}</h1>
         <p>
+          <ButtonLink
+            size="sm"
+            variant="ghost"
+            style={{
+              justifyContent: "flex-start",
+              color: "var(--text-5)",
+            }}
+            href="/articles"
+          >
+            ← Back to articles
+          </ButtonLink>
           {formatDistance(
             new Date(article.frontMatter.date),
             new Date(),
@@ -34,16 +45,15 @@ export default async function ArticlePage(props: PageProps) {
               addSuffix: true,
             }
           )}{" "}
-          <span>|</span> Håkon Underbakke
+          <span>|</span> by Håkon Underbakke
         </p>
       </header>
       <ArticleContent
         id="article-content"
         className="language-js"
-        dangerouslySetInnerHTML={{ __html: article.content }}
+        dangerouslySetInnerHTML={{ __html: article.html }}
       />
       <CommentSection />
-      <HighlightPageCode />
     </Container>
   );
 }
@@ -59,14 +69,17 @@ const Container = styled.div`
     gap: var(--size-2);
     & h1 {
       font-size: var(--font-size-fluid-3);
-      color: var(--pink-2);
+      color: var(--text-pink-2);
     }
     & p {
       font-size: var(--font-size-2);
-      color: var(--gray-6);
+      color: var(--text-6);
+      display: flex;
+      gap: var(--size-3);
+      align-items: center;
+
       & span {
-        color: var(--gray-9);
-        margin: 0 var(--size-1);
+        color: var(--surface-3);
         user-select: none;
       }
     }
@@ -84,13 +97,20 @@ const ArticleContent = styled.article`
   & pre,
   & blockquote {
     font-size: var(--font-size-fluid-1);
-    line-height: var(--font-lineheight-4);
+    line-height: var(--font-lineheight-3);
+    color: var(--text-4);
+  }
+
+  code {
+    color: var(--text-4);
+  }
+
+  pre code {
     color: var(--gray-4);
   }
 
   & p {
-    color: var(--gray-3);
-    text-shadow: 0px 1px 0px var(--gray-12);
+    color: var(--text-3);
   }
 
   & h3 {
@@ -108,16 +128,6 @@ const ArticleContent = styled.article`
     width: 100%;
     font-size: var(--font-size-2);
     overflow: auto;
-    opacity: 0;
-  }
-
-  & pre[class*="language-"] {
-    background: var(--gradient-8);
-    position: relative;
-    cursor: text;
-    font-size: var(--font-size-2);
-    opacity: 0;
-    animation: animFadeDown 0.25s forwards;
-    animation-timing-function: var(--ease-in-out-2);
+    background: var(--gradient-8) !important;
   }
 `;

@@ -5,7 +5,7 @@
   flex-direction: row;
   justify-content: center;
   scroll-snap-align: start;
-  background: var(--gray-12);
+  background: hsl(var(--background-hsl));
   gap: var(--size-4);
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -27,16 +27,16 @@
 }
 
 .entry {
-  background: var(--gray-10);
-  color: var(--gray-2);
+  background: var(--surface-1);
+  color: var(--text-2);
   padding: var(--size-6);
   display: flex;
   flex-direction: column;
   gap: var(--size-2);
-  border: 1px solid var(--gray-9);
+  border: 1px solid var(--surface-2);
   height: max-content;
   border-radius: var(--radius-1);
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--ui-shadow);
   width: 100%;
   & h2 {
     min-width: max-content;
@@ -45,10 +45,10 @@
   & h3 {
     font-weight: var(--font-weight-2);
     font-size: var(--font-size-1);
-    color: var(--gray-1);
+    color: var(--text-1);
   }
   & p {
-    color: var(--gray-5);
+    color: var(--text-5);
     font-size: var(--font-size-3);
 
     font-weight: var(--font-weight-4);
@@ -74,9 +74,9 @@
 }
 
 .current {
-  border: 1px solid var(--gray-8);
+  border: 1px solid var(--surface-3);
   & h2 {
-    color: var(--gray-1);
+    color: var(--text-1);
   }
 }
 

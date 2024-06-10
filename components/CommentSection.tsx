@@ -8,8 +8,8 @@ export function CommentSection() {
         <h4
           style={{
             padding: "var(--size-5)",
-            background: "var(--gray-10)",
-            color: "var(--pink-1)",
+            background: "var(--surface-1)",
+            color: "var(--text-pink-1)",
           }}
         >
           This is where comments would be, if you had Javascript

@@ -90,14 +90,14 @@ export function AboutMeSection() {
                   LIGL AS
                 </Link>
                 ).
-                <Mark text="Got my first cat!" />
+                <Mark text="Got my first cat! 🐈" />
               </p>
               <p>
                 At LIGL, I worked on automating the process of
                 writing legal documents through ContractExpress
                 Author - as well as creating a web UI for
                 external customers to use.
-                <Mark text="Shaved my remaining hair!" />
+                <Mark text="Shaved my remaining hair! 👨🏻‍🦲" />
               </p>
               <h3>My brief stint in big consulting firms</h3>
               <p>
@@ -112,24 +112,24 @@ export function AboutMeSection() {
                 developed a educational game for kids. I also
                 worked on a internal project/initiative called{" "}
                 <strong>City for City</strong>.{" "}
+                <Mark text="Met my girlfriend! 👩🏻‍🦰" />
               </p>
               <p>
                 My last project at Idean was a proof of concept
                 relating to graph visualization and data
                 correlation, called Haystack. Funnily enough, my
                 next endeavor would be a similar project.
-                <Mark text="Met my girlfriend!" />
               </p>
 
               <h3>Independent consulting</h3>
               <p>
-                <Mark text="Got our second cat!" />
                 In 2021, I started my own company - Ryfylke React
                 AS. I had a contract set up with Telenor from day
                 1, working on yet another data-correlation and
                 log analysis project. Since then I&apos;ve been
                 having a great time working full-time on this
                 project.
+                <Mark text="Got our second cat! 🐈‍⬛" />
               </p>
               <p>
                 At Telenor, I have mostly been working on
@@ -179,10 +179,15 @@ const InnerContainer = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: hsl(var(--gray-12-hsl) / 95%);
+  background: hsl(var(--background-hsl) / 95%);
   backdrop-filter: blur(1px);
   scroll-behavior: smooth;
   overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   scroll-timeline: --aboutMeSectionTimeline y;
   scroll-timeline: --aboutMeSectionTimeline vertical;
   height: 100dvh;
@@ -196,18 +201,21 @@ const InnerContainer = styled.div`
     max-width: 90%;
     margin: auto auto;
   }
+  & code {
+    color: var(--text-1);
+  }
 
   & h2 {
     font-size: var(--font-size-fluid-3);
-    color: var(--gray-1);
-    background: var(--pink-2);
+    color: var(--text-1);
+    background: var(--text-highlight-2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   & p {
     font-size: var(--font-size-fluid-1);
-    color: var(--gray-2);
-    text-shadow: 0 1px 0 var(--gray-12);
+    color: var(--text-2);
+    text-shadow: 0 1px 0 hsl(var(--background-hsl));
     line-height: var(--font-lineheight-2);
   }
 
@@ -244,12 +252,14 @@ function Mark(props: { text: string }) {
 }
 
 const StyledMark = styled.div`
-  color: var(--gray-1);
-  background: var(--green-12);
+  color: var(--text-1);
+  background: var(--surface-3);
   width: max-content;
   transform: rotate(4deg);
   padding: var(--size-1);
   border-radius: var(--radius-2);
   float: right;
+  text-shadow: none;
   font-size: var(--font-size-1);
+  user-select: none;
 `;

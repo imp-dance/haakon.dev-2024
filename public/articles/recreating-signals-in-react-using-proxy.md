@@ -7,7 +7,7 @@ summary: >
 
 So Javascript has this interesting feature called Proxy. This will allow you to intercept value-getting and -setting on a given object.
 
-```tsx
+```tsx {1,2,3}
 const signal = new Proxy(
   {
     value: undefined,

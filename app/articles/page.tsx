@@ -7,7 +7,25 @@ export default async function ArticlesPage() {
   const articles = await getArticles();
   return (
     <Container>
-      <h1>Archive</h1>
+      <ButtonLink
+        size="sm"
+        variant="ghost"
+        style={{
+          justifyContent: "flex-start",
+          color: "var(--text-5)",
+        }}
+        href="/"
+      >
+        ← Portfolio
+      </ButtonLink>
+      <h1
+        style={{
+          paddingInline: "var(--size-5)",
+          color: "var(--text-5)",
+        }}
+      >
+        Articles
+      </h1>
       <List>
         {articles.map((article) => (
           <li key={article.name}>
@@ -28,7 +46,7 @@ export default async function ArticlesPage() {
               <Title>{article.frontMatter.title}</Title>
               <p
                 style={{
-                  color: "var(--gray-6)",
+                  color: "var(--text-6)",
                 }}
               >
                 {formatDistance(
@@ -65,6 +83,13 @@ const List = styled.ul`
 
   & li {
     max-inline-size: 100%;
+
+    & .btn:hover {
+      text-decoration: none;
+      & h3 {
+        text-decoration: underline;
+      }
+    }
   }
 `;
 

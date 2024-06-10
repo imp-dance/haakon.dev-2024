@@ -10,7 +10,10 @@ export function Header() {
     <Container>
       <div>
         <h1>
-          Hi, my name is <span>Håkon Underbakke</span>
+          <div>Hi, my name is</div>
+        </h1>
+        <h1>
+          <span>Håkon Underbakke</span>
         </h1>
         <h2>
           I&apos;m a Norwegian frontend developer currently doing
@@ -36,7 +39,7 @@ export function Header() {
             variant="secondary"
             style={{ flexGrow: 1 }}
           >
-            Articles by me
+            Articles
           </ButtonLink>
           <Button variant="primary" style={{ flexGrow: 1 }}>
             Contact me
@@ -64,7 +67,7 @@ const Container = styled.header`
   gap: var(--size-9);
   position: relative;
   overflow: hidden !important;
-  background: var(--gradient-8);
+  background: var(--background);
   & > div {
     margin-top: auto;
     max-width: 580px;
@@ -77,29 +80,76 @@ const Container = styled.header`
       font-size: var(--font-size-fluid-3);
       letter-spacing: (--font-letterspacing-2);
       font-weight: var(--font-weight-7);
+      color: var(--text-1);
+      overflow: hidden;
+
       & span {
-        background: var(--gradient-5);
+        background: var(--text-highlight-1);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        display: block;
+        animation-delay: 0.1s !important;
+      }
+
+      & div {
+        animation-delay: 0s !important;
+      }
+
+      & span,
+      & div {
+        opacity: 0;
+
+        animation: var(--animation-fade-in) forwards,
+          var(--animation-slide-in-up) forwards;
+        animation-timing-function: var(--ease-out-3);
+        animation-duration: 0.3s;
       }
     }
     & h2,
     & p {
-      background: var(--gradient-9);
+      background: var(--text-subtle-highlight);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-size: var(--font-size-fluid-1);
       letter-spacing: (--font-letterspacing-3);
       font-weight: var(--font-weight-4);
+      opacity: 0;
+      animation: var(--animation-fade-in) forwards;
+      animation-timing-function: var(--ease-in-3);
+      animation-duration: 0.4s;
 
       & code {
-        color: var(--gray-1);
+        color: var(--text-1);
         -webkit-background-clip: none;
-        -webkit-text-fill-color: var(--gray-1);
+        -webkit-text-fill-color: var(--text-1);
         font-size: var(--font-size-fluid-0);
         transform: translateY(-2px);
         display: inline-block;
       }
     }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.7);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  & .btn:first-of-type {
+    animation: scaleIn 0.4s forwards;
+    animation-duration: 0.3s;
+    opacity: 0;
+  }
+
+  & button {
+    animation: scaleIn 0.4s forwards;
+    animation-duration: 0.3s;
+    animation-delay: 0.1s;
+    opacity: 0;
   }
 `;

@@ -50,11 +50,11 @@ export async function ShowoffSection() {
             <div
               style={{
                 height: "1px",
-                background: "var(--gray-9)",
+                background: "var(--surface-3)",
               }}
             />
             <div className="anim-fadedown">
-              <RenderHTML html={file.content} />
+              <RenderHTML html={file.html} />
             </div>
           </Disclose>
         </div>

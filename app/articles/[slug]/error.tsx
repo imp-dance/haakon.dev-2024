@@ -7,7 +7,7 @@ export default function ErrorPage() {
       <p
         style={{
           fontSize: "var(--font-size-5)",
-          color: "var(--gray-4)",
+          color: "var(--text-4)",
         }}
       >
         I swear I looked everywhere, but it&apos;s nowhere to be

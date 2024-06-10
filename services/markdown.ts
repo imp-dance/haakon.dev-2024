@@ -1,14 +1,43 @@
-import fm from "front-matter";
-import showdown from "showdown";
+import extractFrontmatter from "front-matter";
+import hljs from "highlight.js";
+import bash from "highlight.js/lib/languages/bash";
+import css from "highlight.js/lib/languages/css";
+import javascript from "highlight.js/lib/languages/javascript";
+import typescript from "highlight.js/lib/languages/typescript";
+import markdownit from "markdown-it";
 
-function parseMarkdown(markdown: string) {
-  const converter = new showdown.Converter();
-  return converter.makeHtml(markdown);
+hljs.registerLanguage("javascript", javascript);
+hljs.registerLanguage("typescript", typescript);
+hljs.registerLanguage("css", css);
+hljs.registerLanguage("bash", bash);
+
+const md = markdownit({
+  html: true,
+  linkify: true,
+  langPrefix: "language-",
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(str, { language: lang }).value;
+      } catch (__) {}
+    }
+    return "";
+  },
+});
+
+export function parseMarkdown(markdown: string) {
+  return md.render(markdown);
 }
 
 export async function parseShowoffMd(file: string) {
-  const { attributes, body } = fm(file);
-  const content = parseMarkdown(body);
+  const { attributes, body } = extractFrontmatter(file);
+  const highlightedLines = body.matchAll(/{([\d,]+)}/g);
+  for (const match of highlightedLines) {
+    const [full, lines] = match;
+    console.log(full, lines);
+  }
+
+  const html = parseMarkdown(body);
 
   return {
     frontMatter: attributes as {
@@ -19,13 +48,13 @@ export async function parseShowoffMd(file: string) {
       type: string;
       image: string;
     },
-    content,
+    html,
   };
 }
 
 export async function parseArticleMd(file: string) {
-  const { attributes, body } = fm(file);
-  const content = parseMarkdown(body);
+  const { attributes, body } = extractFrontmatter(file);
+  const html = parseMarkdown(body);
 
   return {
     frontMatter: attributes as {
@@ -33,6 +62,6 @@ export async function parseArticleMd(file: string) {
       date: string;
       summary: string;
     },
-    content: content,
+    html,
   };
 }
