@@ -16,8 +16,6 @@ export const metadata: Metadata = {
     "I'm a Norwegian frontend developer currently doing contract work for my own company, Ryfylke React AS. ",
 };
 
-export const runtime = "edge";
-
 export default function RootLayout({
   children,
 }: Readonly<{
