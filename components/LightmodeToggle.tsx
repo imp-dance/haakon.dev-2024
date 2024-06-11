@@ -27,7 +27,8 @@ function SubmitButton(props: {
   action: () => Promise<boolean>;
 }) {
   const [isLightmode, setIsLightmode] = useState(
-    document.body.classList.contains("light")
+    typeof document !== "undefined" &&
+      document.body.classList.contains("light")
   );
   const { pending } = useFormStatus();
   return (

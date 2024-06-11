@@ -11,6 +11,7 @@
   "dependencies": {
     "@giscus/react": "^3.0.0",
     "@pigment-css/react": "^0.0.12",
+    "@ryfylke-react/toast": "^0.1.61",
     "@types/markdown-it": "^14.1.1",
     "@types/markdown-it-container": "^2.0.10",
     "@types/prismjs": "^1.26.4",
@@ -22,6 +23,7 @@
     "markdown-it": "^14.1.0",
     "markdown-it-container": "^4.0.0",
     "next": "14.2.3",
+    "node-mailjet": "^6.0.5",
     "prismjs": "^1.29.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

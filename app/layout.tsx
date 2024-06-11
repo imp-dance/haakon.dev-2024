@@ -1,6 +1,7 @@
 import { toggleLightmode } from "@/actions/lightmode";
 import { LightmodeToggle } from "@/components/LightmodeToggle";
 import { getTheme } from "@/services/cookies";
+import { ToastProvider } from "@/services/toast";
 import "@pigment-css/react/styles.css";
 import classNames from "classnames";
 import type { Metadata } from "next";
@@ -66,6 +67,7 @@ export default function RootLayout({
           onChange={toggleLightmode}
           initialValue={isLightmode}
         />
+        <ToastProvider />
       </body>
     </html>
   );

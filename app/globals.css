@@ -15,6 +15,10 @@
   --text-pink-1: var(--pink-1);
   --text-pink-2: var(--pink-2);
   --text-pink-3: var(--pink-3);
+  --success: var(--lime-7);
+  --success-text: var(--lime-1);
+  --error: var(--red-7);
+  --error-text: var(--red-1);
   --ui-shadow: var(--shadow-3);
   /** start copy paste **/
   --surface-1: var(--gray-9);
@@ -47,6 +51,7 @@
   --gray-10: #16191d;
   --gray-11: #0d0f12;
   --gray-12: #030507;
+  --card-gradient: var(--gradient-8), var(--noise-5);
   --shadow-color: 220 3% 15%;
   --shadow-strength: 1%;
   --inner-shadow-highlight: inset 0 -0.5px 0 0 #fff,
@@ -94,7 +99,18 @@
     var(--inner-shadow-highlight);
 }
 
+textarea,
+select,
+input:not([type="button"], [type="submit"], [type="reset"]) {
+  background-color: var(--surface-1);
+}
+
 body.light {
+  --card-gradient: linear-gradient(
+    12deg,
+    var(--surface-1),
+    var(--surface-2)
+  );
   --link: var(--indigo-8);
   --link-visited: var(--indigo-9);
   --background: var(--gray-1);
@@ -112,6 +128,10 @@ body.light {
   --text-pink-2: var(--pink-5);
   --text-pink-3: var(--pink-4);
   --ui-shadow: var(--shadow-1);
+  --success: var(--lime-4);
+  --success-text: var(--lime-10);
+  --error: var(--red-6);
+  --error-text: var(--red-1);
 
   /** start copy paste **/
   --shadow-color: 220 3% 15%;

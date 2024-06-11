@@ -1,6 +1,7 @@
 import { styled } from "@pigment-css/react";
 import { getAge } from "../utils/getAge";
-import { Button, ButtonLink } from "./Button";
+import { ButtonLink } from "./Button";
+import { ContactMeDialog } from "./ContactMeDialog";
 import styles from "./Header.module.css";
 import { ChevronDown } from "./icons/ChevronDown";
 import { MeSVG } from "./svg/MeSVG";
@@ -15,17 +16,17 @@ export function Header() {
         <h1>
           <span>Håkon Underbakke</span>
         </h1>
-        <h2>
+        <Subtext>
           I&apos;m a Norwegian frontend developer currently doing
           contract work for my own company,{" "}
           <strong>Ryfylke React AS</strong>.
-        </h2>
-        <p>
+        </Subtext>
+        <Subtext>
           I have been doing front-end focused web development
           professionally for about {getAge() - 18} years. These
           days, I mostly work with <code>React</code> and{" "}
           <code>Typescript</code>.
-        </p>
+        </Subtext>
         <div
           style={{
             display: "flex",
@@ -41,9 +42,7 @@ export function Header() {
           >
             Articles
           </ButtonLink>
-          <Button variant="primary" style={{ flexGrow: 1 }}>
-            Contact me
-          </Button>
+          <ContactMeDialog />
         </div>
       </div>
       <MeSVG
@@ -57,6 +56,28 @@ export function Header() {
     </Container>
   );
 }
+
+const Subtext = styled.p`
+  background: var(--text-subtle-highlight);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: var(--font-size-fluid-1);
+  letter-spacing: (--font-letterspacing-3);
+  font-weight: var(--font-weight-4);
+  opacity: 0;
+  animation: var(--animation-fade-in) forwards;
+  animation-timing-function: var(--ease-in-3);
+  animation-duration: 0.4s;
+
+  & code {
+    color: var(--text-1);
+    -webkit-background-clip: none;
+    -webkit-text-fill-color: var(--text-1);
+    font-size: var(--font-size-fluid-0);
+    transform: translateY(-2px);
+    display: inline-block;
+  }
+`;
 
 const Container = styled.header`
   min-height: 100dvh;
@@ -95,36 +116,14 @@ const Container = styled.header`
         animation-delay: 0s !important;
       }
 
-      & span,
-      & div {
+      & > span,
+      & > div {
         opacity: 0;
 
         animation: var(--animation-fade-in) forwards,
           var(--animation-slide-in-up) forwards;
         animation-timing-function: var(--ease-out-3);
         animation-duration: 0.3s;
-      }
-    }
-    & h2,
-    & p {
-      background: var(--text-subtle-highlight);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: var(--font-size-fluid-1);
-      letter-spacing: (--font-letterspacing-3);
-      font-weight: var(--font-weight-4);
-      opacity: 0;
-      animation: var(--animation-fade-in) forwards;
-      animation-timing-function: var(--ease-in-3);
-      animation-duration: 0.4s;
-
-      & code {
-        color: var(--text-1);
-        -webkit-background-clip: none;
-        -webkit-text-fill-color: var(--text-1);
-        font-size: var(--font-size-fluid-0);
-        transform: translateY(-2px);
-        display: inline-block;
       }
     }
   }

@@ -1,0 +1,59 @@
+@keyframes rightShoeAnim {
+  0%,
+  100% {
+    transform: rotate(0.5deg);
+  }
+  50% {
+    transform: rotate(-1deg);
+  }
+}
+
+@keyframes rightPantsAnim {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(-1px);
+  }
+  50% {
+    transform: translateX(1px) translateY(-1px);
+  }
+}
+
+@keyframes leftShoeAnim {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rightArmAnim {
+  0%,
+  100% {
+    transform: rotate(-1deg) translateY(1px);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+}
+
+.rightShoe {
+  transform-origin: 50% 50%;
+  animation: rightShoeAnim 1.8s infinite;
+}
+
+.rightPants {
+  transform-origin: 50% 50%;
+  animation: rightPantsAnim 1.8s infinite;
+}
+
+.leftShoe {
+  transform-origin: 50% 100%;
+  animation: leftShoeAnim 1.8s infinite;
+}
+
+.rightArm {
+  transform-origin: 50% 50%;
+  animation: rightArmAnim 1.8s infinite;
+}
