@@ -4,10 +4,15 @@ import { useEffect, useState } from "react";
 
 export function CommentSection() {
   const [theme, setTheme] = useState(
-    document.body.classList.contains("light") ? "light" : "dark"
+    typeof document !== undefined
+      ? document.body.classList.contains("light")
+        ? "light"
+        : "dark"
+      : "dark"
   );
 
   useEffect(() => {
+    if (typeof document === undefined) return;
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === "class") {

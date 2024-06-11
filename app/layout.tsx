@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     "I'm a Norwegian frontend developer currently doing contract work for my own company, Ryfylke React AS. ",
 };
 
+export const runtime = "edge";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,6 +28,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link
+          rel="icon"
+          type="image/png"
+          href="https://haakon.underbakke.net/assets/faviconet.png"
+        />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
