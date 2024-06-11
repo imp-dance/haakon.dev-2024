@@ -1,10 +1,10 @@
 import { toggleLightmode } from "@/actions/lightmode";
 import { LightmodeToggle } from "@/components/LightmodeToggle";
+import { getTheme } from "@/services/cookies";
 import "@pigment-css/react/styles.css";
 import classNames from "classnames";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { cookies } from "next/headers";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,9 +20,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = cookies();
-  const isLightmode =
-    cookieStore.get("lightmode")?.value === "true";
+  const isLightmode = getTheme() === "light";
 
   return (
     <html lang="en">

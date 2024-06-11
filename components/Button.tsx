@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import Link, { LinkProps } from "next/link";
 import React from "react";
 import styles from "./Button.module.css";
 
@@ -28,9 +29,14 @@ export function Button(
 }
 
 export function ButtonLink(
-  props: React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  props: LinkProps & {
     variant?: ButtonVariant;
     size?: ButtonSize;
+  } & {
+    className?: string;
+    children?: React.ReactNode;
+    style?: React.CSSProperties;
+    title?: string;
   }
 ) {
   const className = classNames(
@@ -47,5 +53,5 @@ export function ButtonLink(
     }
   );
 
-  return <a {...props} className={className} />;
+  return <Link {...props} className={className} />;
 }
