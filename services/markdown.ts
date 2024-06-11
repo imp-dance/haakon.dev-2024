@@ -5,6 +5,7 @@ import css from "highlight.js/lib/languages/css";
 import javascript from "highlight.js/lib/languages/javascript";
 import typescript from "highlight.js/lib/languages/typescript";
 import markdownit from "markdown-it";
+import container from "markdown-it-container";
 
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("typescript", typescript);
@@ -24,6 +25,9 @@ const md = markdownit({
     return "";
   },
 });
+
+md.use(container, "window");
+md.use(container, "gallery");
 
 export function parseMarkdown(markdown: string) {
   return md.render(markdown);

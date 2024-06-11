@@ -8,7 +8,7 @@ import { VideoScrollContainer } from "./VideoScrollContainer";
 
 export function AboutMeSection() {
   return (
-    <VideoScrollContainer videoSrc="/hakon-clip.webm">
+    <VideoScrollContainer videoSrc="/videos/hakon-clip.webm">
       <div>
         <h2>tl;dr</h2>
         <p>

@@ -1,5 +1,5 @@
 ---
-title: Some interesting Typescript features I’ve learnt while writing NPM packages
+title: Some interesting Typescript tips & tricks
 date: 2023-03-10
 summary: Typescript is great, for many reasons. I think everyone will agree with that statement if they’ve given it a proper try.
 ---

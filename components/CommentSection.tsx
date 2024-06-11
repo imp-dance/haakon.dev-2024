@@ -1,7 +1,32 @@
 "use client";
 import Giscus from "@giscus/react";
+import { useEffect, useState } from "react";
 
 export function CommentSection() {
+  const [theme, setTheme] = useState(
+    document.body.classList.contains("light") ? "light" : "dark"
+  );
+
+  useEffect(() => {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          const theme = document.body.classList.contains("light")
+            ? "light"
+            : "dark";
+          setTheme(theme);
+        }
+      });
+    });
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <>
       <noscript>
@@ -24,7 +49,7 @@ export function CommentSection() {
         mapping="pathname"
         emitMetadata="0"
         reactionsEnabled="1"
-        theme="dark"
+        theme={theme}
         lang="en"
         loading="lazy"
         strict="0"

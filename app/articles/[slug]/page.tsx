@@ -130,4 +130,34 @@ const ArticleContent = styled.article`
     overflow: auto;
     background: var(--gradient-8) !important;
   }
+
+  & .window {
+    background: var(--surface-1);
+    border: 1px solid var(--surface-2);
+    & > p {
+      padding: var(--size-2) var(--size-5);
+      font-size: var(--font-size-1);
+      font-weight: var(--font-weight-5);
+      color: var(--text-4);
+      background: var(--surface-2);
+      width: max-content;
+      user-select: none;
+    }
+  }
+  & .gallery,
+  & .gallery > p {
+    display: flex;
+    overflow-x: scroll;
+    gap: var(--size-3);
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    & > img {
+      max-width: 100%;
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+      scroll-snap-align: start;
+    }
+  }
 `;

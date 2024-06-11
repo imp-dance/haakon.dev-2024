@@ -7,6 +7,9 @@ summary: >
 
 Here’s a useful abstraction on top of custom events that let you more easily set up typesafe channels to communicate between.
 
+::: window
+typesafe-custom-events.ts
+
 ```ts
 type UnsubscribeFunction = () => void;
 const prefix = "global-prefix"; // To prevent event-name collision
@@ -68,7 +71,12 @@ channel.send({
 // "New message: Foobar, true"
 ```
 
+:::
+
 This can be used in React like a hook:
+
+:::window
+App.tsx
 
 ```tsx
 const useChannel = <T extends unknown>(
@@ -94,6 +102,8 @@ const App = () => {
   // ...
 };
 ```
+
+:::
 
 It’s worth noting that the events collected in the hook are cleared when the component is unmounted, and it only start listening once the component is mounted.
 

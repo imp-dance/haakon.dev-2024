@@ -29,6 +29,7 @@ If you didn't know, I've been using Wordpress as a headless CMS for the last few
 - I retrieve the list of files, using `fs`
   - [`front-matter`](https://www.npmjs.com/package/front-matter) to extract the frontmatter
   - [`markdown-it`](https://github.com/markdown-it/markdown-it) in combination with [`highlight.js`](https://highlightjs.org/) to parse the markdown and add syntax highlighting to code blocks.
+    - I also use the [`markdown-it-container`](https://www.npmjs.com/package/markdown-it-container) plugin for code-windows & galleries.
 
 One benefit over Wordpress is that I can more easily preview the articles as I'm writing them. Not having to deal with Wordpress at all (logging into a separate domain, navigating their solution, etc...) is a nice benefit as well. I prefer writing raw markdown over using a WYSIWYG editor.
 
@@ -50,15 +51,19 @@ I decided to keep a lot of the old ideas in lieu of redesigning the whole websit
 
 ### Archiving my old website
 
-I'm a sentimental and nostalgic person. So I can't just let the old website dissapear into the void that is no-longer-online websites. Therefore, I've taken a lot of screenshots for reference (and the code will always be available at my github). Take a look!
+I'm a sentimental and nostalgic person. So I can't just let the old website dissapear into the void 😧. Therefore, I've taken a lot of screenshots for reference. Take a look!
 
+:::gallery
 ![Screenshot #1](/old_website/1.jpg)
 ![Screenshot #2](/old_website/2.jpg)
 ![Screenshot #3](/old_website/3.jpg)
 ![Screenshot #4](/old_website/4.jpg)
 ![Screenshot #5](/old_website/5.jpg)
 ![Screenshot #6](/old_website/6.jpg)
+:::
 
 ### What about the old articles?
 
 For now, I redirect directly to the old wordpress instance for 404 article routes. I will migrate old articles (and probably pick and choose a bit) eventually.
+
+The old code is of course also available [at my Github](https://github.com/imp-dance/haakon.dev-2022), so if I ever want to spin it up - I can do that.
