@@ -18,7 +18,9 @@ export function ToastProvider() {
     <_ToastProvider
       renderToasts={RenderToasts}
       portal={
-        typeof document !== undefined ? document.body : undefined
+        typeof document !== "undefined"
+          ? document.body
+          : undefined
       }
     />
   );
@@ -61,11 +63,19 @@ const Container = styled.div`
   gap: 1rem;
 `;
 
-const Toast = styled.div`
+const Toast = styled.button`
   background: var(--surface-3);
   color: var(--text-1);
   padding: var(--size-3);
   border-radius: var(--radius-1);
   font-weight: var(--font-weight-8);
   letter-spacing: var(--font-letterspacing-1);
+  border: none;
+  text-shadow: none;
+  opacity: 0;
+  animation: var(--animation-fade-in) forwards,
+    var(--animation-slide-in-up);
+  &:hover {
+    opacity: 0.4;
+  }
 `;

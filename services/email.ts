@@ -12,7 +12,9 @@ export async function sendEmail(formData: FormData) {
   const message = formData.get("message") as string;
 
   if (!from || !message || !email) {
-    throw new Error("Missing required fields");
+    return {
+      error: "Missing fields",
+    };
   }
   try {
     const response = await mailjet
@@ -38,11 +40,17 @@ export async function sendEmail(formData: FormData) {
         ],
       });
     if (response.body) {
-      return true;
+      return {
+        error: "",
+      };
     } else {
-      return false;
+      return {
+        error: "Failed to send",
+      };
     }
   } catch {
-    return false;
+    return {
+      error: "Failed to send",
+    };
   }
 }

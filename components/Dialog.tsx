@@ -58,6 +58,7 @@ export function Dialog(props: {
             position: "absolute",
             top: "var(--size-2)",
             right: "var(--size-2)",
+            fontWeight: "var(--font-weight-9)",
           }}
           onClick={onToggle}
           variant="ghost"

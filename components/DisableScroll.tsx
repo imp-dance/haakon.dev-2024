@@ -17,6 +17,7 @@ export function DisableScroll() {
         `;
     styleEl.id = "disable-scroll";
     document.head.appendChild(styleEl);
+
     return () => {
       document.head.removeChild(styleEl);
     };

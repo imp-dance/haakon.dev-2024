@@ -1,14 +1,42 @@
 "use client";
+import { useServerAction } from "@/hooks/useServerAction";
 import { sendEmail } from "@/services/email";
-import { toast } from "@/services/toast";
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { Button } from "./Button";
 import { Dialog } from "./Dialog";
 import LeaningMan from "./svg/Leaning";
 
+const schema = z.object({
+  from: z.string().min(1, "Name is required"),
+  email: z
+    .string()
+    .email("Invalid email")
+    .min(1, "Email is required"),
+  message: z.string().min(1, "Message is required"),
+});
+
+type FormValues = z.infer<typeof schema>;
+
 export function ContactMeDialog() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const emailAction = useServerAction(sendEmail);
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+  });
+
+  const error = emailAction.result?.error;
+  const isSuccess = emailAction.isFinished && !error;
+  const formDisabled = emailAction.isPending || isSuccess;
+
+  const onSubmit = form.handleSubmit(async (values) => {
+    const formData = new FormData();
+    formData.append("from", values.from);
+    formData.append("email", values.email);
+    formData.append("message", values.message);
+    await emailAction.runAction(formData);
+  });
+
   return (
     <Dialog
       buttonText="Contact"
@@ -18,7 +46,6 @@ export function ContactMeDialog() {
       style={{ padding: 0 }}
     >
       <form
-        id="contact-form"
         style={{
           position: "relative",
           overflow: "hidden",
@@ -26,16 +53,37 @@ export function ContactMeDialog() {
         }}
       >
         <h2>Contact me</h2>
+        {error && (
+          <p style={{ marginBlock: "var(--size-3)" }}>
+            <strong
+              style={{
+                color: "var(--error-text)",
+                background: "var(--error)",
+                padding: "var(--size-3)",
+                maxWidth: "calc(100% - 7rem)",
+                display: "block",
+              }}
+            >
+              {error}
+            </strong>
+          </p>
+        )}
         <input
           type="text"
-          disabled={isSuccess}
-          name="from"
+          disabled={formDisabled}
           placeholder="Name"
+          required
           style={{
             paddingRight: "7rem",
             fontSize: "var(--font-size-fluid-1)",
           }}
+          {...form.register("from")}
         />
+        {form.formState.errors?.from?.message && (
+          <ErrorMessage
+            message={form.formState.errors.from.message}
+          />
+        )}
         <LeaningMan
           style={{
             position: "absolute",
@@ -46,57 +94,68 @@ export function ContactMeDialog() {
         />
         <input
           type="email"
-          name="email"
           placeholder="your@email.com"
-          disabled={isSuccess}
+          disabled={formDisabled}
+          required
           style={{
             paddingRight: "7rem",
             fontSize: "var(--font-size-fluid-1)",
           }}
+          {...form.register("email")}
         />
+        {form.formState.errors?.email?.message && (
+          <ErrorMessage
+            message={form.formState.errors.email.message}
+          />
+        )}
         <textarea
-          name="message"
-          disabled={isSuccess}
+          disabled={formDisabled}
           placeholder="Message"
+          required
           style={{
             paddingRight: "7rem",
             fontSize: "var(--font-size-fluid-1)",
-            marginBottom: "var(--size-7)",
           }}
+          {...form.register("message")}
         />
+        {form.formState.errors?.message?.message && (
+          <ErrorMessage
+            message={form.formState.errors.message.message}
+          />
+        )}
         <Button
           variant="primary"
-          id="close"
-          type="submit"
+          type="button"
           size="lg"
-          disabled={isLoading || isSuccess}
+          disabled={formDisabled}
+          style={{ marginTop: "var(--size-7)" }}
           onClick={async (e) => {
             e.preventDefault();
-            const form = document.getElementById(
-              "contact-form"
-            ) as HTMLFormElement;
-            setIsLoading(true);
-            const newSuccess = await sendEmail(
-              new FormData(form)
-            );
-            setIsLoading(false);
-            if (newSuccess) {
-              setIsSuccess(true);
-              toast({
-                message: "Message recieved!",
-                color: "var(--success-text)",
-                bg: "var(--success)",
-              });
-            }
+            onSubmit();
           }}
         >
           {isSuccess
             ? "Message recieved!"
-            : isLoading
+            : emailAction.isPending
             ? "Sending..."
+            : error
+            ? "Retry!"
             : "Send"}
         </Button>
       </form>
     </Dialog>
+  );
+}
+
+function ErrorMessage(props: { message: string }) {
+  return (
+    <div
+      style={{
+        fontWeight: "var(--font-weight-5)",
+        color: "var(--red-9)",
+      }}
+    >
+      {props.message}
+    </div>
   );
 }
