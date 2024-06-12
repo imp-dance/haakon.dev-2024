@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Button } from "./Button";
 import { Dialog } from "./Dialog";
 import LeaningMan from "./svg/Leaning";
+import { Send } from "./svg/Send";
 
 const schema = z.object({
   from: z.string().min(1, "Name is required"),
@@ -14,7 +15,7 @@ const schema = z.object({
     .string()
     .email("Invalid email")
     .min(1, "Email is required"),
-  message: z.string().min(1, "Message is required"),
+  message: z.string().min(20, "A little longer please..."),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -53,6 +54,14 @@ export function ContactMeDialog() {
         }}
       >
         <h2>Contact me</h2>
+        <p
+          style={{
+            paddingRight: "7rem",
+            color: "var(--text-4)",
+          }}
+        >
+          I&apos;ll get back to you asap!
+        </p>
         {error && (
           <p style={{ marginBlock: "var(--size-3)" }}>
             <strong
@@ -68,61 +77,70 @@ export function ContactMeDialog() {
             </strong>
           </p>
         )}
-        <input
-          type="text"
-          disabled={formDisabled}
-          placeholder="Name"
-          required
-          style={{
-            paddingRight: "7rem",
-            fontSize: "var(--font-size-fluid-1)",
-          }}
-          {...form.register("from")}
-        />
-        {form.formState.errors?.from?.message && (
-          <ErrorMessage
-            message={form.formState.errors.from.message}
+        <label>
+          Name
+          <input
+            type="text"
+            disabled={formDisabled}
+            required
+            style={{
+              paddingRight: "7rem",
+              fontSize: "var(--font-size-fluid-1)",
+            }}
+            {...form.register("from")}
           />
-        )}
+          {form.formState.errors?.from?.message && (
+            <ErrorMessage
+              message={form.formState.errors.from.message}
+            />
+          )}
+        </label>
         <LeaningMan
           style={{
             position: "absolute",
             right: 0,
-            top: 0,
+            bottom: 63,
             pointerEvents: "none",
+            filter: "grayscale(0.7)",
           }}
         />
-        <input
-          type="email"
-          placeholder="your@email.com"
-          disabled={formDisabled}
-          required
-          style={{
-            paddingRight: "7rem",
-            fontSize: "var(--font-size-fluid-1)",
-          }}
-          {...form.register("email")}
-        />
-        {form.formState.errors?.email?.message && (
-          <ErrorMessage
-            message={form.formState.errors.email.message}
+        <label>
+          Email
+          <input
+            type="email"
+            disabled={formDisabled}
+            required
+            style={{
+              paddingRight: "7rem",
+              fontSize: "var(--font-size-fluid-1)",
+            }}
+            {...form.register("email")}
+          />{" "}
+          {form.formState.errors?.email?.message && (
+            <ErrorMessage
+              message={form.formState.errors.email.message}
+            />
+          )}
+        </label>
+
+        <label>
+          Message
+          <textarea
+            disabled={formDisabled}
+            required
+            style={{
+              paddingRight: "7rem",
+              fontSize: "var(--font-size-fluid-1)",
+              minHeight: "170px",
+            }}
+            {...form.register("message")}
           />
-        )}
-        <textarea
-          disabled={formDisabled}
-          placeholder="Message"
-          required
-          style={{
-            paddingRight: "7rem",
-            fontSize: "var(--font-size-fluid-1)",
-          }}
-          {...form.register("message")}
-        />
-        {form.formState.errors?.message?.message && (
-          <ErrorMessage
-            message={form.formState.errors.message.message}
-          />
-        )}
+          {form.formState.errors?.message?.message && (
+            <ErrorMessage
+              message={form.formState.errors.message.message}
+            />
+          )}
+        </label>
         <Button
           variant="primary"
           type="button"
@@ -134,13 +152,20 @@ export function ContactMeDialog() {
             onSubmit();
           }}
         >
-          {isSuccess
-            ? "Message recieved!"
-            : emailAction.isPending
-            ? "Sending..."
-            : error
-            ? "Retry!"
-            : "Send"}
+          {isSuccess ? (
+            "Message recieved!"
+          ) : emailAction.isPending ? (
+            "Sending..."
+          ) : error ? (
+            "Retry!"
+          ) : (
+            <>
+              Send{" "}
+              <Send
+                style={{ width: ".75em", height: ".75em" }}
+              />
+            </>
+          )}
         </Button>
       </form>
     </Dialog>
@@ -153,6 +178,8 @@ function ErrorMessage(props: { message: string }) {
       style={{
         fontWeight: "var(--font-weight-5)",
         color: "var(--red-9)",
+        animation: "var(--animation-bounce)",
+        animationIterationCount: 1,
       }}
     >
       {props.message}

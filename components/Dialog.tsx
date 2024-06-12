@@ -2,6 +2,7 @@
 import { styled } from "@pigment-css/react";
 import React from "react";
 import { Button } from "./Button";
+import { Close } from "./svg/Close";
 
 export function Dialog(props: {
   children: React.ReactNode;
@@ -63,7 +64,7 @@ export function Dialog(props: {
           onClick={onToggle}
           variant="ghost"
         >
-          X
+          <Close />
         </Button>
       </StyledDialog>
       {props.renderButton ? (
@@ -101,6 +102,13 @@ const StyledDialog = styled.dialog`
     gap: var(--size-3);
     & h2 {
       font-size: var(--font-size-fluid-2);
+    }
+
+    & label {
+      display: flex;
+      flex-direction: column;
+      gap: var(--size-1);
+      color: var(--text-6);
     }
   }
 `;
