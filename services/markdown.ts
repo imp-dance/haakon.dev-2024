@@ -33,7 +33,7 @@ export function parseMarkdown(markdown: string) {
   return md.render(markdown);
 }
 
-export async function parseShowoffMd(file: string) {
+export async function parsePortfolioMd(file: string) {
   const { attributes, body } = extractFrontmatter(file);
   const highlightedLines = body.matchAll(/{([\d,]+)}/g);
   for (const match of highlightedLines) {

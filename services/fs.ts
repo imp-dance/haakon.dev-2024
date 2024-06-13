@@ -1,24 +1,24 @@
 import fs from "fs";
 import { redirect } from "next/navigation";
 import path from "path";
-import { parseArticleMd, parseShowoffMd } from "./markdown";
+import { parseArticleMd, parsePortfolioMd } from "./markdown";
 
 const base = process.cwd();
 
 export const paths = {
-  showoff: path.join(base, "./public/showoff"),
+  portfolio: path.join(base, "./public/portfolio"),
   articles: path.join(base, "./public/articles"),
 };
 
-export async function getShowoffFiles() {
-  const rawFiles = fs.readdirSync(paths.showoff);
+export async function getPortfolioFiles() {
+  const rawFiles = fs.readdirSync(paths.portfolio);
   const files = await Promise.all(
     rawFiles.reverse().map(async (file) => {
       const contents = fs.readFileSync(
-        `${paths.showoff}/${file}`,
+        `${paths.portfolio}/${file}`,
         "utf-8"
       );
-      const md = await parseShowoffMd(contents);
+      const md = await parsePortfolioMd(contents);
 
       return {
         name: file,

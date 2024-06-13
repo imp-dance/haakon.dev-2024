@@ -34,6 +34,8 @@ This was very helpful, some parts of it I loved but other parts of the pattern w
 routes/user.tsx
 
 ```tsx
+// all of this is just boilerplate
+// to give my component data
 const UserPage = () => {
   const query = useSomeQuery();
   return (

@@ -1,18 +1,17 @@
 "use client";
+import { getDocument } from "@/utils/getDocument";
 import Giscus from "@giscus/react";
 import { useEffect, useState } from "react";
 
 export function CommentSection() {
   const [theme, setTheme] = useState(
-    typeof document !== undefined
-      ? document.body.classList.contains("light")
-        ? "light"
-        : "dark"
+    getDocument()?.body.classList.contains("light")
+      ? "light"
       : "dark"
   );
 
   useEffect(() => {
-    if (typeof document === undefined) return;
+    if (!getDocument()) return;
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === "class") {

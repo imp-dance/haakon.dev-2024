@@ -2,7 +2,6 @@ import { styled } from "@pigment-css/react";
 import { getAge } from "../utils/getAge";
 import { ButtonLink } from "./Button";
 import { ContactMeDialog } from "./ContactMeDialog";
-import styles from "./Header.module.css";
 import { ChevronDown } from "./icons/ChevronDown";
 import { MeSVG } from "./svg/MeSVG";
 
@@ -52,7 +51,7 @@ export function Header() {
           bottom: "-3.5rem",
         }}
       />
-      <ChevronDown className={styles.chevron} />
+      <ChevronDown className="chevron" />
     </Container>
   );
 }
@@ -89,6 +88,16 @@ const Container = styled.header`
   position: relative;
   overflow: hidden !important;
   background: var(--background);
+
+  & .chevron {
+    margin: auto auto 0 auto;
+    width: 2rem;
+    height: 2rem;
+    animation: var(--animation-bounce);
+    animation-timing-function: var(--ease-elastic-in-out-3);
+    animation-duration: 3s;
+    stroke: var(--pink-5);
+  }
   & > div {
     margin-top: auto;
     max-width: 580px;
