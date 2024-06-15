@@ -80,16 +80,13 @@ App.tsx
 
 ```tsx
 const useChannel = <T extends unknown>(
-  channel: CustomEventChannel<T>
+  channel: CustomEventChannel<T>,
+  onEvent: (event: T) => void
 ) => {
-  const [state, setState] = React.useState<T[]>([]);
   React.useEffect(() => {
-    const unsubscribe = channel.subscribe((event) => {
-      setState((p) => [...p, event]);
-    });
+    const unsubscribe = channel.subscribe(onEvent);
     return unsubscribe;
   }, []);
-  return state;
 };
 
 // use
@@ -98,13 +95,14 @@ const myChannel = new CustomEventChannel<{
 }>("my-channel");
 
 const App = () => {
-  const events = useChannel(channel);
+  const [events, setEvents] = useState<T[]>([]);
+  const events = useChannel(channel, (event) =>
+    setEvents([...events, event])
+  );
   // ...
 };
 ```
 
 :::
-
-It’s worth noting that the events collected in the hook are cleared when the component is unmounted, and it only start listening once the component is mounted.
 
 I’ve also published this as an NPM package, `typesafe-custom-events`, which you can check out [here](https://typesafe-custom-events.ryfylke.dev/).

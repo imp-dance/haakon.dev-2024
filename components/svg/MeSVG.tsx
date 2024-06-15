@@ -1,7 +1,11 @@
+import classNames from "classnames";
 import { CSSProperties } from "react";
 import styles from "./MeSVG.module.css";
 
-export const MeSVG = (props: { style?: CSSProperties }) => {
+export const MeSVG = (props: {
+  style?: CSSProperties;
+  className?: string;
+}) => {
   const isDM = true;
   return (
     <svg
@@ -10,7 +14,7 @@ export const MeSVG = (props: { style?: CSSProperties }) => {
       fill="none"
       viewBox="0 0 1149 921"
       xmlns="http://www.w3.org/2000/svg"
-      className={styles.svg}
+      className={classNames(props.className, styles.svg)}
       style={props.style}
     >
       <path

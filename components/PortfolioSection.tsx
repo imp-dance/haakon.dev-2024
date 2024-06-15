@@ -1,5 +1,4 @@
 import { styled } from "@pigment-css/react";
-import Image from "next/image";
 import { getPortfolioFiles } from "../services/fs";
 import { Button } from "./Button";
 import { Disclose } from "./Disclose";
@@ -10,14 +9,12 @@ export async function PortfolioSection() {
   const files = await getPortfolioFiles();
 
   const fileMapper = (file: (typeof files)[number]) => {
-    const isCurrent =
-      file.frontMatter.subTitle &&
-      file.frontMatter.subTitle.toString().includes("now");
-
     return (
       <div key={file.name}>
         <ImageContainer>
-          <Image
+          {/* Image breaks build for some reason. Should look into that. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={file.frontMatter.image}
             alt={file.frontMatter.title}
             width={200}

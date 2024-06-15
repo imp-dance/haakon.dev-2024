@@ -20,7 +20,7 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-export function ContactMeDialog() {
+export function ContactDialog() {
   const emailAction = useServerAction(sendEmail);
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -42,7 +42,14 @@ export function ContactMeDialog() {
     <Dialog
       buttonText="Contact"
       renderButton={
-        <Button variant="primary" style={{ flexGrow: 1 }} />
+        <Button
+          variant="primary"
+          style={{
+            flexGrow: 1,
+            position: "relative",
+            zIndex: 2,
+          }}
+        />
       }
       style={{ padding: 0 }}
     >

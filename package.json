@@ -11,12 +11,13 @@
   "dependencies": {
     "@giscus/react": "^3.0.0",
     "@hookform/resolvers": "^3.6.0",
-    "@pigment-css/react": "^0.0.12",
+    "@pigment-css/react": "^0.0.13",
     "@ryfylke-react/toast": "^0.1.61",
     "@types/markdown-it": "^14.1.1",
     "@types/markdown-it-container": "^2.0.10",
     "@types/prismjs": "^1.26.4",
     "@types/react-window": "^1.8.8",
+    "@types/sanitize-html": "^2.11.0",
     "classnames": "^2.5.1",
     "date-fns": "^3.6.0",
     "front-matter": "^4.0.2",
@@ -29,10 +30,11 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.51.5",
+    "sanitize-html": "^2.13.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@pigment-css/nextjs-plugin": "^0.0.12",
+    "@pigment-css/nextjs-plugin": "^0.0.14",
     "@types/node": "^20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

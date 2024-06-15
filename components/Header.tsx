@@ -1,7 +1,7 @@
 import { styled } from "@pigment-css/react";
 import { getAge } from "../utils/getAge";
 import { ButtonLink } from "./Button";
-import { ContactMeDialog } from "./ContactMeDialog";
+import { ContactDialog } from "./ContactDialog";
 import { ChevronDown } from "./icons/ChevronDown";
 import { MeSVG } from "./svg/MeSVG";
 
@@ -41,20 +41,31 @@ export function Header() {
           >
             Articles
           </ButtonLink>
-          <ContactMeDialog />
+          <ContactDialog />
         </div>
       </div>
-      <MeSVG
-        style={{
-          position: "absolute",
-          right: "-4rem",
-          bottom: "-3.5rem",
-        }}
-      />
+      <StyledMeSvg />
       <ChevronDown className="chevron" />
     </Container>
   );
 }
+
+const StyledMeSvg = styled(MeSVG)`
+  position: absolute;
+  right: -3%;
+  bottom: -8%;
+  z-index: 0;
+  --width: 50vw;
+  width: var(--width);
+  max-width: var(--width);
+
+  @media screen and (max-width: 1200px) {
+    --width: 60vw;
+  }
+  @media screen and (max-width: 890px) {
+    --width: 80vw;
+  }
+`;
 
 const Subtext = styled.p`
   background: var(--text-subtle-highlight);

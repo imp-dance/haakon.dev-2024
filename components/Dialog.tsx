@@ -27,15 +27,16 @@ export function Dialog(props: {
       setIsOpen(false);
       ref.current?.close();
     };
-    ref.current?.addEventListener("open", onStateChange);
-    ref.current?.addEventListener("close", onStateChange);
-    const closeButton = ref.current?.querySelector("#close");
+    const el = ref.current;
+    el?.addEventListener("open", onStateChange);
+    el?.addEventListener("close", onStateChange);
+    const closeButton = el?.querySelector("#close");
     closeButton?.addEventListener("click", closeListener);
 
     return () => {
       closeButton?.removeEventListener("click", closeListener);
-      ref.current?.removeEventListener("close", onStateChange);
-      ref.current?.removeEventListener("open", onStateChange);
+      el?.removeEventListener("close", onStateChange);
+      el?.removeEventListener("open", onStateChange);
     };
   }, [isOpen]);
 
@@ -91,7 +92,7 @@ const StyledDialog = styled.dialog`
   padding: var(--size-5);
   width: min(100%, 500px);
   animation: var(--animation-fade-in-bloom) forwards,
-    var(--animation-slide-in-up) forwards;
+    scaleInDialog 0.4s forwards;
   animation-timing-function: var(--ease-out-3);
   animation-duration: 0.3s;
   position: relative;
@@ -109,6 +110,15 @@ const StyledDialog = styled.dialog`
       flex-direction: column;
       gap: var(--size-1);
       color: var(--text-6);
+    }
+  }
+
+  @keyframes scaleInDialog {
+    from {
+      transform: scale(0.9);
+    }
+    to {
+      transform: scale(1);
     }
   }
 `;

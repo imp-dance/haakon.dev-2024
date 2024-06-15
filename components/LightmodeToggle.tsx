@@ -1,6 +1,6 @@
 "use client";
+import { useServerAction } from "@/hooks/useServerAction";
 import { useState } from "react";
-import { useFormStatus } from "react-dom";
 import { Button } from "./Button";
 import { Dark } from "./svg/Dark";
 import { Light } from "./svg/Light";
@@ -26,11 +26,12 @@ export function LightmodeToggle(props: {
 function SubmitButton(props: {
   action: () => Promise<boolean>;
 }) {
+  const action = useServerAction(props.action);
   const [isLightmode, setIsLightmode] = useState(
     typeof document !== "undefined" &&
       document.body.classList.contains("light")
   );
-  const { pending } = useFormStatus();
+
   return (
     <Button
       type="button"
@@ -40,10 +41,10 @@ function SubmitButton(props: {
         right: "var(--size-2)",
         zIndex: 10,
       }}
-      disabled={pending}
+      disabled={action.isPending}
       onClick={async () => {
-        const isLightmode = await props.action();
-        setIsLightmode(isLightmode);
+        const newLightmode = await action.runAction();
+        setIsLightmode(newLightmode ?? !isLightmode);
       }}
       variant="ghost"
     >
