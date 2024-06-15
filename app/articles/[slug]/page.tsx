@@ -1,6 +1,7 @@
 import { ButtonLink } from "@/components/Button";
 import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
+import { Metadata } from "next";
 import { CommentSection } from "../../../components/CommentSection";
 import { getArticle, getArticles } from "../../../services/fs";
 
@@ -17,6 +18,17 @@ type PageProps = {
     ReturnType<typeof generateStaticParams>
   >[number];
 };
+
+export async function generateMetadata(
+  props: PageProps
+): Promise<Metadata> {
+  const { slug } = props.params;
+  const article = await getArticle(slug);
+  return {
+    title: `${article.frontMatter.title} | Håkon Underbakke`,
+    description: article.frontMatter.summary,
+  };
+}
 
 export default async function ArticlePage(props: PageProps) {
   const { slug } = props.params;

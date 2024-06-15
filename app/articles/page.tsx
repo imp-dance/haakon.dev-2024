@@ -1,7 +1,14 @@
 import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
+import { Metadata } from "next";
 import { ButtonLink } from "../../components/Button";
 import { getArticles } from "../../services/fs";
+
+export const metadata: Metadata = {
+  title: "Articles | Håkon Underbakke",
+  description:
+    "I'm a Norwegian frontend developer currently doing contract work for my own company, Ryfylke React AS. ",
+};
 
 export default async function ArticlesPage() {
   const articles = await getArticles();
@@ -29,19 +36,13 @@ export default async function ArticlesPage() {
       <List>
         {articles.map((article) => (
           <li key={article.name}>
-            <ButtonLink
+            <StyledButtonLink
               title={article.frontMatter.title}
               href={`/articles/${article.name.replace(
                 ".md",
                 ""
               )}`}
               variant="ghost"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                textAlign: "left",
-              }}
             >
               <Title>{article.frontMatter.title}</Title>
               <p
@@ -57,13 +58,36 @@ export default async function ArticlesPage() {
                   }
                 )}
               </p>
-            </ButtonLink>
+            </StyledButtonLink>
           </li>
         ))}
+        <li style={{ padding: "var(--size-3) var(--size-5)" }}>
+          <ButtonLink
+            variant="subtle"
+            href="https://impedans.me/web/?s="
+          >
+            Articles from my old blog
+          </ButtonLink>
+        </li>
       </List>
     </Container>
   );
 }
+
+const StyledButtonLink = styled(ButtonLink)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: transform 0.2s var(--ease-out-1);
+
+  &:hover {
+    transform: scale(1.01);
+  }
+  &:active {
+    transform: scale(0.99);
+  }
+`;
 
 const Container = styled.div`
   display: flex;
