@@ -1,9 +1,9 @@
 import { styled } from "@pigment-css/react";
-import { getPortfolioFiles } from "../services/fs";
-import { Button } from "./Button";
-import { Disclose } from "./Disclose";
-import { Divider } from "./Divider";
-import { RenderHTML } from "./RenderHTML";
+import { Button } from "../../components/Button";
+import { Disclose } from "../../components/Disclose";
+import { Divider } from "../../components/Divider";
+import { RenderHTML } from "../../components/RenderHTML";
+import { getPortfolioFiles } from "./server-utils";
 
 export async function PortfolioSection() {
   const files = await getPortfolioFiles();

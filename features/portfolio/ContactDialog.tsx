@@ -4,10 +4,10 @@ import { sendEmail } from "@/services/email";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "./Button";
-import { Dialog } from "./Dialog";
-import LeaningMan from "./svg/Leaning";
-import { Send } from "./svg/Send";
+import { Button } from "../../components/Button";
+import { Dialog } from "../../components/Dialog";
+import LeaningMan from "../../components/svg/Leaning";
+import { Send } from "../../components/svg/Send";
 
 const schema = z.object({
   from: z.string().min(1, "Name is required"),

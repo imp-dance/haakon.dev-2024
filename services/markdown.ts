@@ -1,4 +1,3 @@
-import extractFrontmatter from "front-matter";
 import hljs from "highlight.js";
 import bash from "highlight.js/lib/languages/bash";
 import css from "highlight.js/lib/languages/css";
@@ -31,41 +30,4 @@ md.use(container, "gallery");
 
 export function parseMarkdown(markdown: string) {
   return md.render(markdown);
-}
-
-export async function parsePortfolioMd(file: string) {
-  const { attributes, body } = extractFrontmatter(file);
-  const highlightedLines = body.matchAll(/{([\d,]+)}/g);
-  for (const match of highlightedLines) {
-    const [full, lines] = match;
-    console.log(full, lines);
-  }
-
-  const html = parseMarkdown(body);
-
-  return {
-    frontMatter: attributes as {
-      id: string;
-      title: string;
-      subTitle: string;
-      body: string;
-      type: string;
-      image: string;
-    },
-    html,
-  };
-}
-
-export async function parseArticleMd(file: string) {
-  const { attributes, body } = extractFrontmatter(file);
-  const html = parseMarkdown(body);
-
-  return {
-    frontMatter: attributes as {
-      title: string;
-      date: string;
-      summary: string;
-    },
-    html,
-  };
 }

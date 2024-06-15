@@ -1,9 +1,9 @@
 import { styled } from "@pigment-css/react";
-import { getAge } from "../utils/getAge";
-import { ButtonLink } from "./Button";
+import { ButtonLink } from "../../components/Button";
+import { ChevronDown } from "../../components/icons/ChevronDown";
+import { MeSVG } from "../../components/svg/MeSVG";
+import { getAge } from "../../utils/getAge";
 import { ContactDialog } from "./ContactDialog";
-import { ChevronDown } from "./icons/ChevronDown";
-import { MeSVG } from "./svg/MeSVG";
 
 export function Header() {
   return (

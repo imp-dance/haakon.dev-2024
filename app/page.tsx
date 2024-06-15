@@ -1,8 +1,8 @@
 import { styled } from "@pigment-css/react";
-import { AboutMeSection } from "../components/AboutMeSection";
 import { DisableScroll } from "../components/DisableScroll";
-import { Header } from "../components/Header";
-import { PortfolioSection } from "../components/PortfolioSection";
+import { AboutMeSection } from "../features/portfolio/AboutMeSection";
+import { Header } from "../features/portfolio/Header";
+import { PortfolioSection } from "../features/portfolio/PortfolioSection";
 
 export default function Home() {
   return (

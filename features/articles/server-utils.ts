@@ -1,40 +1,34 @@
+import { parseMarkdown } from "@/services/markdown";
+import extractFrontmatter from "front-matter";
 import fs from "fs";
 import { redirect } from "next/navigation";
 import path from "path";
-import { parseArticleMd, parsePortfolioMd } from "./markdown";
 
-const base = process.cwd();
+export const MD_PATH = path.join(
+  process.cwd(),
+  "public/articles"
+);
 
-export const paths = {
-  portfolio: path.join(base, "./public/portfolio"),
-  articles: path.join(base, "./public/articles"),
-};
+export async function parseArticleMd(file: string) {
+  const { attributes, body } = extractFrontmatter(file);
+  const html = parseMarkdown(body);
 
-export async function getPortfolioFiles() {
-  const rawFiles = fs.readdirSync(paths.portfolio);
-  const files = await Promise.all(
-    rawFiles.reverse().map(async (file) => {
-      const contents = fs.readFileSync(
-        `${paths.portfolio}/${file}`,
-        "utf-8"
-      );
-      const md = await parsePortfolioMd(contents);
-
-      return {
-        name: file,
-        ...md,
-      };
-    })
-  );
-  return files;
+  return {
+    frontMatter: attributes as {
+      title: string;
+      date: string;
+      summary: string;
+    },
+    html,
+  };
 }
 
 export async function getArticles() {
-  const rawFiles = fs.readdirSync(paths.articles);
+  const rawFiles = fs.readdirSync(MD_PATH);
   const files = await Promise.all(
     rawFiles.reverse().map(async (file) => {
       const contents = fs.readFileSync(
-        `${paths.articles}//${file}`,
+        `${MD_PATH}//${file}`,
         "utf-8"
       );
       const md = await parseArticleMd(contents);
@@ -57,7 +51,7 @@ export async function getArticles() {
 export async function getArticle(name: string) {
   try {
     const contents = fs.readFileSync(
-      `${paths.articles}/${name}.md`,
+      `${MD_PATH}/${name}.md`,
       "utf-8"
     );
     const md = await parseArticleMd(contents);

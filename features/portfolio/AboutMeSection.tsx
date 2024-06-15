@@ -1,10 +1,10 @@
 import { styled } from "@pigment-css/react";
 import Image from "next/image";
 import Link from "next/link";
-import { getAge } from "../utils/getAge";
-import { Button } from "./Button";
-import { Disclose } from "./Disclose";
-import { VideoScrollContainer } from "./VideoScrollContainer";
+import { Button } from "../../components/Button";
+import { Disclose } from "../../components/Disclose";
+import { VideoScrollContainer } from "../../components/VideoScrollContainer";
+import { getAge } from "../../utils/getAge";
 
 export function AboutMeSection() {
   return (
