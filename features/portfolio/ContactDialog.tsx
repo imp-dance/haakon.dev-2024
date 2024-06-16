@@ -1,8 +1,6 @@
 "use client";
-import { useServerAction } from "@/hooks/useServerAction";
+import { useServerForm } from "@/hooks/useServerForm";
 import { sendEmail } from "@/services/email";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "../../components/Button";
 import { Dialog } from "../../components/Dialog";
@@ -18,25 +16,15 @@ const schema = z.object({
   message: z.string().min(20, "A little longer please..."),
 });
 
-type FormValues = z.infer<typeof schema>;
-
 export function ContactDialog() {
-  const emailAction = useServerAction(sendEmail);
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
-  });
+  const { form, ...formAction } = useServerForm(
+    schema,
+    sendEmail
+  );
 
-  const error = emailAction.result?.error;
-  const isSuccess = emailAction.isFinished && !error;
-  const formDisabled = emailAction.isPending || isSuccess;
-
-  const onSubmit = form.handleSubmit(async (values) => {
-    const formData = new FormData();
-    formData.append("from", values.from);
-    formData.append("email", values.email);
-    formData.append("message", values.message);
-    await emailAction.runAction(formData);
-  });
+  const error = formAction.result?.error;
+  const isSuccess = formAction.isFinished && !error;
+  const formDisabled = formAction.isPending || isSuccess;
 
   return (
     <Dialog
@@ -156,12 +144,12 @@ export function ContactDialog() {
           style={{ marginTop: "var(--size-7)" }}
           onClick={async (e) => {
             e.preventDefault();
-            onSubmit();
+            formAction.onSubmit();
           }}
         >
           {isSuccess ? (
             "Message recieved!"
-          ) : emailAction.isPending ? (
+          ) : formAction.isPending ? (
             "Sending..."
           ) : error ? (
             "Retry!"

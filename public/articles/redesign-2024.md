@@ -49,17 +49,18 @@ I'm a big fan of technologies that try to harmonize with the standard web API. [
 
 I decided to keep a lot of the old ideas in lieu of redesigning the whole website. The landing page header is very similar, but I decided to simplify the "my experience" and "about me" sections. The typography is also nicer and more responsive, thanks to open props.
 
-### Archiving my old website
+### Blasts from the past!
 
-I'm a sentimental and nostalgic person. So I can't just let the old website dissapear into the void 😧. Therefore, I've taken a lot of screenshots for reference. Take a look!
+_Warning_: some of these might be a bit hard to look at... for me.
+
+In chronological order: 2016, 2019, 2020, 2022, 2024!
 
 :::gallery
+![2016 Iteration of portfolio](https://impedans.me/web/wp-content/uploads/2022/07/Screenshot-2022-07-05-at-10.05.33.png)
+![2019 Iteration of portfolio](https://impedans.me/web/wp-content/uploads/2022/07/Screenshot-2022-07-05-at-10.10.27-1568x1134.png)
+![2020 Iteration of portfolio](https://impedans.me/web/wp-content/uploads/2020/09/Screenshot-2020-09-05-at-11.48.58.png)
 ![Screenshot #1](/old_website/1.jpg)
-![Screenshot #2](/old_website/2.jpg)
-![Screenshot #3](/old_website/3.jpg)
-![Screenshot #4](/old_website/4.jpg)
-![Screenshot #5](/old_website/5.jpg)
-![Screenshot #6](/old_website/6.jpg)
+![New design screenshot](/24-website.jpg)
 :::
 
 ### What about the old articles?

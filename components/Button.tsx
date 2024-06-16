@@ -37,6 +37,7 @@ export function ButtonLink(
     children?: React.ReactNode;
     style?: React.CSSProperties;
     title?: string;
+    target?: string;
   }
 ) {
   const className = classNames(

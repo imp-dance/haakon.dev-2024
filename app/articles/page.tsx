@@ -1,3 +1,4 @@
+import { External } from "@/components/svg/External";
 import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
 import { Metadata } from "next";
@@ -64,9 +65,11 @@ export default async function ArticlesPage() {
         <li style={{ padding: "var(--size-3) var(--size-5)" }}>
           <ButtonLink
             variant="subtle"
+            target="_blank"
             href="https://impedans.me/web/?s="
           >
             Articles from my old blog
+            <External />
           </ButtonLink>
         </li>
       </List>

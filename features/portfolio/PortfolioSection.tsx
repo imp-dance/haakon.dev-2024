@@ -133,14 +133,18 @@ const ImageContainer = styled.div`
   overflow: hidden;
   position: relative;
   & > img {
-    filter: grayscale(0.5);
+    filter: grayscale(0.85);
     position: absolute;
     pointer-events: none;
     user-select: none;
     top: var(--size-2);
     left: var(--size-2);
-    bottom: var(--size-2);
     right: var(--size-2);
+
+    border-radius: 50%;
+    border: 1px solid var(--surface-4);
+    aspect-ratio: 1 / 1;
+    width: 95%;
   }
   @media screen and (max-width: 768px) {
     width: 70px;
