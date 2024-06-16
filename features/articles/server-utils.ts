@@ -6,7 +6,7 @@ import { parseMarkdown } from "../../services/markdown";
 
 export const MD_PATH = path.join(
   process.cwd(),
-  "public/articles"
+  "./public/articles"
 );
 
 export async function parseArticleMd(file: string) {
