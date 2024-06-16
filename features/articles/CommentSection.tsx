@@ -1,7 +1,7 @@
 "use client";
-import { getDocument } from "@/utils/getDocument";
 import Giscus from "@giscus/react";
 import { useEffect, useState } from "react";
+import { getDocument } from "../../utils/getDocument";
 
 export function CommentSection() {
   const [theme, setTheme] = useState(

@@ -1,11 +1,11 @@
-import { toggleLightmode } from "@/actions/lightmode";
-import { LightmodeToggle } from "@/components/LightmodeToggle";
-import { getTheme } from "@/services/cookies";
-import { ToastProvider } from "@/services/toast";
 import "@pigment-css/react/styles.css";
 import classNames from "classnames";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { toggleLightmode } from "../actions/lightmode";
+import { LightmodeToggle } from "../components/LightmodeToggle";
+import { getTheme } from "../services/cookies";
+import { ToastProvider } from "../services/toast";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });

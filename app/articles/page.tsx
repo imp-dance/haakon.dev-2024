@@ -1,8 +1,8 @@
-import { External } from "@/components/svg/External";
 import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
 import { Metadata } from "next";
 import { ButtonLink } from "../../components/Button";
+import { External } from "../../components/svg/External";
 import { getArticles } from "../../features/articles/server-utils";
 
 export const metadata: Metadata = {

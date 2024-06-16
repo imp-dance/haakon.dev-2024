@@ -1,6 +1,6 @@
 "use client";
-import { useServerAction } from "@/hooks/useServerAction";
 import { useState } from "react";
+import { useServerAction } from "../hooks/useServerAction";
 import { Button } from "./Button";
 import { Dark } from "./svg/Dark";
 import { Light } from "./svg/Light";

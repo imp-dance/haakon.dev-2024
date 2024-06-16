@@ -1,12 +1,12 @@
-import { ButtonLink } from "@/components/Button";
-import { CommentSection } from "@/features/articles/CommentSection";
-import {
-  getArticle,
-  getArticles,
-} from "@/features/articles/server-utils";
 import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
 import { Metadata } from "next";
+import { ButtonLink } from "../../../components/Button";
+import { CommentSection } from "../../../features/articles/CommentSection";
+import {
+  getArticle,
+  getArticles,
+} from "../../../features/articles/server-utils";
 
 export async function generateStaticParams() {
   const articles = await getArticles();
