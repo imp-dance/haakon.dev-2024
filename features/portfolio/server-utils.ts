@@ -1,7 +1,7 @@
-import { parseMarkdown } from "@/services/markdown";
 import extractFrontmatter from "front-matter";
 import fs from "fs";
 import path from "path";
+import { parseMarkdown } from "../../services/markdown";
 
 export const MD_PATH = path.join(
   process.cwd(),
