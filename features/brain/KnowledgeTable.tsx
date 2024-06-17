@@ -242,6 +242,10 @@ const data = [
     subject: "ContractExpress Author",
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
+  {
+    subject: "GSAP",
+    knowledgeLevel: KnowledgeLevel.readAbout,
+  },
 ].sort((a, b) => a.subject.localeCompare(b.subject));
 
 const fuse = new Fuse(data, {
@@ -271,6 +275,7 @@ export default function KnowledgeTable() {
         placeholder="Search for a subject 🔎"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        autoFocus
       />
       <Table>
         <thead>
