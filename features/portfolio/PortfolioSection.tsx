@@ -124,23 +124,24 @@ const Entry = styled.div`
   box-shadow: var(--ui-shadow);
   width: 100%;
   & h2 {
-    min-width: max-content;
-    width: 100%;
-    max-width: 100%;
     font-size: var(--font-size-fluid-2);
     display: flex;
     justify-content: space-between;
+    max-width: 100%;
 
     & span {
+      display: block;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      max-width: 100%;
       font-size: var(--font-size-fluid-2);
+      flex: 1;
+      min-width: 0;
     }
 
     & .btn {
       flex-shrink: 0;
+      height: min-content;
     }
   }
   & h3 {
@@ -153,6 +154,12 @@ const Entry = styled.div`
     font-size: var(--font-size-3);
 
     font-weight: var(--font-weight-4);
+  }
+
+  @media screen and (max-width: 768px) {
+    & h2 .btn {
+      display: none;
+    }
   }
 `;
 const ImageContainer = styled.div`
@@ -174,6 +181,9 @@ const ImageContainer = styled.div`
     border: 1px solid var(--surface-4);
     aspect-ratio: 1 / 1;
     width: 95%;
+  }
+  @media screen and (max-width: 820px) {
+    width: 100px;
   }
   @media screen and (max-width: 768px) {
     width: 70px;
