@@ -32,6 +32,8 @@
 
 .sm {
   font-size: var(--font-size-0);
+  padding-inline: var(--size-relative-5);
+  padding-block: 0.5ch;
 }
 
 .lg {

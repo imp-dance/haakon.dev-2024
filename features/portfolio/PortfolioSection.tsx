@@ -1,8 +1,9 @@
 import { styled } from "@pigment-css/react";
-import { Button } from "../../components/Button";
+import { Button, ButtonLink } from "../../components/Button";
 import { Disclose } from "../../components/Disclose";
 import { Divider } from "../../components/Divider";
 import { RenderHTML } from "../../components/RenderHTML";
+import { External } from "../../components/svg/External";
 import { getPortfolioFiles } from "./server-utils";
 
 export async function PortfolioSection() {
@@ -22,7 +23,19 @@ export async function PortfolioSection() {
           />
         </ImageContainer>
         <Entry>
-          <h2>{file.frontMatter.title}</h2>
+          <h2>
+            <span>{file.frontMatter.title}</span>
+            {file.frontMatter.goto && (
+              <ButtonLink
+                href={file.frontMatter.goto}
+                target="_blank"
+                variant="subtle"
+                size="sm"
+              >
+                Open <External />
+              </ButtonLink>
+            )}
+          </h2>
           <h3>{file.frontMatter.subTitle}</h3>
           <p>{file.frontMatter.body}</p>
           <Disclose
@@ -112,7 +125,23 @@ const Entry = styled.div`
   width: 100%;
   & h2 {
     min-width: max-content;
+    width: 100%;
+    max-width: 100%;
     font-size: var(--font-size-fluid-2);
+    display: flex;
+    justify-content: space-between;
+
+    & span {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      font-size: var(--font-size-fluid-2);
+    }
+
+    & .btn {
+      flex-shrink: 0;
+    }
   }
   & h3 {
     font-weight: var(--font-weight-2);

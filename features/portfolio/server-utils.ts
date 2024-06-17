@@ -20,6 +20,7 @@ export async function parsePortfolioMd(file: string) {
       body: string;
       type: string;
       image: string;
+      goto?: string;
     },
     html,
   };
