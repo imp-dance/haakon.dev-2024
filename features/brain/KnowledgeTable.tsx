@@ -2,6 +2,7 @@
 import { styled } from "@pigment-css/react";
 import Fuse from "fuse.js";
 import { useMemo, useState } from "react";
+import { TableVirtuoso } from "react-virtuoso";
 
 enum KnowledgeLevel {
   heardAbout = "Have heard about it",
@@ -35,7 +36,7 @@ const data = [
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
-    subject: "styled-components (CSS-in-JS)",
+    subject: "styled-components",
     knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
@@ -246,6 +247,10 @@ const data = [
     subject: "GSAP",
     knowledgeLevel: KnowledgeLevel.readAbout,
   },
+  {
+    subject: "Next.js",
+    knowledgeLevel: KnowledgeLevel.experienced,
+  },
 ].sort((a, b) => a.subject.localeCompare(b.subject));
 
 const fuse = new Fuse(data, {
@@ -254,7 +259,7 @@ const fuse = new Fuse(data, {
 
 export default function KnowledgeTable() {
   const [search, setSearch] = useState("");
-  const filteredData = useMemo(
+  const processedData = useMemo(
     () =>
       (search
         ? [...fuse.search(search)]
@@ -277,46 +282,30 @@ export default function KnowledgeTable() {
         onChange={(e) => setSearch(e.target.value)}
         autoFocus
       />
-      <Table>
-        <thead>
+      <Table
+        className="anim-fadedown"
+        fixedHeaderContent={() => (
           <tr>
             <th>Subject</th>
             <th>Knowledge level</th>
           </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((row) => {
-            const matches =
-              search.toLowerCase().trim() ===
-              row.item.subject.toLowerCase();
-            return (
-              <tr
-                key={row.item.subject}
-                className={matches ? "match" : undefined}
-              >
-                <td>
-                  {matches ? (
-                    <strong>{row.item.subject}</strong>
-                  ) : (
-                    <>{row.item.subject}</>
-                  )}
-                </td>
-                <td>
-                  <RenderKnowledgeLevel
-                    level={row.item.knowledgeLevel}
-                  />
-                </td>
-              </tr>
-            );
-          })}
-          {filteredData.length === 0 && (
-            <tr>
-              <td>{search}</td>
-              <td>🤪 Clueless?</td>
-            </tr>
-          )}
-        </tbody>
-      </Table>
+        )}
+        style={{ height: 500 }}
+        data={processedData}
+        itemContent={(
+          index,
+          row: (typeof processedData)[number]
+        ) => (
+          <>
+            <td>{row.item.subject}</td>
+            <td>
+              <RenderKnowledgeLevel
+                level={row.item.knowledgeLevel}
+              />
+            </td>
+          </>
+        )}
+      />
     </>
   );
 }
@@ -338,12 +327,29 @@ const RenderKnowledgeLevel = (props: {
   }
 };
 
-const Table = styled.table`
+const Table = styled(TableVirtuoso)`
   width: 100%;
+  border-radius: var(--radius-3);
+
+  & table {
+    width: 100%;
+  }
 
   & td,
   & th {
     text-align: left;
+    diplay: -webkit-box;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    & span {
+      diplay: -webkit-box;
+
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 
   & tr td:last-child {
