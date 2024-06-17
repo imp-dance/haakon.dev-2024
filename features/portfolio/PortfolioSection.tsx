@@ -73,6 +73,9 @@ export async function PortfolioSection() {
       >
         {files.slice(4).map(fileMapper)}
       </Disclose>
+      <ButtonLink href="/brain" variant="ghost">
+        Search my brain &nbsp; 🔎
+      </ButtonLink>
     </Container>
   );
 }

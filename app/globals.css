@@ -258,3 +258,8 @@ body {
     opacity: 1;
   }
 }
+
+table tr:hover td,
+tbody tr:nth-child(2n):hover td {
+  background-color: var(--surface-2) !important;
+}
