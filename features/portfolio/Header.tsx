@@ -7,7 +7,7 @@ import { ContactDialog } from "./ContactDialog";
 
 export function Header() {
   return (
-    <Container>
+    <Container id="top">
       <div>
         <h1>
           <div>Hi, my name is</div>

@@ -2,6 +2,7 @@ import { styled } from "@pigment-css/react";
 import { Button, ButtonLink } from "../../components/Button";
 import { Disclose } from "../../components/Disclose";
 import { Divider } from "../../components/Divider";
+import { GoToTopLink } from "../../components/GoToTopLink";
 import { RenderHTML } from "../../components/RenderHTML";
 import { External } from "../../components/svg/External";
 import { getPortfolioFiles } from "./server-utils";
@@ -67,8 +68,8 @@ export async function PortfolioSection() {
     <Container>
       {files.slice(0, 4).map(fileMapper)}
       <Disclose
-        showText="See older projects"
-        hideText="Show less"
+        showText="Show more projects"
+        hideText="Show less projects"
         variant="ghost"
       >
         {files.slice(4).map(fileMapper)}
@@ -76,6 +77,7 @@ export async function PortfolioSection() {
       <ButtonLink href="/brain" variant="ghost">
         Search my brain &nbsp; 🔎
       </ButtonLink>
+      <GoToTopLink />
     </Container>
   );
 }
@@ -88,6 +90,7 @@ const Container = styled.section`
   justify-content: center;
   background: hsl(var(--background-hsl));
   gap: var(--size-4);
+  padding-bottom: 100px;
 
   & > div {
     display: flex;
