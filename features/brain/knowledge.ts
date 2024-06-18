@@ -1,4 +1,9 @@
-import { KnowledgeLevel } from "./KnowledgeTable";
+enum KnowledgeLevel {
+  heardAbout = "Have heard about it",
+  readAbout = "Have read about it",
+  someExperience = "Have a bit of experience",
+  experienced = "Have lots of experience",
+}
 
 export const knowledgeData = [
   {
