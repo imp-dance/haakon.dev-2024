@@ -34,6 +34,9 @@ const AboveVideo = styled.div`
   background-repeat: no-repeat;
   z-index: 2;
   border-top: 1px solid var(--text-pink-2);
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 `;
 
 const InnerContainer = styled.div`
@@ -41,13 +44,22 @@ const InnerContainer = styled.div`
   top: 0;
   z-index: 2;
   background: hsl(var(--background-hsl) / 70%);
+
   backdrop-filter: blur(10px);
   scroll-behavior: smooth;
   min-height: 1050px;
+  @media screen and (max-width: 800px) {
+    background: hsl(var(--background-hsl) / 95%);
+    min-height: auto;
+  }
   display: flex;
   border-top: 1px solid var(--text-pink-2);
   > div {
     padding: var(--size-9);
+
+    @media screen and (max-width: 800px) {
+      padding: var(--size-9) var(--size-6);
+    }
     display: flex;
     flex-direction: column;
     gap: var(--size-6);
@@ -87,7 +99,6 @@ const InnerContainer = styled.div`
 `;
 
 const Container = styled.div`
-  min-height: 100dvh;
   background: var(--gray-12);
   position: relative;
   overflow: visible;
