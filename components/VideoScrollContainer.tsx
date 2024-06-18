@@ -102,4 +102,10 @@ const Container = styled.div`
     max-height: 80%;
     width: 100%;
   }
+
+  @media screen and (max-width: 800px) {
+    & > video {
+      display: none;
+    }
+  }
 `;
