@@ -40,7 +40,7 @@ export function AboutMeSection() {
         </p>
         <Disclose
           variant="ghost"
-          showText="Read more"
+          showText="My journey"
           hideText="Show less"
           renderButton={
             <Button

@@ -14,6 +14,7 @@ export function VideoScrollContainer(props: {
   }, []);
   return (
     <Container>
+      <AboveVideo />
       <video ref={videoRef} autoPlay muted loop>
         <source src={props.videoSrc} type="video/mp4" />
       </video>
@@ -22,29 +23,29 @@ export function VideoScrollContainer(props: {
   );
 }
 
-const InnerContainer = styled.div`
+const AboveVideo = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  height: 100%;
+  background: linear-gradient(-180deg, black, transparent);
+  background-size: 100% 1000px;
+  background-repeat: no-repeat;
   z-index: 2;
-  background: hsl(var(--background-hsl) / 90%);
+  border-top: 1px solid var(--text-pink-2);
+`;
+
+const InnerContainer = styled.div`
+  position: relative;
+  top: 0;
+  z-index: 2;
+  background: hsl(var(--background-hsl) / 70%);
   backdrop-filter: blur(10px);
   scroll-behavior: smooth;
-  overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  scroll-timeline: --aboutMeSectionTimeline y;
-  scroll-timeline: --aboutMeSectionTimeline vertical;
-  height: 100dvh;
-  min-height: 100dvh;
-  max-height: 100dvh;
+  min-height: 1050px;
   display: flex;
-
+  border-top: 1px solid var(--text-pink-2);
   > div {
     padding: var(--size-9);
     display: flex;
@@ -74,7 +75,6 @@ const InnerContainer = styled.div`
   & > .progress {
     animation-name: scrollAnimAboutMeSection;
     animation-duration: 1ms;
-    animation-timeline: --aboutMeSectionTimeline;
     transform-origin: top center;
     transform: scaleY(0);
     position: absolute;
@@ -83,11 +83,6 @@ const InnerContainer = styled.div`
     right: 0;
     height: 2px;
     background: var(--pink-2);
-    @keyframes scrollAnimAboutMeSection {
-      to {
-        transform: scaleX(1);
-      }
-    }
   }
 `;
 
@@ -95,14 +90,16 @@ const Container = styled.div`
   min-height: 100dvh;
   background: var(--gray-12);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  max-height: auto;
   & > video {
-    position: absolute;
+    position: sticky;
     z-index: 1;
     top: 10%;
     left: 0;
     right: 0;
     bottom: 0;
     max-height: 80%;
+    width: 100%;
   }
 `;

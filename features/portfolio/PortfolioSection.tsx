@@ -86,16 +86,9 @@ const Container = styled.section`
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  scroll-snap-align: start;
   background: hsl(var(--background-hsl));
-  height: 100dvh;
-  overflow-y: auto;
   gap: var(--size-4);
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+
   & > div {
     display: flex;
     align-items: flex-start;

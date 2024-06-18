@@ -21,15 +21,6 @@ export default function Home() {
 const Container = styled.main`
   height: 100vh;
   overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-
-  & > * {
-    scroll-snap-align: start;
-    max-height: 100dvh;
-    min-height: 100dvh;
-    overflow-y: auto;
-  }
 
   & footer {
     max-height: auto;
