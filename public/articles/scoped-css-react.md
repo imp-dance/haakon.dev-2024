@@ -7,11 +7,16 @@ summary: >
 
 I'm a big fan of `styled-components`-like syntax, and by that I mean...
 
+:::window
+app.tsx
+
 ```tsx
 const SomeComponent = styled.div`
   color: red;
 `;
 ```
+
+:::
 
 This syntax does a few things for me that I really love:
 
@@ -30,6 +35,9 @@ So I was watching [↑ this Kevin Powell video](https://www.youtube.com/watch?v=
 
 Consider this syntax:
 
+:::window
+index.html
+
 ```html
 <div>
   <style>
@@ -43,7 +51,12 @@ Consider this syntax:
 </div>
 ```
 
+:::
+
 This will apply the background style to the `div` element. You can also style descendants in the scope accordingly.
+
+:::window
+index.html
 
 ```html
 <div>
@@ -59,6 +72,8 @@ This will apply the background style to the `div` element. You can also style de
 <span>I am not red...</span>
 ```
 
+:::
+
 Very interesting, this means that we don't need to hook the styles up to **any** classname, we just colocate them in the markdown.
 
 So how would be go about creating our library?
@@ -66,6 +81,9 @@ So how would be go about creating our library?
 ## Creating a proof of concept
 
 Styled components uses what we call a _tagged template function_. A tagged template function lets you input arguments as a tagged template string:
+
+:::window
+example.tsx
 
 ```tsx
 const myFunc = (strings, ...args) => {
@@ -77,12 +95,17 @@ myFunc`
 `;
 ```
 
+:::
+
 The arguments for a tagged template string work like this:
 
 - The first argument is a `string[]`. This is a collection of all the strings in the tagged template, split up whenever you pass a `${value}`
 - The rest of the arguments is everything passed inbetween `${}`
 
 So for our library we want the _args_ to be of type `(props: T) => string`, and we want to join everything to a final string like such:
+
+:::window
+scoped-css.tsx
 
 ```tsx
 const scoped = (
@@ -104,9 +127,14 @@ const scoped = (
 };
 ```
 
+:::
+
 ### Making it isomorphic
 
 > To reduce complexity, I won't include the types
+
+:::window
+scoped-css.tsx
 
 ```tsx
 export const createScoped = (element) => {
@@ -130,9 +158,14 @@ export const createScoped = (element) => {
 };
 ```
 
+:::
+
 ### Conditional styles? You got it!
 
 If you didn't notice, this is already implemented!
+
+:::window
+example.tsx
 
 ```tsx
 const StyledButton = createScoped(Button)`
@@ -143,9 +176,14 @@ const StyledButton = createScoped(Button)`
 `;
 ```
 
+:::
+
 ### Using the library
 
 Now that we can make isomorphic components, utilize props, and apply styles to them, let us give it a try.
+
+:::window
+app.tsx
 
 ```tsx
 const Container = createScoped("div")`
@@ -167,6 +205,8 @@ export default function App() {
   );
 }
 ```
+
+:::
 
 ### That's it!
 
