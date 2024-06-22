@@ -21,6 +21,7 @@ const orderByKnowledgeLevel = [
 
 const fuse = new Fuse(knowledgeData, {
   keys: ["subject"],
+  threshold: 0.3,
 });
 
 export default function KnowledgeTable() {
@@ -43,7 +44,7 @@ export default function KnowledgeTable() {
     <>
       <Input
         type="search"
-        placeholder="Search for a subject 🔎"
+        placeholder="🔎 Search for a subject"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         autoFocus
@@ -128,6 +129,6 @@ const Table = styled(TableVirtuoso)`
 `;
 
 const Input = styled.input`
-  padding: var(--size-3);
-  font-size: var(--size-4);
+  padding: var(--size-2) var(--size-3);
+  font-size: var(--size-3);
 `;

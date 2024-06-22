@@ -11,8 +11,17 @@ export function Disclose(props: {
   variant?: ButtonVariant;
   size?: ButtonSize;
   renderButton?: React.ReactElement;
+  controls?: {
+    isDisclosed: boolean;
+    setIsDisclosed: (isDisclosed: boolean) => void;
+  };
 }) {
-  const [isDisclosed, setIsDisclosed] = React.useState(false);
+  const [s_isDisclosed, s_setIsDisclosed] =
+    React.useState(false);
+  const isDisclosed =
+    props.controls?.isDisclosed ?? s_isDisclosed;
+  const setIsDisclosed =
+    props.controls?.setIsDisclosed ?? s_setIsDisclosed;
   const children = (
     <>
       {isDisclosed

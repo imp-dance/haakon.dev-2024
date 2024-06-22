@@ -1,78 +1,32 @@
 import { styled } from "@pigment-css/react";
-import { Button, ButtonLink } from "../../components/Button";
+import { ButtonLink } from "../../components/Button";
 import { Disclose } from "../../components/Disclose";
-import { Divider } from "../../components/Divider";
 import { GoToTopLink } from "../../components/GoToTopLink";
-import { RenderHTML } from "../../components/RenderHTML";
-import { External } from "../../components/svg/External";
+import { PortfolioItem } from "./PortfolioItem";
 import { getPortfolioFiles } from "./server-utils";
 
 export async function PortfolioSection() {
   const files = await getPortfolioFiles();
 
-  const fileMapper = (file: (typeof files)[number]) => {
-    return (
-      <div key={file.name}>
-        <ImageContainer>
-          {/* Image breaks build for some reason. Should look into that. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={file.frontMatter.image}
-            alt={file.frontMatter.title}
-            width={200}
-            height={200}
-          />
-        </ImageContainer>
-        <Entry>
-          <h2>
-            <span>{file.frontMatter.title}</span>
-            {file.frontMatter.goto && (
-              <ButtonLink
-                href={file.frontMatter.goto}
-                target="_blank"
-                variant="subtle"
-                size="sm"
-              >
-                Open <External />
-              </ButtonLink>
-            )}
-          </h2>
-          <h3>{file.frontMatter.subTitle}</h3>
-          <p>{file.frontMatter.body}</p>
-          <Disclose
-            showText="Read more"
-            hideText="Collapse"
-            variant="ghost"
-            renderButton={
-              <Button
-                variant="ghost"
-                style={{
-                  width: "max-content",
-                  border: "none",
-                  boxShadow: "none",
-                }}
-              />
-            }
-          >
-            <Divider />
-            <div className="anim-fadedown">
-              <RenderHTML html={file.html} />
-            </div>
-          </Disclose>
-        </Entry>
-      </div>
-    );
-  };
-
   return (
     <Container>
-      {files.slice(0, 4).map(fileMapper)}
+      {files.slice(0, 4).map((file) => (
+        <PortfolioItem
+          item={file}
+          key={file.frontMatter.title}
+        />
+      ))}
       <Disclose
         showText="Show more projects"
         hideText="Show less projects"
         variant="ghost"
       >
-        {files.slice(4).map(fileMapper)}
+        {files.slice(4).map((file) => (
+          <PortfolioItem
+            item={file}
+            key={file.frontMatter.title}
+          />
+        ))}
       </Disclose>
       <ButtonLink href="/brain" variant="ghost">
         Search my brain &nbsp; 🔎
@@ -107,88 +61,5 @@ const Container = styled.section`
 
   @media screen and (max-width: 768px) {
     padding: var(--size-7);
-  }
-`;
-
-const Entry = styled.div`
-  background: var(--card-gradient);
-  color: var(--text-2);
-  padding: var(--size-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--size-2);
-  border: none;
-  height: max-content;
-  border-radius: var(--radius-1);
-  box-shadow: var(--ui-shadow);
-  width: 100%;
-  & h2 {
-    font-size: var(--font-size-fluid-2);
-    display: flex;
-    justify-content: space-between;
-    max-width: 100%;
-
-    & span {
-      display: block;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      font-size: var(--font-size-fluid-2);
-      flex: 1;
-      min-width: 0;
-    }
-
-    & .btn {
-      flex-shrink: 0;
-      height: min-content;
-    }
-  }
-  & h3 {
-    font-weight: var(--font-weight-2);
-    font-size: var(--font-size-1);
-    color: var(--text-1);
-  }
-  & p {
-    color: var(--text-5);
-    font-size: var(--font-size-3);
-
-    font-weight: var(--font-weight-4);
-  }
-
-  @media screen and (max-width: 768px) {
-    & h2 .btn {
-      display: none;
-    }
-  }
-`;
-const ImageContainer = styled.div`
-  width: 200px;
-  flex-shrink: 0;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-  & > img {
-    filter: grayscale(0.85);
-    position: absolute;
-    pointer-events: none;
-    user-select: none;
-    top: var(--size-2);
-    left: var(--size-2);
-    right: var(--size-2);
-
-    border-radius: 50%;
-    border: 1px solid var(--surface-4);
-    aspect-ratio: 1 / 1;
-    width: 95%;
-  }
-  @media screen and (max-width: 820px) {
-    width: 100px;
-  }
-  @media screen and (max-width: 768px) {
-    width: 70px;
-  }
-
-  @media screen and (max-width: 600px) {
-    display: none;
   }
 `;
