@@ -216,4 +216,8 @@ This was a fun exercise, and a neat look into a possible future of CSS styling. 
 
 I'm sure there are lots of gotchas that I haven't thought about yet, I wrote this package yesterday. But honestly, I would love to have this DX when writing styles - and would probably prefer it over other styled syntax solutions - mainly because scope doesn't muddy up the specificity as much as other styling solutions do (and it's closer to native!).
 
+One major downside to this solution is that you end up deploying duplicate CSS for every component that uses it. Basically, whenever you mount a component - you also mount the CSS.
+
+It would be interesting to look at possible solutions to that downside.
+
 If you want to play around with this package, you can install it using [`npm i scoped-css-react`](https://www.npmjs.com/package/scoped-css-react) - or you can [contribute through Github](https://github.com/ryfylke-react-as/scoped-css-react) 🧑‍💻
