@@ -16,14 +16,17 @@ const SomeComponent = styled.div`
 This syntax does a few things for me that I really love:
 
 - It lets me style descendants as if using a normal CSS selector
-- I don't have to manually enforce that the "classname" matches, since Typescript will let me know if I use a undefined component
-- This allows me to have styles colocated with my component, and makes it very easy to write new styles
+- I don't have to manually enforce that the "classname" matches between multiple files
+- I can have my styles colocated with my component
+- Writing new styles is quick and effortless
 
 ...But, it kind of sucks that it's all handled on the client. For my portfolio (this site) I use [Pigment CSS](https://github.com/mui/pigment-css?tab=readme-ov-file#coming-from-emotion-or-styled-components) - which does almost the equivalent on the server.
 
 ## Enter `@scope`
 
-So I was watching [a Kevin Powell video](https://www.youtube.com/watch?v=PkFuytYVqI8) the other day on CSS's new `@scope` feature, and when he mentioned CSS-in-JS in the video it made me think about how little code actually needs to be written to achieve a styled-like syntax using CSS scope.
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/PkFuytYVqI8?si=fikmlufKD7GyNKAj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+So I was watching [↑ this Kevin Powell video](https://www.youtube.com/watch?v=PkFuytYVqI8) the other day on CSS's new `@scope` feature, where he briefly mentions CSS-in-JS. This made me think about how little code actually needs to be written to achieve a styled-like syntax using CSS scope.
 
 Consider this syntax:
 
@@ -127,9 +130,22 @@ export const createScoped = (element) => {
 };
 ```
 
+### Conditional styles? You got it!
+
+If you didn't notice, this is already implemented!
+
+```tsx
+const StyledButton = createScoped(Button)`
+    :scope { 
+        ${(props) =>
+          props.variant === "ghost" ? "color:red;" : ""}
+    }
+`;
+```
+
 ### Using the library
 
-Now that we can make isomorphic components, and apply styles to them, lets try it out!
+Now that we can make isomorphic components, utilize props, and apply styles to them, let us give it a try.
 
 ```tsx
 const Container = createScoped("div")`
@@ -154,6 +170,10 @@ export default function App() {
 
 ### That's it!
 
-This was a fun exercise, and a neat look into a possible future of CSS styling. I can't wait for Firefox to finally support `@scope`.
+![Ta-da gif](/images/tada.gif)
 
-If you want to play around with this package, you can install it using `npm i scoped-css-react`
+This was a fun exercise, and a neat look into a possible future of CSS styling. I can't wait for [Firefox to finally support `@scope`](https://caniuse.com/css-cascade-scope).
+
+I'm sure there are lots of gotchas that I haven't thought about yet, I wrote this package yesterday. But honestly, I would love to have this DX when writing styles - and would probably prefer it over other styled syntax solutions - mainly because scope doesn't muddy up the specificity as much as other styling solutions do (and it's closer to native!).
+
+If you want to play around with this package, you can install it using [`npm i scoped-css-react`](https://www.npmjs.com/package/scoped-css-react) - or you can [contribute through Github](https://github.com/ryfylke-react-as/scoped-css-react) 🧑‍💻
