@@ -3,7 +3,6 @@ import { formatDistance } from "date-fns";
 import { Metadata } from "next";
 import { ButtonLink } from "../../../components/Button";
 import { External } from "../../../components/svg/External";
-import { REPO_NAME } from "../../../constants";
 import { CommentSection } from "../../../features/articles/CommentSection";
 import {
   RELATIVE_PATH,
@@ -75,7 +74,7 @@ export default async function ArticlePage(props: PageProps) {
       <GithubLink
         target="_blank"
         rel="noreferrer noopener"
-        href={`https://github.com/imp-dance/${REPO_NAME}/blob/main/${RELATIVE_PATH}/${article.name}.md`}
+        href={`https://github.com/imp-dance/haakon.dev-2024/blob/main/${RELATIVE_PATH}/${article.name}.md`}
       >
         <External /> Edit this page @ Github 🧑‍💻
       </GithubLink>
