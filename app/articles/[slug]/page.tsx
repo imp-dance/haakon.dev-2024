@@ -72,7 +72,6 @@ export default async function ArticlePage(props: PageProps) {
       <CommentSection />
       <GithubLink
         target="_blank"
-        rel="noreferrer noopener"
         href={`https://github.com/imp-dance/haakon.dev-2024/blob/main/public/articles/${article.name}.md`}
       >
         <External /> Edit this page @ Github 🧑‍💻
@@ -82,10 +81,12 @@ export default async function ArticlePage(props: PageProps) {
   );
 }
 
-const GithubLink = styled.a`
+const GithubLink = styled("a")`
   display: flex;
   gap: var(--size-3);
-  margin: var(--size-3) 0;
+  margin: var(--size-3);
+  margin-left: 0;
+  margin-right: 0;
 `;
 
 const Container = styled.div`

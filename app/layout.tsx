@@ -1,4 +1,3 @@
-import "@pigment-css/react/styles.css";
 import classNames from "classnames";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -7,6 +6,7 @@ import { LightmodeToggle } from "../components/LightmodeToggle";
 import { getTheme } from "../services/cookies";
 import { ToastProvider } from "../services/toast";
 import "./globals.css";
+import "@pigment-css/react/styles.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
