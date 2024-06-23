@@ -4,9 +4,11 @@ import { redirect } from "next/navigation";
 import path from "path";
 import { parseMarkdown } from "../../services/markdown";
 
+export const RELATIVE_PATH = "public/articles";
+
 export const MD_PATH = path.join(
   process.cwd(),
-  "./public/articles"
+  `./${RELATIVE_PATH}`
 );
 
 export async function parseArticleMd(file: string) {

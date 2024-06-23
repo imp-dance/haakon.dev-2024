@@ -220,4 +220,15 @@ One major downside to this solution is that you end up deploying duplicate CSS f
 
 It would be interesting to look at possible solutions to that downside.
 
-If you want to play around with this package, you can install it using [`npm i scoped-css-react`](https://www.npmjs.com/package/scoped-css-react) - or you can [contribute through Github](https://github.com/ryfylke-react-as/scoped-css-react) 🧑‍💻
+### Try it out 👨🏻‍🔬
+
+> Beware: CSS `@scope` is not available in Firefox yet. If the demo does not work, please check if your browser supports it.
+
+<iframe src="https://codesandbox.io/embed/nsrfhj?view=editor+%2B+preview&module=%2Fsrc%2FApp.tsx"
+     style="width:100%; height: 500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="scoped-css-react"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+
+If you want to play around with this package, you can install it using [`npm i scoped-css-react`](https://www.npmjs.com/package/scoped-css-react). You can also [contribute through Github](https://github.com/ryfylke-react-as/scoped-css-react) 🧑‍💻

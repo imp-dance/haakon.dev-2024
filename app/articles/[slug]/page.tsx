@@ -2,8 +2,11 @@ import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
 import { Metadata } from "next";
 import { ButtonLink } from "../../../components/Button";
+import { External } from "../../../components/svg/External";
+import { REPO_NAME } from "../../../constants";
 import { CommentSection } from "../../../features/articles/CommentSection";
 import {
+  RELATIVE_PATH,
   getArticle,
   getArticles,
 } from "../../../features/articles/server-utils";
@@ -69,9 +72,23 @@ export default async function ArticlePage(props: PageProps) {
         dangerouslySetInnerHTML={{ __html: article.html }}
       />
       <CommentSection />
+      <GithubLink
+        target="_blank"
+        rel="noreferrer noopener"
+        href={`https://github.com/imp-dance/${REPO_NAME}/blob/main/${RELATIVE_PATH}/${article.name}.md`}
+      >
+        <External /> Edit this page @ Github 🧑‍💻
+      </GithubLink>
+      <div style={{ height: "var(--size-9)" }} />
     </Container>
   );
 }
+
+const GithubLink = styled.a`
+  display: flex;
+  gap: var(--size-3);
+  margin: var(--size-3) 0;
+`;
 
 const Container = styled.div`
   display: flex;
