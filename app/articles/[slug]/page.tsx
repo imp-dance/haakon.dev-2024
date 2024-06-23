@@ -5,7 +5,6 @@ import { ButtonLink } from "../../../components/Button";
 import { External } from "../../../components/svg/External";
 import { CommentSection } from "../../../features/articles/CommentSection";
 import {
-  RELATIVE_PATH,
   getArticle,
   getArticles,
 } from "../../../features/articles/server-utils";
@@ -74,7 +73,7 @@ export default async function ArticlePage(props: PageProps) {
       <GithubLink
         target="_blank"
         rel="noreferrer noopener"
-        href={`https://github.com/imp-dance/haakon.dev-2024/blob/main/${RELATIVE_PATH}/${article.name}.md`}
+        href={`https://github.com/imp-dance/haakon.dev-2024/blob/main/public/articles/${article.name}.md`}
       >
         <External /> Edit this page @ Github 🧑‍💻
       </GithubLink>
