@@ -5,7 +5,7 @@ import { parseMarkdown } from "../../services/markdown";
 
 export const MD_PATH = path.join(
   process.cwd(),
-  "./public/portfolio"
+  "./features/portfolio/data"
 );
 
 export async function parsePortfolioMd(file: string) {

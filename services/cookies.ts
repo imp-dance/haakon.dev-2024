@@ -1,8 +1,15 @@
 import { cookies } from "next/headers";
 
-export function getTheme() {
+export function getCookie(name: string) {
   const cookieStore = cookies();
-  const isLightmode =
-    cookieStore.get("lightmode")?.value === "true";
-  return isLightmode ? "light" : "dark";
+  return cookieStore.get(name)?.value;
+}
+
+export function setCookie(name: string, value: string) {
+  const cookieStore = cookies();
+  cookieStore.set(name, value);
+}
+
+export function getTheme() {
+  return getCookie("lightmode") === "true" ? "light" : "dark";
 }

@@ -1,3 +1,4 @@
+import "@pigment-css/react/styles.css";
 import classNames from "classnames";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -6,7 +7,6 @@ import { LightmodeToggle } from "../components/LightmodeToggle";
 import { getTheme } from "../services/cookies";
 import { ToastProvider } from "../services/toast";
 import "./globals.css";
-import "@pigment-css/react/styles.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +21,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isLightmode = getTheme() === "light";
-
+  const theme = getTheme();
   return (
     <html lang="en">
       <head>
@@ -56,21 +55,11 @@ export default function RootLayout({
           href="https://unpkg.com/open-props/masks.corner-cuts.min.css"
         />
       </head>
-      <body
-        className={classNames(
-          inter.className,
-          {
-            light: isLightmode,
-          },
-          {
-            dark: !isLightmode,
-          }
-        )}
-      >
+      <body className={classNames(inter.className, theme)}>
         {children}
         <LightmodeToggle
           onChange={toggleLightmode}
-          initialValue={isLightmode}
+          initialValue={theme === "light"}
         />
         <ToastProvider />
       </body>
