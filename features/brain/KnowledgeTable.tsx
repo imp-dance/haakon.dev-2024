@@ -104,9 +104,9 @@ const Table = styled(TableVirtuoso)`
 
   & td,
   & th {
+    cursor: auto;
     text-align: left;
     diplay: -webkit-box;
-
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

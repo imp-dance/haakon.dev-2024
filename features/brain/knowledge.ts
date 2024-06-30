@@ -4,8 +4,13 @@ enum KnowledgeLevel {
   someExperience = "Have a bit of experience",
   experienced = "Have lots of experience",
 }
-
-export const knowledgeData = [
+/**
+ * Add entries in any order, they will be sorted by knowledge level and then alphabetically by subject.
+ */
+export const knowledgeData: Array<{
+  subject: string;
+  knowledgeLevel: KnowledgeLevel;
+}> = [
   {
     subject: "HTML",
     knowledgeLevel: KnowledgeLevel.experienced,
@@ -23,12 +28,20 @@ export const knowledgeData = [
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
+    subject: "Bun",
+    knowledgeLevel: KnowledgeLevel.someExperience,
+  },
+  {
     subject: "styled-components",
     knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
     subject: "Pigment CSS",
     knowledgeLevel: KnowledgeLevel.someExperience,
+  },
+  {
+    subject: "NPM, Yarn, PNPM",
+    knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
     subject: "Panda CSS",
@@ -163,7 +176,11 @@ export const knowledgeData = [
     knowledgeLevel: KnowledgeLevel.heardAbout,
   },
   {
-    subject: "Redux Toolkit (RTK)",
+    subject: "Redux Toolkit",
+    knowledgeLevel: KnowledgeLevel.experienced,
+  },
+  {
+    subject: "Redux Toolkit Query",
     knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
@@ -185,6 +202,14 @@ export const knowledgeData = [
   {
     subject: "Tanstack Router",
     knowledgeLevel: KnowledgeLevel.readAbout,
+  },
+  {
+    subject: "React Router",
+    knowledgeLevel: KnowledgeLevel.experienced,
+  },
+  {
+    subject: "Python",
+    knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
     subject: "Tanstack Start",
@@ -227,6 +252,10 @@ export const knowledgeData = [
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
+    subject: "Jira",
+    knowledgeLevel: KnowledgeLevel.someExperience,
+  },
+  {
     subject: "ContractExpress Author",
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
@@ -237,5 +266,17 @@ export const knowledgeData = [
   {
     subject: "Next.js",
     knowledgeLevel: KnowledgeLevel.experienced,
+  },
+  {
+    subject: "ESLint",
+    knowledgeLevel: KnowledgeLevel.experienced,
+  },
+  {
+    subject: "Prettier",
+    knowledgeLevel: KnowledgeLevel.experienced,
+  },
+  {
+    subject: "Biome",
+    knowledgeLevel: KnowledgeLevel.readAbout,
   },
 ].sort((a, b) => a.subject.localeCompare(b.subject));
