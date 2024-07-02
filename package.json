@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@giscus/react": "^3.0.0",
+    "@gsap/react": "^2.1.1",
     "@hookform/resolvers": "^3.6.0",
     "@pigment-css/react": "^0.0.13",
     "@ryfylke-react/toast": "^0.1.61",
@@ -22,6 +23,7 @@
     "date-fns": "^3.6.0",
     "front-matter": "^4.0.2",
     "fuse.js": "^7.0.0",
+    "gsap": "^3.12.5",
     "highlight.js": "^11.9.0",
     "markdown-it": "^14.1.0",
     "markdown-it-container": "^4.0.0",

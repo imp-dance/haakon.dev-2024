@@ -261,7 +261,7 @@ export const knowledgeData: Array<{
   },
   {
     subject: "GSAP",
-    knowledgeLevel: KnowledgeLevel.readAbout,
+    knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
     subject: "Next.js",

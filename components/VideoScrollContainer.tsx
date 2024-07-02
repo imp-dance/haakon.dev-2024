@@ -1,7 +1,12 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
 import { styled } from "@pigment-css/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function VideoScrollContainer(props: {
   children: React.ReactNode;
@@ -12,10 +17,22 @@ export function VideoScrollContainer(props: {
   useEffect(() => {
     if (videoRef.current) videoRef.current.playbackRate = 0.75;
   }, []);
+
+  useGSAP(() => {
+    gsap.from(videoRef.current, {
+      scale: 0.5,
+      scrollTrigger: {
+        trigger: ".vscroll-cont",
+        start: "top top",
+        end: "50% top",
+        scrub: true,
+      },
+    });
+  }, []);
   return (
-    <Container>
+    <Container className="vscroll-cont">
       <AboveVideo />
-      <video ref={videoRef} autoPlay muted loop>
+      <video id="bg-video" ref={videoRef} autoPlay muted loop>
         <source src={props.videoSrc} type="video/mp4" />
       </video>
       <InnerContainer>{props.children}</InnerContainer>
@@ -44,9 +61,7 @@ const InnerContainer = styled.div`
   top: 0;
   z-index: 2;
   background: hsl(var(--background-hsl) / 70%);
-
   backdrop-filter: blur(10px);
-  scroll-behavior: smooth;
   min-height: 1050px;
   @media screen and (max-width: 800px) {
     background: hsl(var(--background-hsl) / 95%);
@@ -101,8 +116,6 @@ const InnerContainer = styled.div`
 const Container = styled.div`
   background: var(--gray-12);
   position: relative;
-  overflow: visible;
-  max-height: auto;
   & > video {
     position: sticky;
     z-index: 1;
@@ -110,8 +123,9 @@ const Container = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    max-height: 80%;
+
     width: 100%;
+    filter: saturate(4) brightness(0.9);
   }
 
   @media screen and (max-width: 800px) {

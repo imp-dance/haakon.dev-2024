@@ -64,54 +64,75 @@ export function AboutMeSection() {
               I was just 13 years old.
             </p>
             <p>
-              <Image
-                src="/hakon-kid.jpg"
+              <FloatImg
+                src="/images/hakon-kid.jpg"
                 alt="Picture of me as a kid"
-                width={350}
-                height={350}
-                style={{
-                  float: "left",
-                  margin: "0 var(--size-5) var(--size-5) 0",
-                  userSelect: "none",
-                  pointerEvents: "none",
-                }}
               />
               <blockquote
                 style={{ marginBlock: "var(--size-2)" }}
               >
                 <strong>Fun fact</strong> I actually started out
-                in the (no longer existing) webs.com / freewebs
-                community.
+                in the webs.com (freewebs) community.
               </blockquote>{" "}
               Over the course of my formal education, I built
               many personal projects - as well as a few websites
-              for local businesses.
+              for local businesses. I typically ended up as
+              &quot;the computer guy&quot; role wherever I went
+              to school.
             </p>
-            <h3>My first job in the industry</h3>
             <p>
+              In my early years, I experimented with all kinds of
+              technologies and skills. Other than web dev I also
+              dabbled in Photoshop, batch coding, visual basic,
+              computer science, etc. I also developed a keen
+              interest in music.
+            </p>
+            <h3 style={{ marginTop: "var(--size-5)" }}>
+              My first job in the industry
+            </h3>
+            <p>
+              <FloatImg
+                src="/images/hakon-ligl.jpg"
+                alt="Picture of me at LIGL AS"
+              />
               In 2016, after 2 years in electronic education, and
               one year in IT, I started working as the only IT
               consultant in a start-up legal/law-tech company (
               <Link href="https://ligl.no/" target="_blank">
                 LIGL AS
               </Link>
-              ).
+              ). This amazing opportunity allowed me to keep
+              working on my web development and design skills. I
+              worked as the only IT consultant in the company
+              (with all the cons and pros that come with that),
+              and was responsible for developing and maintaining
+              the company&apos;s web applications.
               <Mark text="Got my first cat! 🐈" />
             </p>
             <p>
-              At LIGL, I worked on automating the process of
-              writing legal documents through ContractExpress
-              Author - as well as creating a web UI for external
-              customers to use.
+              Other than the websites, I also worked on
+              automating the process of writing legal documents
+              through ContractExpress Author, debugging and
+              maintaining the document packages.
               <Mark text="Shaved my remaining hair! 👨🏻‍🦲" />
             </p>
-            <h3>My brief stint in big consulting firms</h3>
+            <h3 style={{ marginTop: "var(--size-5)" }}>
+              My brief stint in big consulting firms
+            </h3>
             <p>
+              {" "}
               After working at LIGL for 4 years, I started
               working as a front-end consultant at{" "}
               <Link href="https://frog.co/">Frog</Link>{" "}
-              (previously Idean, part of Capgemini). At Idean, I
-              was able to work on a couple of projects at
+              (previously Idean, part of Capgemini).
+            </p>
+            <p>
+              <FloatImg
+                src="/images/hakon-idean.jpg"
+                alt="Picture of me at Idean"
+              />
+              At Idean, I was able to finally work in bigger
+              teams of developers, on a couple of projects at
               Equinor, one of them related to their design
               system, EDS, as well as a project at NDLA (the
               norwegian digital learning area) - where I
@@ -124,12 +145,21 @@ export function AboutMeSection() {
               My last project at Idean was a proof of concept
               relating to graph visualization and data
               correlation, called Haystack. Funnily enough, my
-              next endeavor would be a similar project.
+              next endeavor would be a similar project. At Idean
+              was where I first started learning about design
+              systems, as well as work methodologies like Scrum
+              and Agile.
               <Mark text="Moved back to Suldal! 🏡" />
             </p>
 
-            <h3>Independent consulting</h3>
+            <h3 style={{ marginTop: "var(--size-5)" }}>
+              Independent consulting
+            </h3>
             <p>
+              <FloatImg
+                src="/images/hakon-outside-rr.jpg"
+                alt="Picture of me back in Suldal"
+              />
               In 2021, I started my own company - Ryfylke React
               AS. I had a contract set up with Telenor from day
               1, working on yet another data-correlation and log
@@ -148,7 +178,18 @@ export function AboutMeSection() {
               changes where necessary - both on the UI and code
               level.
             </p>
-            <h3>Open source & other endeavours</h3>
+            <p>
+              I have been at times more or less the only person
+              responsible for the frontend at this project, and
+              at times I&apos;ve had the opportunity to work with
+              amazing senior developers that have taught me a
+              lot. The project has been a great learning
+              experience, both in regards to technical and
+              personal growth.
+            </p>
+            <h3 style={{ marginTop: "var(--size-5)" }}>
+              Open source & other endeavours
+            </h3>
             <p>
               Besides the Telenor project, I have also been
               working on my company&apos;s digital presence, the
@@ -180,6 +221,27 @@ export function AboutMeSection() {
 
 function Mark(props: { text: string }) {
   return <StyledMark>{props.text}</StyledMark>;
+}
+
+function FloatImg(props: { src: string; alt: string }) {
+  return (
+    <Image
+      src={props.src}
+      alt={props.alt}
+      width={350}
+      height={350}
+      placeholder="blur"
+      blurDataURL="/images/hakon-kid.jpg"
+      style={{
+        float: "left",
+        margin: 0,
+        marginRight: "var(--size-5)",
+        marginBottom: "var(--size-5)",
+        userSelect: "none",
+        pointerEvents: "none",
+      }}
+    />
+  );
 }
 
 const StyledMark = styled.div`
