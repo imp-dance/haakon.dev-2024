@@ -69,7 +69,10 @@ export function AboutMeSection() {
                 alt="Picture of me as a kid"
               />
               <blockquote
-                style={{ marginBlock: "var(--size-2)" }}
+                style={{
+                  marginBlock: "var(--size-2)",
+                  minWidth: 250,
+                }}
               >
                 <strong>Fun fact</strong> I actually started out
                 in the webs.com (freewebs) community.

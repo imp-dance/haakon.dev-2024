@@ -13,6 +13,7 @@ export function VideoScrollContainer(props: {
   videoSrc: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (videoRef.current) videoRef.current.playbackRate = 0.75;
@@ -24,19 +25,37 @@ export function VideoScrollContainer(props: {
       scrollTrigger: {
         trigger: ".vscroll-cont",
         start: "top top",
-        end: "50% top",
-        scrub: true,
+        end: "2000px top",
+        scrub: 1,
+      },
+    });
+    gsap.from(innerRef.current, {
+      translateY: 100,
+      scrollTrigger: {
+        trigger: ".vscroll-cont",
+        start: "top top",
+        end: "2000px top",
+        scrub: 1,
       },
     });
   }, []);
   return (
-    <Container className="vscroll-cont">
-      <AboveVideo />
-      <video id="bg-video" ref={videoRef} autoPlay muted loop>
-        <source src={props.videoSrc} type="video/mp4" />
-      </video>
-      <InnerContainer>{props.children}</InnerContainer>
-    </Container>
+    <>
+      <svg>
+        <filter id="grain">
+          <feTurbulence type="turbulence" baseFrequency="0.75" />
+        </filter>
+      </svg>
+      <Container className="vscroll-cont">
+        <AboveVideo />
+        <video id="bg-video" ref={videoRef} autoPlay muted loop>
+          <source src={props.videoSrc} type="video/mp4" />
+        </video>
+        <InnerContainer ref={innerRef}>
+          {props.children}
+        </InnerContainer>
+      </Container>
+    </>
   );
 }
 
@@ -46,11 +65,10 @@ const AboveVideo = styled.div`
   left: 0;
   right: 0;
   height: 100%;
-  background: linear-gradient(-180deg, black, transparent);
+  background: linear-gradient(-180deg, #1f0d216e, #1204149f);
   background-size: 100% 1000px;
   background-repeat: no-repeat;
   z-index: 2;
-  border-top: 1px solid var(--text-pink-2);
   @media screen and (max-width: 800px) {
     display: none;
   }
@@ -60,7 +78,7 @@ const InnerContainer = styled.div`
   position: relative;
   top: 0;
   z-index: 2;
-  background: hsl(var(--background-hsl) / 70%);
+  background: hsl(var(--background-hsl) / 80%);
   backdrop-filter: blur(10px);
   min-height: 1050px;
   @media screen and (max-width: 800px) {
@@ -68,7 +86,7 @@ const InnerContainer = styled.div`
     min-height: auto;
   }
   display: flex;
-  border-top: 1px solid var(--text-pink-2);
+  border: 20px solid var(--gray-12);
   > div {
     padding: var(--size-9);
 
@@ -116,6 +134,7 @@ const InnerContainer = styled.div`
 const Container = styled.div`
   background: var(--gray-12);
   position: relative;
+
   & > video {
     position: sticky;
     z-index: 1;
@@ -123,6 +142,7 @@ const Container = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
+    border: 20px solid #000;
 
     width: 100%;
     filter: saturate(4) brightness(0.9);
