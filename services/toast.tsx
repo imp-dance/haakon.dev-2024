@@ -16,39 +16,30 @@ export const toast = _toast;
 export function ToastProvider() {
   return (
     <_ToastProvider
-      renderToasts={RenderToasts}
+      renderToasts={(props) => {
+        return (
+          <Container>
+            {props.toasts.map((toast) => (
+              <Toast
+                key={toast.id}
+                style={{
+                  background: toast.bg,
+                  color: toast.color,
+                }}
+                onClick={() => props.onRemoveToast(toast.id)}
+              >
+                {toast.message}
+              </Toast>
+            ))}
+          </Container>
+        );
+      }}
       portal={
         typeof document !== "undefined"
           ? document.body
           : undefined
       }
     />
-  );
-}
-
-function RenderToasts(props: {
-  toasts: (Toast & {
-    id: string;
-  })[];
-  onRemoveToast: (id: string) => void;
-  cancelToastTimeout: (id: string) => void;
-  restartToastTimeout: (
-    id: string,
-    removeAfterMs?: number | undefined
-  ) => void;
-}) {
-  return (
-    <Container>
-      {props.toasts.map((toast) => (
-        <Toast
-          key={toast.id}
-          style={{ background: toast.bg, color: toast.color }}
-          onClick={() => props.onRemoveToast(toast.id)}
-        >
-          {toast.message}
-        </Toast>
-      ))}
-    </Container>
   );
 }
 
