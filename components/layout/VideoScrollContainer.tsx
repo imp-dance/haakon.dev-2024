@@ -5,6 +5,7 @@ import { styled } from "@pigment-css/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,40 +15,63 @@ export function VideoScrollContainer(props: {
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
+  const isSmallscreen = useMediaQuery("(max-width: 800px)");
 
   useEffect(() => {
     if (videoRef.current) videoRef.current.playbackRate = 0.75;
   }, []);
 
+  const applyVideoAnimations = () => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".vscroll-cont",
+          start: "top top",
+          end: "3000px top",
+          scrub: 1,
+        },
+      })
+      .from(videoRef.current, {
+        scale: 0.5,
+        filter: "saturate(4) brightness(0.5)",
+        duration: 0.5,
+      })
+      .to(videoRef.current, {
+        scale: 1,
+        filter: "saturate(4) brightness(0.3)",
+        duration: 2,
+      });
+  };
+
+  const applyInnerContainerAnimations = () => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".vscroll-cont",
+          start: "top top",
+          end: "100% top",
+          scrub: 1.5,
+        },
+      })
+      .from(innerRef.current, { opacity: 0 })
+      .to(innerRef.current, {
+        scale: 0.95,
+        duration: 0.2,
+      })
+      .to(innerRef.current, {
+        scale: 1,
+        duration: 1,
+      });
+  };
+
   useGSAP(() => {
-    gsap.from(videoRef.current, {
-      scale: 0.5,
-      scrollTrigger: {
-        trigger: ".vscroll-cont",
-        start: "top top",
-        end: "2000px top",
-        scrub: 1,
-      },
-    });
-    gsap.from(innerRef.current, {
-      translateY: 100,
-      scrollTrigger: {
-        trigger: ".vscroll-cont",
-        start: "top top",
-        end: "2000px top",
-        scrub: 1,
-      },
-    });
-  }, []);
+    if (isSmallscreen) return;
+    applyVideoAnimations();
+    applyInnerContainerAnimations();
+  }, [isSmallscreen]);
   return (
     <>
-      <svg>
-        <filter id="grain">
-          <feTurbulence type="turbulence" baseFrequency="0.75" />
-        </filter>
-      </svg>
       <Container className="vscroll-cont">
-        <AboveVideo />
         <video id="bg-video" ref={videoRef} autoPlay muted loop>
           <source src={props.videoSrc} type="video/mp4" />
         </video>
@@ -80,13 +104,18 @@ const InnerContainer = styled.div`
   z-index: 2;
   background: hsl(var(--background-hsl) / 80%);
   backdrop-filter: blur(10px);
-  min-height: 1050px;
+  min-height: 100vh;
+  min-height: 100svh;
   @media screen and (max-width: 800px) {
     background: hsl(var(--background-hsl) / 95%);
     min-height: auto;
   }
   display: flex;
-  border: 20px solid var(--gray-12);
+  border: 40px solid var(--gray-12);
+
+  @media screen and (max-width: 800px) {
+    border: 0;
+  }
   > div {
     padding: var(--size-9);
 
