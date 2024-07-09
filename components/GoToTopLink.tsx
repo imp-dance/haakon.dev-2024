@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "./Button";
 import { ChevronDown } from "./icons/ChevronDown";
+import { Button } from "./ui/Button";
 
 export function GoToTopLink() {
   return (

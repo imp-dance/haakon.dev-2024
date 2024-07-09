@@ -1,8 +1,8 @@
 "use client";
 import { styled } from "@pigment-css/react";
 import React from "react";
-import { Button } from "./Button";
-import { Close } from "./svg/Close";
+import { CloseIcon } from "./svg/CloseIcon";
+import { Button } from "./ui/Button";
 
 export function Dialog(props: {
   children: React.ReactNode;
@@ -65,7 +65,7 @@ export function Dialog(props: {
           onClick={onToggle}
           variant="ghost"
         >
-          <Close />
+          <CloseIcon />
         </Button>
       </StyledDialog>
       {props.renderButton ? (

@@ -1,9 +1,9 @@
 "use client";
 import { z } from "zod";
-import { Button } from "../../components/Button";
 import { Dialog } from "../../components/Dialog";
-import LeaningMan from "../../components/svg/Leaning";
-import { Send } from "../../components/svg/Send";
+import { MeLeaningSVG } from "../../components/svg/MeLeaningSVG";
+import { SendIcon } from "../../components/svg/SendIcon";
+import { Button } from "../../components/ui/Button";
 import { useServerForm } from "../../hooks/useServerForm";
 import { sendEmail } from "../../services/email";
 
@@ -90,7 +90,7 @@ export function ContactDialog() {
             />
           )}
         </label>
-        <LeaningMan
+        <MeLeaningSVG
           style={{
             position: "absolute",
             right: 0,
@@ -156,7 +156,7 @@ export function ContactDialog() {
           ) : (
             <>
               Send{" "}
-              <Send
+              <SendIcon
                 style={{ width: ".75em", height: ".75em" }}
               />
             </>

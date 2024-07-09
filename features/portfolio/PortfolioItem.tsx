@@ -1,11 +1,11 @@
 "use client";
 import { styled } from "@pigment-css/react";
 import { CSSProperties, useState } from "react";
-import { Button, ButtonLink } from "../../components/Button";
 import { Disclose } from "../../components/Disclose";
 import { Divider } from "../../components/Divider";
-import { RenderHTML } from "../../components/RenderHTML";
-import { External } from "../../components/svg/External";
+import { RawHTML } from "../../components/RawHTML";
+import { ExternalIcon } from "../../components/svg/ExternalIcon";
+import { Button, ButtonLink } from "../../components/ui/Button";
 
 export function PortfolioItem(props: {
   item: {
@@ -53,7 +53,7 @@ export function PortfolioItem(props: {
               variant="subtle"
               size="sm"
             >
-              Open <External />
+              Open <ExternalIcon />
             </ButtonLink>
           )}
         </h2>
@@ -80,7 +80,7 @@ export function PortfolioItem(props: {
         >
           <Divider style={{ marginBlock: "var(--size-3)" }} />
           <div className="anim-fadedown">
-            <RenderHTML html={props.item.html} />
+            <RawHTML html={props.item.html} />
           </div>
         </Disclose>
       </Entry>

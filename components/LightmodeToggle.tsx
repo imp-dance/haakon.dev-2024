@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
+import { toggleLightmode } from "../actions/lightmode";
 import { useServerAction } from "../hooks/useServerAction";
-import { Button } from "./Button";
-import { Dark } from "./svg/Dark";
-import { Light } from "./svg/Light";
+import { MoonIcon } from "./svg/MoonIcon";
+import { SunIcon } from "./svg/SunIcon";
+import { Button } from "./ui/Button";
 
 const svgStyles: React.CSSProperties = {
   animation: "var(--animation-fade-in)",
@@ -12,21 +13,16 @@ const svgStyles: React.CSSProperties = {
   animationIterationCount: "1",
 };
 
-export function LightmodeToggle(props: {
-  onChange: () => Promise<boolean>;
-  initialValue: boolean;
-}) {
+export function LightmodeToggle() {
   return (
     <form>
-      <SubmitButton action={props.onChange} />
+      <InnerLightmodeToggle />
     </form>
   );
 }
 
-function SubmitButton(props: {
-  action: () => Promise<boolean>;
-}) {
-  const action = useServerAction(props.action);
+function InnerLightmodeToggle() {
+  const action = useServerAction(toggleLightmode);
   const [isLightmode, setIsLightmode] = useState(
     typeof document !== "undefined" &&
       document.body.classList.contains("light")
@@ -49,9 +45,9 @@ function SubmitButton(props: {
       variant="ghost"
     >
       {isLightmode ? (
-        <Dark style={svgStyles} />
+        <MoonIcon style={svgStyles} />
       ) : (
-        <Light style={svgStyles} />
+        <SunIcon style={svgStyles} />
       )}
     </Button>
   );

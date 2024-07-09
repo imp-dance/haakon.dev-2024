@@ -1,8 +1,8 @@
 import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
 import { Metadata } from "next";
-import { ButtonLink } from "../../../components/Button";
-import { External } from "../../../components/svg/External";
+import { ExternalIcon } from "../../../components/svg/ExternalIcon";
+import { ButtonLink } from "../../../components/ui/Button";
 import { CommentSection } from "../../../features/articles/CommentSection";
 import {
   getArticle,
@@ -74,7 +74,7 @@ export default async function ArticlePage(props: PageProps) {
         target="_blank"
         href={`https://github.com/imp-dance/haakon.dev-2024/blob/main/public/articles/${article.name}.md`}
       >
-        <External /> Edit this page @ Github 🧑‍💻
+        <ExternalIcon /> Edit this page @ Github 🧑‍💻
       </GithubLink>
       <div style={{ height: "var(--size-9)" }} />
     </Container>

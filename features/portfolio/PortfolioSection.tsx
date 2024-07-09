@@ -1,7 +1,7 @@
 import { styled } from "@pigment-css/react";
-import { ButtonLink } from "../../components/Button";
 import { Disclose } from "../../components/Disclose";
 import { GoToTopLink } from "../../components/GoToTopLink";
+import { ButtonLink } from "../../components/ui/Button";
 import { PortfolioItem } from "./PortfolioItem";
 import { getPortfolioFiles } from "./server-utils";
 

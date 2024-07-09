@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 
-export const Luci = (props: SVGProps<SVGSVGElement>) => (
+export const LuciSVG = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width={101}
     height={69}

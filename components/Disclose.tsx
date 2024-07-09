@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { Button, ButtonSize, ButtonVariant } from "./Button";
 import { ChevronDown } from "./icons/ChevronDown";
+import { Button, ButtonSize, ButtonVariant } from "./ui/Button";
 
 export function Disclose(props: {
   children: React.ReactNode;

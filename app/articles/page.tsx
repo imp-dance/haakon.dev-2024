@@ -1,8 +1,8 @@
 import { styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
 import { Metadata } from "next";
-import { ButtonLink } from "../../components/Button";
-import { External } from "../../components/svg/External";
+import { ExternalIcon } from "../../components/svg/ExternalIcon";
+import { ButtonLink } from "../../components/ui/Button";
 import { getArticles } from "../../features/articles/server-utils";
 
 export const metadata: Metadata = {
@@ -69,7 +69,7 @@ export default async function ArticlesPage() {
             href="https://impedans.me/web/?s="
           >
             Articles from my old blog
-            <External />
+            <ExternalIcon />
           </ButtonLink>
         </li>
       </List>

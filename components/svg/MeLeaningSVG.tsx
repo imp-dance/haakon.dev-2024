@@ -1,7 +1,7 @@
 import { SVGProps } from "react";
-import styles from "./Leaning.module.css";
+import styles from "./MeLeaningSVG.module.css";
 
-export const LeaningMan = (props: SVGProps<SVGSVGElement>) => (
+export const MeLeaningSVG = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width={159}
     height={529}
@@ -72,4 +72,4 @@ export const LeaningMan = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export default LeaningMan;
+export default MeLeaningSVG;

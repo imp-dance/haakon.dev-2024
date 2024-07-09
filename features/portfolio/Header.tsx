@@ -1,7 +1,7 @@
 import { styled } from "@pigment-css/react";
-import { ButtonLink } from "../../components/Button";
 import { ChevronDown } from "../../components/icons/ChevronDown";
 import { MeSVG } from "../../components/svg/MeSVG";
+import { ButtonLink } from "../../components/ui/Button";
 import { getAge } from "../../utils/getAge";
 import { ContactDialog } from "./ContactDialog";
 

@@ -1,5 +1,5 @@
 import { styled } from "@pigment-css/react";
-import { ButtonLink } from "../../components/Button";
+import { ButtonLink } from "../../components/ui/Button";
 import KnowledgeTable from "../../features/brain/KnowledgeTable";
 
 export default function BrainPage() {

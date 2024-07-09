@@ -1,7 +1,7 @@
 import { styled } from "@pigment-css/react";
 import sanitizeHtml from "sanitize-html";
 
-export function RenderHTML(props: { html: string }) {
+export function RawHTML(props: { html: string }) {
   return (
     <HTMLStyles>
       <div
