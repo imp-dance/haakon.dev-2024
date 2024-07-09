@@ -1,4 +1,6 @@
-export function getAge() {
+import { cachedFn } from "./cache";
+
+export const getAge = cachedFn(() => {
   const birthDate = new Date(1997, 3, 16);
   const currentDate = new Date();
   const yearsSinceBirth =
@@ -11,4 +13,4 @@ export function getAge() {
     return yearsSinceBirth - 1;
   }
   return yearsSinceBirth;
-}
+});

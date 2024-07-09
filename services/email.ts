@@ -1,19 +1,31 @@
 "use server";
 import Mailjet from "node-mailjet";
+import { z } from "zod";
+import { contactSchema } from "../schemas/contactSchema";
+import { GenericFormData } from "../types/formData";
 
 const mailjet = Mailjet.apiConnect(
   process.env.MAILJET_API_KEY as string,
   process.env.MAILJET_SECRET as string
 );
 
-export async function sendEmail(formData: FormData) {
+export async function sendEmail(
+  formData: GenericFormData<z.infer<typeof contactSchema>>
+) {
   const from = formData.get("from") as string;
   const email = formData.get("email") as string;
   const message = formData.get("message") as string;
 
-  if (!from || !message || !email) {
+  const fields = contactSchema.safeParse({
+    from,
+    email,
+    message,
+  });
+
+  if (!fields.success) {
     return {
-      error: "Missing fields",
+      error: fields.error.errors[0].message,
+      success: false as const,
     };
   }
   try {
@@ -41,16 +53,19 @@ export async function sendEmail(formData: FormData) {
       });
     if (response.body) {
       return {
-        error: "",
+        error: null,
+        success: true as const,
       };
     } else {
       return {
         error: "Failed to send",
+        success: false as const,
       };
     }
   } catch {
     return {
       error: "Failed to send",
+      success: false as const,
     };
   }
 }

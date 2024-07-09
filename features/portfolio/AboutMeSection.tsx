@@ -6,14 +6,16 @@ import { VideoScrollContainer } from "../../components/layout/VideoScrollContain
 import { Button } from "../../components/ui/Button";
 import { getAge } from "../../utils/getAge";
 
+const age = getAge();
+
 export function AboutMeSection() {
   return (
     <VideoScrollContainer videoSrc="/videos/hakon-clip.webm">
       <div>
         <h2>tl;dr</h2>
         <p>
-          I am {getAge()} year old Norwegian, currently I live in
-          my hometown of{" "}
+          I am {age} year old Norwegian, currently I live in my
+          hometown of{" "}
           <Link
             href="https://www.google.com/maps/place/Suldal/@59.6022254,6.2884125,8.59z/data=!4m6!3m5!1s0x463950a9455a35fb:0xfbfef00b63da47fe!8m2!3d59.5715437!4d6.816438!16zL20vMDE4Nmhr?entry=ttu"
             target="_blank"
@@ -21,9 +23,8 @@ export function AboutMeSection() {
             Suldal
           </Link>{" "}
           with my girlfriend and our two cats. For about{" "}
-          {getAge() - 13} years I have been doing web
-          development, and professionally for the last{" "}
-          {getAge() - 18} of them.
+          {age - 13} years I have been doing web development, and
+          professionally for the last {age - 18} of them.
         </p>
         <p>
           When working from home, in teams, along designers,

@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ZodObject, ZodRawShape, z } from "zod";
+import { GenericFormData } from "../types/formData";
 import { useServerAction } from "./useServerAction";
 
 export function useServerForm<
@@ -8,7 +9,7 @@ export function useServerForm<
   T extends ZodObject<TShape>
 >(
   schema: z.ZodObject<TShape>,
-  action: (data: FormData) => Promise<any>
+  action: (data: GenericFormData<TShape>) => Promise<any>
 ) {
   const serverAction = useServerAction(action);
   type FormData = z.infer<T>;
@@ -17,7 +18,7 @@ export function useServerForm<
   });
 
   const onSubmit = form.handleSubmit(async (values) => {
-    const formData = new FormData();
+    const formData = new FormData() as GenericFormData<TShape>;
     for (const key in values) {
       formData.append(key, values[key]);
     }

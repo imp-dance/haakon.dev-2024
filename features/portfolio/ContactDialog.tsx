@@ -1,24 +1,15 @@
 "use client";
-import { z } from "zod";
 import { Dialog } from "../../components/Dialog";
 import { MeLeaningSVG } from "../../components/svg/MeLeaningSVG";
 import { SendIcon } from "../../components/svg/SendIcon";
 import { Button } from "../../components/ui/Button";
 import { useServerForm } from "../../hooks/useServerForm";
+import { contactSchema } from "../../schemas/contactSchema";
 import { sendEmail } from "../../services/email";
-
-const schema = z.object({
-  from: z.string().min(1, "Name is required"),
-  email: z
-    .string()
-    .email("Invalid email")
-    .min(1, "Email is required"),
-  message: z.string().min(20, "A little longer please..."),
-});
 
 export function ContactDialog() {
   const { form, ...formAction } = useServerForm(
-    schema,
+    contactSchema,
     sendEmail
   );
 
