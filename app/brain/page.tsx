@@ -27,6 +27,12 @@ export default function BrainPage() {
         considering me for a project.
       </p>
       <KnowledgeTable />
+      <p>
+        Please beware that this list will always be incomplete
+        and outdated, as I am constantly learning. It is,
+        however, a great way to quickly scan my knowledge and
+        experience.
+      </p>
     </Container>
   );
 }

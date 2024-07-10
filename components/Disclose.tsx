@@ -1,5 +1,6 @@
 "use client";
 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React from "react";
 import { ChevronDown } from "./icons/ChevronDown";
 import { Button, ButtonSize, ButtonVariant } from "./ui/Button";
@@ -39,17 +40,23 @@ export function Disclose(props: {
       />
     </>
   );
+
+  function onChange() {
+    setIsDisclosed(!isDisclosed);
+    ScrollTrigger.refresh(true);
+  }
+
   return (
     <>
       {isDisclosed && props.children}
       {props.renderButton ? (
         React.cloneElement(props.renderButton, {
-          onClick: () => setIsDisclosed(!isDisclosed),
+          onClick: onChange,
           children,
         })
       ) : (
         <Button
-          onClick={() => setIsDisclosed(!isDisclosed)}
+          onClick={onChange}
           style={{ width: "100%" }}
           size={props.size}
           variant={props.variant}

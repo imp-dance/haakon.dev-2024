@@ -1,5 +1,4 @@
 import { styled } from "@pigment-css/react";
-import { Disclose } from "../../components/Disclose";
 import { GoToTopLink } from "../../components/GoToTopLink";
 import { ButtonLink } from "../../components/ui/Button";
 import { PortfolioItem } from "./PortfolioItem";
@@ -10,24 +9,13 @@ export async function PortfolioSection() {
 
   return (
     <Container>
-      {files.slice(0, 4).map((file) => (
+      {files.map((file) => (
         <PortfolioItem
           item={file}
           key={file.frontMatter.title}
         />
       ))}
-      <Disclose
-        showText="Show more projects"
-        hideText="Show less projects"
-        variant="ghost"
-      >
-        {files.slice(4).map((file) => (
-          <PortfolioItem
-            item={file}
-            key={file.frontMatter.title}
-          />
-        ))}
-      </Disclose>
+      <div style={{ height: "var(--size-5)" }} />
       <ButtonLink href="/brain" variant="ghost">
         Search my brain &nbsp; 🔎
       </ButtonLink>

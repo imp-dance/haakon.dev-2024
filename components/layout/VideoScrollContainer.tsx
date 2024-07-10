@@ -6,8 +6,53 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { GSAPAnimationMap } from "../../types/animation";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const animations: GSAPAnimationMap = {
+  video: (el) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".vscroll-cont",
+          start: "top top",
+          end: "3000px top",
+          scrub: 1,
+        },
+      })
+      .from(el, {
+        scale: 0.5,
+        filter: "saturate(4) brightness(0.5)",
+        duration: 0.5,
+      })
+      .to(el, {
+        scale: 1,
+        filter: "saturate(4) brightness(0.3)",
+        duration: 2,
+      });
+  },
+  innerContainer: (el) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".vscroll-cont",
+          start: "top top",
+          end: "100% top",
+          scrub: 1.5,
+        },
+      })
+      .from(el, { opacity: 0, duration: 0.2 })
+      .to(el, {
+        scale: 0.95,
+        duration: 0.5,
+      })
+      .to(el, {
+        scale: 1,
+        duration: 1,
+      });
+  },
+};
 
 export function VideoScrollContainer(props: {
   children: React.ReactNode;
@@ -21,53 +66,10 @@ export function VideoScrollContainer(props: {
     if (videoRef.current) videoRef.current.playbackRate = 0.75;
   }, []);
 
-  const applyVideoAnimations = () => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: ".vscroll-cont",
-          start: "top top",
-          end: "3000px top",
-          scrub: 1,
-        },
-      })
-      .from(videoRef.current, {
-        scale: 0.5,
-        filter: "saturate(4) brightness(0.5)",
-        duration: 0.5,
-      })
-      .to(videoRef.current, {
-        scale: 1,
-        filter: "saturate(4) brightness(0.3)",
-        duration: 2,
-      });
-  };
-
-  const applyInnerContainerAnimations = () => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: ".vscroll-cont",
-          start: "top top",
-          end: "100% top",
-          scrub: 1.5,
-        },
-      })
-      .from(innerRef.current, { opacity: 0 })
-      .to(innerRef.current, {
-        scale: 0.95,
-        duration: 0.2,
-      })
-      .to(innerRef.current, {
-        scale: 1,
-        duration: 1,
-      });
-  };
-
   useGSAP(() => {
     if (isSmallscreen) return;
-    applyVideoAnimations();
-    applyInnerContainerAnimations();
+    animations.video(videoRef.current);
+    animations.innerContainer(innerRef.current);
   }, [isSmallscreen]);
   return (
     <>
@@ -111,7 +113,6 @@ const InnerContainer = styled.div`
     min-height: auto;
   }
   display: flex;
-  border: 40px solid var(--gray-12);
 
   @media screen and (max-width: 800px) {
     border: 0;

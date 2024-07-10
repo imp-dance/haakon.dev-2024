@@ -6,9 +6,7 @@ import { Button } from "./ui/Button";
 export function GoToTopLink() {
   return (
     <Button
-      onClick={() =>
-        document.querySelector("main")?.scrollTo(0, 0)
-      }
+      onClick={() => window.scrollTo(0, 0)}
       variant="ghost"
     >
       Go to top

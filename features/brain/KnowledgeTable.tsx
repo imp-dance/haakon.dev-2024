@@ -54,18 +54,32 @@ export default function KnowledgeTable() {
         fixedHeaderContent={() => (
           <tr>
             <th>Subject</th>
-            <th>Knowledge level</th>
+            <th
+              style={{
+                width: 240,
+                minWidth: 240,
+                maxWidth: 240,
+              }}
+            >
+              Knowledge level
+            </th>
           </tr>
         )}
-        style={{ height: 500 }}
+        style={{ height: 500, borderRadius: 0 }}
         data={processedData}
         itemContent={(
-          index,
+          _index,
           row: (typeof processedData)[number]
         ) => (
           <>
             <td>{row.item.subject}</td>
-            <td>
+            <td
+              style={{
+                width: 240,
+                minWidth: 240,
+                maxWidth: 240,
+              }}
+            >
               <RenderKnowledgeLevel
                 level={row.item.knowledgeLevel}
               />
@@ -96,10 +110,12 @@ const RenderKnowledgeLevel = (props: {
 
 const Table = styled(TableVirtuoso)`
   width: 100%;
-  border-radius: var(--radius-3);
+  border-radius: 0px;
 
   & table {
     width: 100%;
+    border-radius: 0px;
+    --nice-inner-radius: 0px;
   }
 
   & td,
@@ -110,6 +126,7 @@ const Table = styled(TableVirtuoso)`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    font-size: var(--font-size-3);
     & span {
       diplay: -webkit-box;
 

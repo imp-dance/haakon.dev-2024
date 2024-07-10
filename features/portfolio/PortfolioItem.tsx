@@ -1,11 +1,70 @@
 "use client";
+import { useGSAP } from "@gsap/react";
 import { styled } from "@pigment-css/react";
-import { CSSProperties, useState } from "react";
+import gsap from "gsap";
+import { TextPlugin } from "gsap/TextPlugin";
+import { CSSProperties, useRef, useState } from "react";
 import { Disclose } from "../../components/Disclose";
 import { Divider } from "../../components/Divider";
 import { RawHTML } from "../../components/RawHTML";
 import { ExternalIcon } from "../../components/svg/ExternalIcon";
 import { Button, ButtonLink } from "../../components/ui/Button";
+import { GSAPAnimationMap } from "../../types/animation";
+
+gsap.registerPlugin(TextPlugin);
+
+const animations: GSAPAnimationMap = {
+  container: (el) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: "top 100%",
+          end: "150px 70%",
+          scrub: 1,
+        },
+      })
+      .from(el, {
+        opacity: 0,
+        y: 100,
+        scale: 0.9,
+      });
+  },
+  image: (el, trigger) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger,
+          start: "top 100%",
+          end: "50px 70%",
+          scrub: 1,
+        },
+      })
+      .from(el, {
+        rotate: 20,
+        scale: 0.9,
+        translateX: -50,
+        opacity: 0,
+      });
+  },
+  heading: (el, trigger) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger,
+          start: "top 100%",
+          end: "50px 70%",
+          toggleActions: "restart none play none",
+        },
+      })
+      .from(el, {
+        duration: 0.5,
+        text: {
+          value: "",
+        },
+      });
+  },
+};
 
 export function PortfolioItem(props: {
   item: {
@@ -22,9 +81,19 @@ export function PortfolioItem(props: {
     name: string;
   };
 }) {
+  const headingRef = useRef<HTMLSpanElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [expanded, setExpanded] = useState(false);
+
+  useGSAP(() => {
+    animations.container(containerRef.current);
+    animations.image(imgRef.current, containerRef.current);
+    animations.heading(headingRef.current, containerRef.current);
+  });
+
   return (
-    <Container>
+    <Container ref={containerRef}>
       <ImageContainer>
         {/* Image breaks build for some reason. Should look into that. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -32,6 +101,7 @@ export function PortfolioItem(props: {
           src={props.item.frontMatter.image}
           alt={props.item.frontMatter.title}
           width={200}
+          ref={imgRef}
           height={200}
         />
       </ImageContainer>
@@ -45,7 +115,9 @@ export function PortfolioItem(props: {
         }
       >
         <h2>
-          <span>{props.item.frontMatter.title}</span>
+          <span ref={headingRef}>
+            {props.item.frontMatter.title}
+          </span>
           {props.item.frontMatter.goto && (
             <ButtonLink
               href={props.item.frontMatter.goto}
