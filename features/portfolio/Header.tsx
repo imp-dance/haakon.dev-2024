@@ -1,5 +1,5 @@
 import { styled } from "@pigment-css/react";
-import { ChevronDown } from "../../components/icons/ChevronDown";
+import { ChevronDownIcon } from "../../components/svg/ChevronDownIcon";
 import { MeSVG } from "../../components/svg/MeSVG";
 import { ButtonLink } from "../../components/ui/Button";
 import { getAge } from "../../utils/getAge";
@@ -45,7 +45,7 @@ export function Header() {
         </div>
       </div>
       <StyledMeSvg />
-      <ChevronDown className="chevron" />
+      <ChevronDownIcon className="chevron" />
     </Container>
   );
 }

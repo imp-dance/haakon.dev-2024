@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown } from "./icons/ChevronDown";
+import { ChevronDownIcon } from "./svg/ChevronDownIcon";
 import { Button } from "./ui/Button";
 
 export function GoToTopLink() {
@@ -10,7 +10,7 @@ export function GoToTopLink() {
       variant="ghost"
     >
       Go to top
-      <ChevronDown
+      <ChevronDownIcon
         style={{
           transformOrigin: "center center",
           rotate: "180deg",

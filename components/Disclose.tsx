@@ -2,7 +2,7 @@
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React from "react";
-import { ChevronDown } from "./icons/ChevronDown";
+import { ChevronDownIcon } from "./svg/ChevronDownIcon";
 import { Button, ButtonSize, ButtonVariant } from "./ui/Button";
 
 export function Disclose(props: {
@@ -28,7 +28,7 @@ export function Disclose(props: {
       {isDisclosed
         ? props.hideText ?? "Hide"
         : props.showText ?? "Show"}
-      <ChevronDown
+      <ChevronDownIcon
         style={
           isDisclosed
             ? {
