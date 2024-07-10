@@ -12,7 +12,7 @@ export function AboutMeSection() {
   return (
     <VideoScrollContainer videoSrc="/videos/hakon-clip.webm">
       <div>
-        <h2>tl;dr</h2>
+        <h2>About me</h2>
         <p>
           I am {age} year old Norwegian, currently I live in my
           hometown of{" "}

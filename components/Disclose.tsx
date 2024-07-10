@@ -17,6 +17,7 @@ export function Disclose(props: {
     setIsDisclosed: (isDisclosed: boolean) => void;
   };
 }) {
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
   const [s_isDisclosed, s_setIsDisclosed] =
     React.useState(false);
   const isDisclosed =
@@ -42,8 +43,18 @@ export function Disclose(props: {
   );
 
   function onChange() {
-    setIsDisclosed(!isDisclosed);
+    const newState = !isDisclosed;
+    setIsDisclosed(newState);
     ScrollTrigger.refresh(true);
+    if (newState === true) return;
+    setTimeout(() => {
+      if (buttonRef.current) {
+        buttonRef.current.scrollIntoView({
+          behavior: "instant",
+          block: "center",
+        });
+      }
+    }, 50);
   }
 
   return (
@@ -53,6 +64,7 @@ export function Disclose(props: {
         React.cloneElement(props.renderButton, {
           onClick: onChange,
           children,
+          ref: buttonRef,
         })
       ) : (
         <Button
@@ -60,6 +72,7 @@ export function Disclose(props: {
           style={{ width: "100%" }}
           size={props.size}
           variant={props.variant}
+          buttonRef={buttonRef}
         >
           {children}
         </Button>

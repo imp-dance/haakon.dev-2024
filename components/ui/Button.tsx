@@ -14,6 +14,7 @@ export function Button(
   props: React.ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: ButtonVariant;
     size?: ButtonSize;
+    buttonRef?: React.Ref<HTMLButtonElement>;
   }
 ) {
   const className = classNames(props.className, styles.button, {
@@ -25,7 +26,13 @@ export function Button(
     [styles.lg]: props.size === "lg",
   });
 
-  return <button {...props} className={className} />;
+  return (
+    <button
+      {...props}
+      className={className}
+      ref={props.buttonRef}
+    />
+  );
 }
 
 export function ButtonLink(
