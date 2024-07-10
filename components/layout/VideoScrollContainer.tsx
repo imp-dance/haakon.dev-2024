@@ -2,13 +2,10 @@
 
 import { useGSAP } from "@gsap/react";
 import { styled } from "@pigment-css/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { gsap } from "../../services/gsap";
 import { GSAPAnimationMap } from "../../types/animation";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const animations: GSAPAnimationMap = {
   video: (el) => {

@@ -1,16 +1,16 @@
 "use client";
+import { contactMe } from "../../actions/contact-me";
 import { Dialog } from "../../components/Dialog";
 import { MeLeaningSVG } from "../../components/svg/MeLeaningSVG";
 import { SendIcon } from "../../components/svg/SendIcon";
 import { Button } from "../../components/ui/Button";
 import { useServerForm } from "../../hooks/useServerForm";
 import { contactSchema } from "../../schemas/contactSchema";
-import { sendEmail } from "../../services/email";
 
 export function ContactDialog() {
   const { form, ...formAction } = useServerForm(
     contactSchema,
-    sendEmail
+    contactMe
   );
 
   const error = formAction.result?.error;

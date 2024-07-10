@@ -1,17 +1,14 @@
 "use client";
 import { useGSAP } from "@gsap/react";
 import { styled } from "@pigment-css/react";
-import gsap from "gsap";
-import { TextPlugin } from "gsap/TextPlugin";
 import { CSSProperties, useRef, useState } from "react";
 import { Disclose } from "../../components/Disclose";
 import { Divider } from "../../components/Divider";
 import { RawHTML } from "../../components/RawHTML";
 import { ExternalIcon } from "../../components/svg/ExternalIcon";
 import { Button, ButtonLink } from "../../components/ui/Button";
+import { gsap } from "../../services/gsap";
 import { GSAPAnimationMap } from "../../types/animation";
-
-gsap.registerPlugin(TextPlugin);
 
 const animations: GSAPAnimationMap = {
   container: (el) => {
