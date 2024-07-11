@@ -25,8 +25,11 @@ const animations: GSAPAnimationMap = {
       })
       .to(el, {
         scale: 1,
-        filter: "saturate(4) brightness(0.3)",
+        filter: "saturate(4) brightness(0.2)",
         duration: 2,
+      })
+      .to(el, {
+        filter: "saturate(4) brightness(0)",
       });
   },
   innerContainer: (el) => {
@@ -39,14 +42,13 @@ const animations: GSAPAnimationMap = {
           scrub: 1.5,
         },
       })
-      .from(el, { opacity: 0, duration: 0.2 })
+      .from(el, {
+        opacity: 0,
+        duration: 0.2,
+      })
       .to(el, {
         scale: 0.95,
         duration: 0.5,
-      })
-      .to(el, {
-        scale: 1,
-        duration: 1,
       });
   },
 };
@@ -82,31 +84,16 @@ export function VideoScrollContainer(props: {
   );
 }
 
-const AboveVideo = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  background: linear-gradient(-180deg, #1f0d216e, #1204149f);
-  background-size: 100% 1000px;
-  background-repeat: no-repeat;
-  z-index: 2;
-  @media screen and (max-width: 800px) {
-    display: none;
-  }
-`;
-
 const InnerContainer = styled.div`
   position: relative;
   top: 0;
   z-index: 2;
-  background: hsl(var(--background-hsl) / 80%);
+  background: hsl(from var(--bg-contrast) h s l / 69%);
   backdrop-filter: blur(10px);
   min-height: 100vh;
   min-height: 100svh;
   @media screen and (max-width: 800px) {
-    background: hsl(var(--background-hsl) / 95%);
+    background: hsl(from var(--bg-contrast) h s l / 95%);
     min-height: auto;
   }
   display: flex;
@@ -159,7 +146,7 @@ const InnerContainer = styled.div`
 `;
 
 const Container = styled.div`
-  background: var(--gray-12);
+  background: var(--bg-contrast);
   position: relative;
 
   & > video {

@@ -99,6 +99,7 @@ const Container = styled.header`
   position: relative;
   overflow: hidden !important;
   background: var(--background);
+  border-bottom: 1px solid var(--surface-3);
 
   & .chevron {
     margin: auto auto 0 auto;

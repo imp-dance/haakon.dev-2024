@@ -1,13 +1,21 @@
 .button {
   font-size: var(--font-size-1);
+  transition: border-color 0.5s var(--ease-3),
+    box-shadow 145ms var(--ease-4),
+    outline-offset 145ms var(--ease-4),
+    transform 145ms var(--ease-4),
+    background 145ms var(--ease-in-out-2);
   --_highlight: hsl(var(--gray-1-hsl) / 5%);
   --_bg: var(--_bg-dark);
   --_ink-shadow: var(--_ink-shadow-dark);
+  &:active {
+    transform: scale(0.99) !important;
+    transform-origin: center;
+  }
 }
 
 .ghost {
   --_bg: transparent;
-  transition: background 0.1s var(--ease-in-out-2);
   border: none;
   box-shadow: none;
   &:hover {
@@ -18,7 +26,6 @@
 
 .subtle {
   --_bg: transparent;
-  transition: background 0.1s var(--ease-in-out-2);
   &:hover {
     --_bg: var(--surface-1);
   }

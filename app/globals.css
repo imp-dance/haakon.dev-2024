@@ -3,6 +3,7 @@
   --link-visited: var(--indigo-2);
   --background: var(--gradient-8);
   --background-hsl: var(--gray-12-hsl);
+  --bg-contrast: var(--gray-12);
   --text-highlight-1: var(--gradient-5);
   --text-highlight-2: var(--pink-2);
   --text-subtle-highlight: var(--gradient-9);
@@ -115,6 +116,7 @@ body.light {
   --link-visited: var(--indigo-9);
   --background: var(--gray-1);
   --background-hsl: var(--gray-1-hsl);
+  --bg-contrast: var(--gray-1);
   --text-subtle-highlight: var(--gradient-8);
   --text-highlight-1: var(--gradient-11);
   --text-highlight-2: var(--pink-7);

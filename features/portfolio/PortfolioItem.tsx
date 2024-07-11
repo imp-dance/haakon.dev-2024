@@ -61,6 +61,21 @@ const animations: GSAPAnimationMap = {
         },
       });
   },
+  line: (el, trigger) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger,
+          start: "top 55%",
+          end: "bottom 90%",
+          scrub: 1,
+        },
+      })
+      .from(el, {
+        duration: 0.5,
+        scaleY: 0,
+      });
+  },
 };
 
 export function PortfolioItem(props: {
@@ -77,7 +92,9 @@ export function PortfolioItem(props: {
     html: string;
     name: string;
   };
+  isLastChild?: boolean;
 }) {
+  const lineRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLSpanElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -87,11 +104,29 @@ export function PortfolioItem(props: {
     animations.container(containerRef.current);
     animations.image(imgRef.current, containerRef.current);
     animations.heading(headingRef.current, containerRef.current);
+    if (lineRef.current) {
+      animations.line(lineRef.current, containerRef.current);
+    }
   });
 
   return (
     <Container ref={containerRef}>
       <ImageContainer>
+        {!props.isLastChild && (
+          <div
+            style={{
+              position: "absolute",
+              width: "2px",
+              top: "20px",
+              background: "var(--surface-3)",
+              left: "50%",
+              transform: "translateX(-50%)",
+              height: "calc(100% + var(--size-2))",
+              transformOrigin: "top",
+            }}
+            ref={lineRef}
+          />
+        )}
         {/* Image breaks build for some reason. Should look into that. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -220,7 +255,6 @@ const ImageContainer = styled.div`
   width: 200px;
   flex-shrink: 0;
   height: 100%;
-  overflow: hidden;
   position: relative;
   & > img {
     filter: grayscale(0.85);
@@ -230,6 +264,7 @@ const ImageContainer = styled.div`
     top: var(--size-2);
     left: var(--size-2);
     right: var(--size-2);
+    background: var(--bg-contrast);
 
     border-radius: 50%;
     border: 1px solid var(--surface-4);
