@@ -23,9 +23,7 @@ export function PortfolioSectionClient(props: {
   }[];
 }) {
   const { files } = props;
-  const [expanded, setExpanded] = useState<string[]>(
-    props.files.map((file) => file.frontMatter.id)
-  );
+  const [expanded, setExpanded] = useState<string[]>([]);
 
   useEffect(() => {
     ScrollTrigger.refresh(true);
