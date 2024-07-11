@@ -7,7 +7,11 @@ import { Button } from "../../components/ui/Button";
 import { useServerForm } from "../../hooks/useServerForm";
 import { contactSchema } from "../../schemas/contactSchema";
 
-export function ContactDialog() {
+export function ContactDialog(props: {
+  variant?: "primary" | "secondary" | "ghost" | "subtle";
+  size?: "sm" | "md" | "lg";
+  buttonText?: string;
+}) {
   const { form, ...formAction } = useServerForm(
     contactSchema,
     contactMe
@@ -19,10 +23,11 @@ export function ContactDialog() {
 
   return (
     <Dialog
-      buttonText="Contact"
+      buttonText={props.buttonText ?? "Contact me"}
       renderButton={
         <Button
-          variant="primary"
+          variant={props.variant ?? "primary"}
+          size={props.size}
           style={{
             flexGrow: 1,
             position: "relative",
