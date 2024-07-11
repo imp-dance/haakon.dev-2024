@@ -16,10 +16,12 @@ export function Disclose(props: {
     isDisclosed: boolean;
     setIsDisclosed: (isDisclosed: boolean) => void;
   };
+  initialIsDisclosed?: boolean;
 }) {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const [s_isDisclosed, s_setIsDisclosed] =
-    React.useState(false);
+  const [s_isDisclosed, s_setIsDisclosed] = React.useState(
+    props.initialIsDisclosed ?? false
+  );
   const isDisclosed =
     props.controls?.isDisclosed ?? s_isDisclosed;
   const setIsDisclosed =

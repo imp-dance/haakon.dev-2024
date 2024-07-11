@@ -1,7 +1,7 @@
 "use client";
 import { useGSAP } from "@gsap/react";
 import { styled } from "@pigment-css/react";
-import { CSSProperties, useRef, useState } from "react";
+import { CSSProperties, useRef } from "react";
 import { Disclose } from "../../components/Disclose";
 import { Divider } from "../../components/Divider";
 import { RawHTML } from "../../components/RawHTML";
@@ -93,12 +93,14 @@ export function PortfolioItem(props: {
     name: string;
   };
   isLastChild?: boolean;
+  expanded: boolean;
+  setExpanded: (newExpanded: boolean) => void;
 }) {
   const lineRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLSpanElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [expanded, setExpanded] = useState(false);
+  const { expanded, setExpanded } = props;
 
   useGSAP(() => {
     animations.container(containerRef.current);

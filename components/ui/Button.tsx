@@ -17,14 +17,19 @@ export function Button(
     buttonRef?: React.Ref<HTMLButtonElement>;
   }
 ) {
-  const className = classNames(props.className, styles.button, {
-    [styles.ghost]: props.variant === "ghost",
-    [styles.subtle]: props.variant === "subtle",
-    [styles.primary]: props.variant === "primary",
-    [styles.secondary]: props.variant === "secondary",
-    [styles.sm]: props.size === "sm",
-    [styles.lg]: props.size === "lg",
-  });
+  const className = classNames(
+    "_btn",
+    props.className,
+    styles.button,
+    {
+      [styles.ghost]: props.variant === "ghost",
+      [styles.subtle]: props.variant === "subtle",
+      [styles.primary]: props.variant === "primary",
+      [styles.secondary]: props.variant === "secondary",
+      [styles.sm]: props.size === "sm",
+      [styles.lg]: props.size === "lg",
+    }
+  );
 
   return (
     <button
@@ -48,6 +53,7 @@ export function ButtonLink(
   }
 ) {
   const className = classNames(
+    "_btn",
     props.className,
     styles.button,
     "btn",
