@@ -8,75 +8,7 @@ import { RawHTML } from "../../components/RawHTML";
 import { ExternalIcon } from "../../components/svg/ExternalIcon";
 import { Button, ButtonLink } from "../../components/ui/Button";
 import { gsap } from "../../services/gsap";
-import { GSAPAnimationMap } from "../../types/animation";
-
-const animations: GSAPAnimationMap = {
-  container: (el) => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: "top 100%",
-          end: "150px 70%",
-          scrub: 1,
-        },
-      })
-      .from(el, {
-        opacity: 0,
-        y: 100,
-        scale: 0.9,
-      });
-  },
-  image: (el, trigger) => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger,
-          start: "top 100%",
-          end: "50px 70%",
-          scrub: 1,
-        },
-      })
-      .from(el, {
-        rotate: 20,
-        scale: 0.9,
-        translateX: -50,
-        opacity: 0,
-      });
-  },
-  heading: (el, trigger) => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger,
-          start: "top 100%",
-          end: "50px 70%",
-          toggleActions: "restart none play none",
-        },
-      })
-      .from(el, {
-        duration: 0.5,
-        text: {
-          value: "",
-        },
-      });
-  },
-  line: (el, trigger) => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger,
-          start: "top 55%",
-          end: "bottom 90%",
-          scrub: 1,
-        },
-      })
-      .from(el, {
-        duration: 0.5,
-        scaleY: 0,
-      });
-  },
-};
+import { createAnimationMap } from "../../types/animation";
 
 export function PortfolioItem(props: {
   item: {
@@ -194,6 +126,74 @@ export function PortfolioItem(props: {
   );
 }
 
+const animations = createAnimationMap({
+  container: (el) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: "top 100%",
+          end: "150px 70%",
+          scrub: 1,
+        },
+      })
+      .from(el, {
+        opacity: 0,
+        y: 100,
+        scale: 0.9,
+      });
+  },
+  image: (el, trigger) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger,
+          start: "top 100%",
+          end: "50px 70%",
+          scrub: 1,
+        },
+      })
+      .from(el, {
+        rotate: 20,
+        scale: 0.9,
+        translateX: -50,
+        opacity: 0,
+      });
+  },
+  heading: (el, trigger) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger,
+          start: "top 100%",
+          end: "50px 70%",
+          toggleActions: "restart none play none",
+        },
+      })
+      .from(el, {
+        duration: 0.5,
+        text: {
+          value: "",
+        },
+      });
+  },
+  line: (el, trigger) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger,
+          start: "top 55%",
+          end: "bottom 90%",
+          scrub: 1,
+        },
+      })
+      .from(el, {
+        duration: 0.5,
+        scaleY: 0,
+      });
+  },
+});
+
 const Container = styled.div`
   display: flex;
   align-items: flex-start;
@@ -214,6 +214,9 @@ const Entry = styled.div`
   border-radius: var(--radius-1);
   box-shadow: var(--ui-shadow);
   width: 100%;
+  & h1 {
+    font-size: var(--font-size-fluid-3);
+  }
   & h2 {
     font-size: var(--font-size-fluid-2);
     display: flex;

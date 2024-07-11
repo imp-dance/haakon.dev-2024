@@ -3,47 +3,8 @@ import { useGSAP } from "@gsap/react";
 import classNames from "classnames";
 import { CSSProperties, useRef } from "react";
 import { gsap } from "../../services/gsap";
-import { GSAPAnimationMap } from "../../types/animation";
+import { createAnimationMap } from "../../types/animation";
 import styles from "./MeSVG.module.css";
-
-const animations: GSAPAnimationMap = {
-  pc: (el) => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: el,
-          start: "top 30%",
-          end: "400px 30%",
-          scrub: 1,
-        },
-      })
-      .to(el, {
-        y: 100,
-        scale: 4,
-        x: -100,
-        rotate: 25,
-        filter: "brightness(0)",
-      });
-  },
-  person: (el, trigger) => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger,
-          start: "top 30%",
-          end: "400px 30%",
-          scrub: 1,
-        },
-      })
-      .to(el, {
-        y: "100%",
-        scale: 0.8,
-        x: "100%",
-        rotate: 25,
-        filter: "brightness(0)",
-      });
-  },
-};
 
 export const MeSVG = (props: {
   style?: CSSProperties;
@@ -124,3 +85,42 @@ export const MeSVG = (props: {
     </svg>
   );
 };
+
+const animations = createAnimationMap({
+  pc: (el) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: "top 30%",
+          end: "400px 30%",
+          scrub: 1,
+        },
+      })
+      .to(el, {
+        y: 100,
+        scale: 4,
+        x: -100,
+        rotate: 25,
+        filter: "brightness(0)",
+      });
+  },
+  person: (el, trigger) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger,
+          start: "top 30%",
+          end: "400px 30%",
+          scrub: 1,
+        },
+      })
+      .to(el, {
+        y: "100%",
+        scale: 0.8,
+        x: "100%",
+        rotate: 25,
+        filter: "brightness(0)",
+      });
+  },
+});

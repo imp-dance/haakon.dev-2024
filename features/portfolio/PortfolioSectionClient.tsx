@@ -2,8 +2,7 @@
 import { styled } from "@pigment-css/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState } from "react";
-import { GoToTopLink } from "../../components/GoToTopLink";
-import { Button, ButtonLink } from "../../components/ui/Button";
+import { Button } from "../../components/ui/Button";
 import { ToggleButtonGroup } from "../../components/ui/ToggleButtonGroup";
 import { PortfolioItem } from "./PortfolioItem";
 import { TypeWithScroll } from "./TypeWithScroll";
@@ -39,6 +38,7 @@ export function PortfolioSectionClient(props: {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          flexWrap: "wrap",
         }}
       >
         <TypeWithScroll as="h2">My experience</TypeWithScroll>
@@ -90,10 +90,6 @@ export function PortfolioSectionClient(props: {
         />
       ))}
       <div style={{ height: "var(--size-5)" }} />
-      <ButtonLink href="/brain" variant="ghost">
-        Search my brain &nbsp; 🔎
-      </ButtonLink>
-      <GoToTopLink />
     </Container>
   );
 }

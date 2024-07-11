@@ -5,53 +5,7 @@ import { styled } from "@pigment-css/react";
 import { useEffect, useRef } from "react";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { gsap } from "../../services/gsap";
-import { GSAPAnimationMap } from "../../types/animation";
-
-const animations: GSAPAnimationMap = {
-  video: (el) => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: ".vscroll-cont",
-          start: "top top",
-          end: "3000px top",
-          scrub: 1,
-        },
-      })
-      .from(el, {
-        scale: 0.5,
-        filter: "saturate(4) brightness(0.5)",
-        duration: 0.5,
-      })
-      .to(el, {
-        scale: 1,
-        filter: "saturate(4) brightness(0.2)",
-        duration: 2,
-      })
-      .to(el, {
-        filter: "saturate(4) brightness(0)",
-      });
-  },
-  innerContainer: (el) => {
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: ".vscroll-cont",
-          start: "top top",
-          end: "100% top",
-          scrub: 1.5,
-        },
-      })
-      .from(el, {
-        opacity: 0,
-        duration: 0.2,
-      })
-      .to(el, {
-        scale: 0.95,
-        duration: 0.5,
-      });
-  },
-};
+import { createAnimationMap } from "../../types/animation";
 
 export function VideoScrollContainer(props: {
   children: React.ReactNode;
@@ -83,6 +37,53 @@ export function VideoScrollContainer(props: {
     </>
   );
 }
+
+const animations = createAnimationMap({
+  video: (el) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".vscroll-cont",
+          start: "top top",
+          end: "2500px top",
+          scrub: 1,
+        },
+      })
+      .from(el, {
+        scale: 0.5,
+        filter: "saturate(4) brightness(0.5)",
+        duration: 0.5,
+      })
+      .to(el, {
+        scale: 1,
+        filter: "saturate(4) brightness(0.4)",
+        duration: 4,
+      })
+      .to(el, {
+        filter: "saturate(4) brightness(0.1)",
+        duration: 1,
+      });
+  },
+  innerContainer: (el) => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".vscroll-cont",
+          start: "top top",
+          end: "100% top",
+          scrub: 1.5,
+        },
+      })
+      .from(el, {
+        opacity: 0,
+        duration: 0.2,
+      })
+      .to(el, {
+        scale: 0.95,
+        duration: 0.5,
+      });
+  },
+});
 
 const InnerContainer = styled.div`
   position: relative;
@@ -124,24 +125,13 @@ const InnerContainer = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-  & p {
+  & p,
+  & blockquote {
     font-size: var(--font-size-fluid-1);
     color: var(--text-2);
     text-shadow: 0 1px 0 hsl(var(--background-hsl));
-    line-height: var(--font-lineheight-2);
-  }
-
-  & > .progress {
-    animation-name: scrollAnimAboutMeSection;
-    animation-duration: 1ms;
-    transform-origin: top center;
-    transform: scaleY(0);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--pink-2);
+    line-height: var(--font-lineheight-3);
+    text-wrap: pretty;
   }
 `;
 
@@ -156,10 +146,10 @@ const Container = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    border: 20px solid #000;
 
     width: 100%;
     filter: saturate(4) brightness(0.9);
+    margin-bottom: var(--size-9);
   }
 
   @media screen and (max-width: 800px) {
