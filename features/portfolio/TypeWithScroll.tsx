@@ -5,14 +5,18 @@ import { gsap } from "../../services/gsap";
 
 export function TypeWithScroll<
   T extends keyof JSX.IntrinsicElements = "div"
->(
-  props: {
-    as?: T;
-    children: ReactNode;
-    fromText?: string;
-    duration?: number;
-  } & Record<string, unknown>
-) {
+>({
+  as,
+  children,
+  fromText,
+  duration,
+  ...rest
+}: {
+  as?: T;
+  children: ReactNode;
+  fromText?: string;
+  duration?: number;
+} & Record<string, unknown>) {
   const ref = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     gsap
@@ -26,20 +30,20 @@ export function TypeWithScroll<
       })
       .from(ref.current, {
         text: {
-          value: props.fromText ?? "~~ ~~~~~~~~~~",
+          value: fromText ?? "~~ ~~~~~~~~~~",
         },
         opacity: 0,
-        duration: props.duration ?? 0.75,
+        duration: duration ?? 0.75,
         translateX: 50,
         ease: "circ",
       });
-  }, [props.fromText]);
+  }, [fromText]);
 
-  const Element = (props.as ?? "div") as "div";
+  const Element = (as ?? "div") as "div";
 
   return (
-    <Element ref={ref} {...props}>
-      {props.children}
+    <Element ref={ref} {...rest}>
+      {children}
     </Element>
   );
 }
