@@ -72,7 +72,7 @@ export default async function ArticlePage(props: PageProps) {
       <CommentSection />
       <GithubLink
         target="_blank"
-        href={`https://github.com/imp-dance/haakon.dev-2024/blob/main/public/articles/${article.name}.md`}
+        href={`https://github.com/imp-dance/haakon.dev-2024/blob/main/features/articles/data/${article.name}.md`}
       >
         <ExternalIcon /> Edit this page @ Github 🧑‍💻
       </GithubLink>
