@@ -9,6 +9,8 @@ export function TypeWithScroll<
   props: {
     as?: T;
     children: ReactNode;
+    fromText?: string;
+    duration?: number;
   } & Record<string, unknown>
 ) {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,12 +26,13 @@ export function TypeWithScroll<
       })
       .from(ref.current, {
         text: {
-          value: "~~ ~~~~~~~~~~",
+          value: props.fromText ?? "~~ ~~~~~~~~~~",
         },
         opacity: 0,
+        duration: props.duration ?? 0.5,
         translateX: 50,
       });
-  });
+  }, [props.fromText]);
 
   const Element = (props.as ?? "div") as "div";
 

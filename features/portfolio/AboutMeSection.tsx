@@ -29,7 +29,7 @@ export function AboutMeSection() {
           professionally for the last {age - 18} of them.
         </p>
         <p>
-          When working from home, in teams, along designerh2h2s,
+          When working from home, in teams, along designers,
           using collaborative tools and task management services
           - that is when I am most comfortable. Fine-tuning
           accessible and creative user experiences using React
@@ -107,6 +107,7 @@ export function AboutMeSection() {
               <TypeWithScroll
                 as="h3"
                 style={{ marginTop: "var(--size-5)" }}
+                beforeText="#+ $$$$$ /08 %% _^_ 0101010"
               >
                 My first job in the industry
               </TypeWithScroll>
@@ -142,6 +143,7 @@ export function AboutMeSection() {
               <TypeWithScroll
                 as="h3"
                 style={{ marginTop: "var(--size-5)" }}
+                fromText="01 01010 ----> .^. <-------- &&&&&"
               >
                 My brief stint in big consulting firms
               </TypeWithScroll>
@@ -182,6 +184,7 @@ export function AboutMeSection() {
               <TypeWithScroll
                 as="h3"
                 style={{ marginTop: "var(--size-5)" }}
+                fromText="01010101010 1010101010"
               >
                 Independent consulting
               </TypeWithScroll>
@@ -223,6 +226,7 @@ export function AboutMeSection() {
               <TypeWithScroll
                 as="h3"
                 style={{ marginTop: "var(--size-5)" }}
+                fromText="0101 0110 1 01010 10101010"
               >
                 Open source & other endeavours
               </TypeWithScroll>
@@ -245,6 +249,28 @@ export function AboutMeSection() {
                 >
                   Buildr Labs
                 </Link>
+                .
+              </p>
+            </FadeSection>
+            <FadeSection>
+              <TypeWithScroll
+                as="h3"
+                style={{
+                  marginTop: "var(--size-5)",
+                  color: "var(--text-pink-2)",
+                }}
+                fromText="<<<<-<-<-"
+                duration={1}
+              >
+                🎵 &nbsp; Psst...
+              </TypeWithScroll>
+              <p>
+                I have also been playing drums and producing
+                music for a while. You can check out my music on
+                Spotify page,{" "}
+                <a href="https://open.spotify.com/artist/5nieID8LGLw0nMgwbIIsVq?si=04LddrP1SVCASscQELf1ig">
+                  Sl1ck
+                </a>
                 .
               </p>
             </FadeSection>

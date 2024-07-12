@@ -107,11 +107,7 @@ input:not([type="button"], [type="submit"], [type="reset"]) {
 }
 
 body.light {
-  --card-gradient: linear-gradient(
-    12deg,
-    var(--surface-1),
-    var(--surface-2)
-  );
+  --card-gradient: var(--surface-1);
   --link: var(--indigo-8);
   --link-visited: var(--indigo-9);
   --background: var(--gray-1);

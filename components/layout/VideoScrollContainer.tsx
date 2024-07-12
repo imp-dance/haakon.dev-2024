@@ -104,6 +104,7 @@ const InnerContainer = styled.div`
   }
   > div {
     padding: var(--size-9);
+    padding-top: var(--size-11);
 
     @media screen and (max-width: 800px) {
       padding: var(--size-9) var(--size-6);

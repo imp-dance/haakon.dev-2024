@@ -39,7 +39,9 @@ export function PortfolioSectionClient(props: {
           flexWrap: "wrap",
         }}
       >
-        <TypeWithScroll as="h2">My experience</TypeWithScroll>
+        <TypeWithScroll as="h2" fromText="Min erfaring::">
+          My experience
+        </TypeWithScroll>
         <ToggleButtonGroup style={{ width: "min-content" }}>
           <Button
             variant={
