@@ -103,41 +103,6 @@ const InnerContainer = styled.div`
     min-height: auto;
   }
   display: flex;
-
-  @media screen and (max-width: 800px) {
-    border: 0;
-  }
-  > div {
-    padding: var(--size-9);
-    padding-top: var(--size-11);
-
-    @media screen and (max-width: 800px) {
-      padding: var(--size-9) var(--size-6);
-    }
-    display: flex;
-    flex-direction: column;
-    gap: var(--size-6);
-    max-width: 90%;
-    margin: auto auto;
-  }
-  & code {
-    color: var(--text-1);
-  }
-
-  & h2 {
-    font-size: var(--font-size-fluid-3);
-    color: var(--text-1);
-    background: var(--text-highlight-2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  & p,
-  & blockquote {
-    font-size: var(--font-size-fluid-1);
-    color: var(--text-2);
-    text-shadow: 0 1px 0 hsl(var(--background-hsl));
-    line-height: var(--font-lineheight-3);
-  }
 `;
 
 const Container = styled.div`

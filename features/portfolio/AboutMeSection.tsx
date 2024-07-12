@@ -1,3 +1,4 @@
+import { styled } from "@pigment-css/react";
 import Link from "next/link";
 import { Disclose } from "../../components/Disclose";
 import { VideoScrollContainer } from "../../components/layout/VideoScrollContainer";
@@ -13,7 +14,7 @@ const age = getAge();
 export function AboutMeSection() {
   return (
     <VideoScrollContainer videoSrc="/videos/hakon-clip-cropped.mp4">
-      <div>
+      <Container>
         <h2>About me</h2>
         <p>
           I am {age} year old Norwegian, currently I live in my
@@ -274,7 +275,40 @@ export function AboutMeSection() {
             <div style={{ height: "var(--size-9)" }} />
           </div>
         </Disclose>
-      </div>
+      </Container>
     </VideoScrollContainer>
   );
 }
+
+const Container = styled.div`
+  padding: var(--size-9);
+  padding-top: var(--size-11);
+
+  @media screen and (max-width: 800px) {
+    padding: var(--size-9) var(--size-6);
+  }
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-6);
+  max-width: 90%;
+  margin: auto auto;
+
+  & code {
+    color: var(--text-1);
+  }
+
+  & h2 {
+    font-size: var(--font-size-fluid-3);
+    color: var(--text-1);
+    background: var(--text-highlight-2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  & p,
+  & blockquote {
+    font-size: var(--font-size-fluid-1);
+    color: var(--text-2);
+    text-shadow: 0 1px 0 hsl(var(--background-hsl));
+    line-height: var(--font-lineheight-3);
+  }
+`;
