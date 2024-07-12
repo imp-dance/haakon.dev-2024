@@ -48,7 +48,7 @@ export function AboutMeSection() {
           renderButton={
             <Button
               style={{ width: "max-content" }}
-              variant="subtle"
+              variant="secondary"
             />
           }
         >
