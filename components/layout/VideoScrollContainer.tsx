@@ -45,22 +45,24 @@ const animations = createAnimationMap({
         scrollTrigger: {
           trigger: ".vscroll-cont",
           start: "top top",
-          end: "2500px top",
-          scrub: 1,
+          end: "bottom 100%",
+          scrub: 1.5,
         },
       })
       .from(el, {
         scale: 0.5,
         filter: "saturate(4) brightness(0.5)",
-        duration: 0.5,
+        duration: 1,
+        borderRadius: "50%",
       })
       .to(el, {
         scale: 1,
-        filter: "saturate(4) brightness(0.4)",
+        filter: "saturate(4) brightness(0.4) grayscale(1)",
         duration: 4,
+        borderRadius: "0%",
       })
       .to(el, {
-        filter: "saturate(4) brightness(0.1)",
+        filter: "saturate(4) brightness(0.1) grayscale(1)",
         duration: 1,
       });
   },
@@ -70,17 +72,20 @@ const animations = createAnimationMap({
         scrollTrigger: {
           trigger: ".vscroll-cont",
           start: "top top",
-          end: "100% top",
+          end: "bottom 100%",
           scrub: 1.5,
         },
       })
       .from(el, {
         opacity: 0,
         duration: 0.2,
+        scale: 0.6,
+        borderRadius: "32px",
       })
       .to(el, {
-        scale: 0.95,
+        opacity: 1,
         duration: 0.5,
+        borderRadius: "0%",
       });
   },
 });
@@ -132,7 +137,6 @@ const InnerContainer = styled.div`
     color: var(--text-2);
     text-shadow: 0 1px 0 hsl(var(--background-hsl));
     line-height: var(--font-lineheight-3);
-    text-wrap: pretty;
   }
 `;
 
@@ -143,14 +147,13 @@ const Container = styled.div`
   & > video {
     position: sticky;
     z-index: 1;
-    top: 10%;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
 
     width: 100%;
     filter: saturate(4) brightness(0.9);
-    margin-bottom: var(--size-9);
   }
 
   @media screen and (max-width: 800px) {

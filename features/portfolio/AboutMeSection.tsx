@@ -12,7 +12,7 @@ const age = getAge();
 
 export function AboutMeSection() {
   return (
-    <VideoScrollContainer videoSrc="/videos/hakon-clip.webm">
+    <VideoScrollContainer videoSrc="/videos/hakon-clip-cropped.mp4">
       <div>
         <h2>About me</h2>
         <p>
@@ -79,12 +79,9 @@ export function AboutMeSection() {
                   }}
                 >
                   <p>
-                    <strong>Fun fact</strong> I actually started
-                    out in the webs.com (freewebs) community!
-                  </p>
-                  <p>
-                    I also had fun with Nettby&apos;s custom CSS
-                    feature, and piczo.com 😎
+                    <strong>Fun fact</strong>
+                    <br /> I actually started out in the webs.com
+                    (freewebs) community!
                   </p>
                 </blockquote>
               </div>{" "}
