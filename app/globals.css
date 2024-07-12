@@ -261,3 +261,18 @@ table tr:hover td,
 tbody tr:nth-child(2n):hover td {
   background-color: var(--surface-2) !important;
 }
+
+:where(dialog)::backdrop {
+  animation: fadeInDialog 0.5s forwards;
+}
+
+@keyframes fadeInDialog {
+  from {
+    opacity: 0;
+    filter: grayscale(0%);
+  }
+  to {
+    opacity: 1;
+    filter: grayscale(70%);
+  }
+}

@@ -12,8 +12,8 @@ export function FadeSection(props: { children: ReactNode }) {
       .timeline({
         scrollTrigger: {
           trigger: ref.current,
-          start: "top 85%",
-          end: "top 70%",
+          start: "top 95%",
+          end: "bottom 5%",
           scrub: 1,
         },
       })
@@ -21,6 +21,18 @@ export function FadeSection(props: { children: ReactNode }) {
         opacity: 0,
         y: 100,
         scale: 0.9,
+        duration: 1,
+      })
+      .to(ref.current, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 5,
+      })
+      .to(ref.current, {
+        opacity: 0,
+        y: -50,
+        duration: 1,
       });
   });
   return <Container ref={ref}>{props.children}</Container>;

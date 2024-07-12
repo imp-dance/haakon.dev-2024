@@ -29,8 +29,9 @@ export function TypeWithScroll<
           value: props.fromText ?? "~~ ~~~~~~~~~~",
         },
         opacity: 0,
-        duration: props.duration ?? 0.5,
+        duration: props.duration ?? 0.75,
         translateX: 50,
+        ease: "circ",
       });
   }, [props.fromText]);
 

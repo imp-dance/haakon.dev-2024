@@ -51,7 +51,7 @@ export function ContactDialog(props: {
             color: "var(--text-4)",
           }}
         >
-          I&apos;ll get back to you asap!
+          I&apos;ll get back to you ASAP!
         </p>
         {error && (
           <p style={{ marginBlock: "var(--size-3)" }}>
