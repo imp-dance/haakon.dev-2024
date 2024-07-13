@@ -1,49 +1,17 @@
 "use client";
 import Giscus from "@giscus/react";
-import { useEffect, useState } from "react";
-import { getDocument } from "../../utils/getDocument";
+import { styled } from "@pigment-css/react";
+import { useCurrentTheme } from "../../hooks/useTheme";
 
 export function CommentSection() {
-  const [theme, setTheme] = useState(
-    getDocument()?.body.classList.contains("light")
-      ? "light"
-      : "dark"
-  );
-
-  useEffect(() => {
-    if (!getDocument()) return;
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === "class") {
-          const theme = document.body.classList.contains("light")
-            ? "light"
-            : "dark";
-          setTheme(theme);
-        }
-      });
-    });
-    observer.observe(document.body, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
+  const theme = useCurrentTheme();
   return (
     <>
       <noscript>
-        <h4
-          style={{
-            padding: "var(--size-5)",
-            background: "var(--surface-1)",
-            color: "var(--text-pink-1)",
-          }}
-        >
+        <FallbackText>
           This is where comments would be, if you had Javascript
           enabled!
-        </h4>
+        </FallbackText>
       </noscript>
       <Giscus
         repo="imp-dance/haakon.dev-2022"
@@ -62,3 +30,9 @@ export function CommentSection() {
     </>
   );
 }
+
+const FallbackText = styled.h4`
+  padding: var(--size-5);
+  background: var(--surface-1);
+  color: var(--text-pink-1);
+`;

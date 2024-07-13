@@ -11,7 +11,7 @@ type Toast = {
 const { ToastProvider: _ToastProvider, toast: _toast } =
   initToast<Toast>();
 
-export const toast = _toast;
+export const toast = (args: Toast) => _toast(args);
 
 export function ToastProvider() {
   return (
