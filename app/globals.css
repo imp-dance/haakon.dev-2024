@@ -100,6 +100,17 @@
     var(--inner-shadow-highlight);
 }
 
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+button,
+a {
+  -webkit-font-smoothing: antialiased;
+}
+
 textarea,
 select,
 input:not([type="button"], [type="submit"], [type="reset"]) {
