@@ -1,4 +1,4 @@
-# haakon.dev
+# [haakon.dev](https://haakon.dev)
 
 The **2024** iteration of my portfolio. A sort of CV/showcase of my latest projects, as well as a personal blog where I write about all kinds of stuff related to tech and frontend.
 
