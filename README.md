@@ -4,14 +4,19 @@ The **2024** iteration of my portfolio. A sort of CV/showcase of my latest proje
 
 ## Stack
 
-- `react`
-- `next` (framework, app router)
+Various technologies and packages, and their use:
+
+- `react` (view & state)
+- `next` (framework, app router, ssr)
 - `@pigment-css/react` (build-time CSS-IN-JS styling solution)
+- `gsap` (various animations & scrolly-telling)
 - [**Open Props**](https://open-props.style/) (design language, css tokens)
 - `react-hook-form` (client side form validation)
 - `markdown-it` (markdown parsing)
-  - `markdown-it-container` (extending markdown functionality)
+  - `markdown-it-container` (plugin)
 - `highlight-js` (syntax highlighting)
+- `fuse.js` (fuzzy-search)
+- `react-virtuoso` (virtual list for brain table)
 
 ---
 
