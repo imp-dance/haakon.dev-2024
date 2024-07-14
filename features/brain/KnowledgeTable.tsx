@@ -1,8 +1,8 @@
 "use client";
 import { styled } from "@pigment-css/react";
-import Fuse from "fuse.js";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { TableVirtuoso } from "react-virtuoso";
+import { useFuzzySearch } from "../../hooks/useFuzzySearch";
 import { knowledgeData } from "./knowledge";
 
 export enum KnowledgeLevel {
@@ -19,27 +19,15 @@ const orderByKnowledgeLevel = [
   KnowledgeLevel.experienced,
 ];
 
-const fuse = new Fuse(knowledgeData, {
-  keys: ["subject"],
-  threshold: 0.3,
-});
-
 export default function KnowledgeTable() {
   const [search, setSearch] = useState("");
-  const processedData = useMemo(
-    () =>
-      (search
-        ? [...fuse.search(search)]
-        : knowledgeData.map((v) => ({
-            item: v,
-          }))
-      ).sort(
-        (a, b) =>
-          orderByKnowledgeLevel.indexOf(b.item.knowledgeLevel) -
-          orderByKnowledgeLevel.indexOf(a.item.knowledgeLevel)
-      ),
-    [search]
+  const searchedList = useFuzzySearch(knowledgeData, search);
+  const data = searchedList.sort(
+    (a, b) =>
+      orderByKnowledgeLevel.indexOf(b.knowledgeLevel) -
+      orderByKnowledgeLevel.indexOf(a.knowledgeLevel)
   );
+
   return (
     <>
       <Input
@@ -66,13 +54,10 @@ export default function KnowledgeTable() {
           </tr>
         )}
         style={{ height: 500, borderRadius: 0 }}
-        data={processedData}
-        itemContent={(
-          _index,
-          row: (typeof processedData)[number]
-        ) => (
+        data={data}
+        itemContent={(_index, row: (typeof data)[number]) => (
           <>
-            <td>{row.item.subject}</td>
+            <td>{row.subject}</td>
             <td
               style={{
                 width: 240,
@@ -80,9 +65,7 @@ export default function KnowledgeTable() {
                 maxWidth: 240,
               }}
             >
-              <RenderKnowledgeLevel
-                level={row.item.knowledgeLevel}
-              />
+              <RenderKnowledgeLevel level={row.knowledgeLevel} />
             </td>
           </>
         )}

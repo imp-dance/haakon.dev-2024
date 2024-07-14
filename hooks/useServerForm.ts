@@ -6,13 +6,15 @@ import { useServerAction } from "./useServerAction";
 
 export function useServerForm<
   TShape extends ZodRawShape,
-  T extends ZodObject<TShape>
+  T extends ZodObject<TShape>,
+  TReturnType extends unknown
 >(
   schema: z.ZodObject<TShape>,
-  action: (data: GenericFormData<TShape>) => Promise<any>
+  action: (data: GenericFormData<TShape>) => Promise<TReturnType>
 ) {
-  const serverAction = useServerAction(action);
   type FormData = z.infer<T>;
+
+  const serverAction = useServerAction(action);
   const form = useForm<FormData>({
     resolver: zodResolver(schema),
   });

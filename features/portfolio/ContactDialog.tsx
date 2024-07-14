@@ -12,14 +12,13 @@ export function ContactDialog(props: {
   size?: "sm" | "md" | "lg";
   buttonText?: string;
 }) {
-  const { form, ...formAction } = useServerForm(
-    contactSchema,
-    contactMe
-  );
+  const { form, result, isFinished, isPending, onSubmit } =
+    useServerForm(contactSchema, contactMe);
 
-  const error = formAction.result?.error;
-  const isSuccess = formAction.isFinished && !error;
-  const formDisabled = formAction.isPending || isSuccess;
+  const error =
+    result && "error" in result ? result.error : null;
+  const isSuccess = isFinished && !error;
+  const formDisabled = isPending || isSuccess;
 
   return (
     <Dialog
@@ -140,12 +139,12 @@ export function ContactDialog(props: {
           style={{ marginTop: "var(--size-7)" }}
           onClick={async (e) => {
             e.preventDefault();
-            formAction.onSubmit();
+            onSubmit();
           }}
         >
           {isSuccess ? (
             "Message recieved!"
-          ) : formAction.isPending ? (
+          ) : isPending ? (
             "Sending..."
           ) : error ? (
             "Retry!"
