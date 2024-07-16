@@ -6,7 +6,7 @@ import { Disclose } from "../../components/Disclose";
 import { Divider } from "../../components/Divider";
 import { RawHTML } from "../../components/RawHTML";
 import { ExternalIcon } from "../../components/svg/ExternalIcon";
-import { Button, ButtonLink } from "../../components/ui/Button";
+import { ButtonLink } from "../../components/ui/Button";
 import { gsap } from "../../services/gsap";
 import { createAnimationMap } from "../../types/animation";
 
@@ -105,16 +105,12 @@ export function PortfolioItem(props: {
             isDisclosed: expanded,
             setIsDisclosed: setExpanded,
           }}
-          renderButton={
-            <Button
-              variant="ghost"
-              style={{
-                width: "max-content",
-                border: "none",
-                boxShadow: "none",
-              }}
-            />
-          }
+          style={{
+            width: "max-content",
+            border: "none",
+            boxShadow: "none",
+          }}
+          noJsLink={`/portfolio/${props.item.frontMatter.id}`}
         >
           <Divider style={{ marginBlock: "var(--size-3)" }} />
           <div className="anim-fadedown">

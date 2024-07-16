@@ -3,7 +3,11 @@
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React from "react";
 import { ChevronDownIcon } from "./svg/ChevronDownIcon";
-import { Button, ButtonSize, ButtonVariant } from "./ui/Button";
+import {
+  ButtonLink,
+  ButtonSize,
+  ButtonVariant,
+} from "./ui/Button";
 
 export function Disclose(props: {
   children: React.ReactNode;
@@ -11,14 +15,16 @@ export function Disclose(props: {
   hideText?: string;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  style?: React.CSSProperties;
   renderButton?: React.ReactElement;
   controls?: {
     isDisclosed: boolean;
     setIsDisclosed: (isDisclosed: boolean) => void;
   };
   initialIsDisclosed?: boolean;
+  noJsLink?: string;
 }) {
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const buttonRef = React.useRef<HTMLAnchorElement>(null);
   const [s_isDisclosed, s_setIsDisclosed] = React.useState(
     props.initialIsDisclosed ?? false
   );
@@ -44,7 +50,8 @@ export function Disclose(props: {
     </>
   );
 
-  function onChange() {
+  function onChange(e: React.MouseEvent) {
+    e.preventDefault();
     const newState = !isDisclosed;
     setIsDisclosed(newState);
     ScrollTrigger.refresh(true);
@@ -67,17 +74,19 @@ export function Disclose(props: {
           onClick: onChange,
           children,
           ref: buttonRef,
+          href: props.noJsLink,
         })
       ) : (
-        <Button
+        <ButtonLink
           onClick={onChange}
-          style={{ width: "100%" }}
+          style={{ width: "100%", ...props.style }}
           size={props.size}
           variant={props.variant}
           buttonRef={buttonRef}
+          href={props.noJsLink ?? "#"}
         >
           {children}
-        </Button>
+        </ButtonLink>
       )}
     </>
   );

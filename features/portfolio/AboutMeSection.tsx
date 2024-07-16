@@ -2,7 +2,6 @@ import { styled } from "@pigment-css/react";
 import Link from "next/link";
 import { Disclose } from "../../components/Disclose";
 import { VideoScrollContainer } from "../../components/layout/VideoScrollContainer";
-import { Button } from "../../components/ui/Button";
 import { getAge } from "../../utils/getAge";
 import { FadeSection } from "./FadeSection";
 import { FloatImg } from "./FloatImg";
@@ -43,15 +42,10 @@ export function AboutMeSection() {
           and <code>Typescript</code>.
         </p>
         <Disclose
-          variant="ghost"
+          variant="secondary"
           showText="My journey"
           hideText="Show less"
-          renderButton={
-            <Button
-              style={{ width: "max-content" }}
-              variant="secondary"
-            />
-          }
+          style={{ width: "max-content" }}
         >
           <div
             className="anim-fadedown"

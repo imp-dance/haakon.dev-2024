@@ -50,6 +50,7 @@ export function ButtonLink(
     style?: React.CSSProperties;
     title?: string;
     target?: string;
+    buttonRef?: React.Ref<HTMLAnchorElement>;
   }
 ) {
   const className = classNames(
@@ -67,5 +68,11 @@ export function ButtonLink(
     }
   );
 
-  return <Link {...props} className={className} />;
+  return (
+    <Link
+      {...props}
+      className={className}
+      ref={props.buttonRef}
+    />
+  );
 }

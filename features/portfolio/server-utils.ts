@@ -44,3 +44,8 @@ export async function getPortfolioFiles() {
   );
   return files;
 }
+
+export async function getPortfolioItem(id: string) {
+  const files = await getPortfolioFiles();
+  return files.find((file) => file.frontMatter.id === id);
+}
