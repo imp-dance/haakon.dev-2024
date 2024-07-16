@@ -3,7 +3,9 @@ export type GSAPAnimationMap = Record<
   string,
   (el: Target, trigger?: Target) => void
 >;
-
+/**
+ * Properly types creation and usage of GSAP animations written outside component.
+ */
 export const createAnimationMap = <TKeys extends string>(
   animations: Record<
     TKeys,

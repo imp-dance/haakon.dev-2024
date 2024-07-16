@@ -31,12 +31,10 @@ export function Button(
     }
   );
 
+  const { buttonRef, ...rest } = props;
+
   return (
-    <button
-      {...props}
-      className={className}
-      ref={props.buttonRef}
-    />
+    <button {...rest} className={className} ref={buttonRef} />
   );
 }
 

@@ -53,13 +53,13 @@ const animations = createAnimationMap({
         scale: 0.5,
         filter: "saturate(4) brightness(0.5)",
         duration: 1,
-        borderRadius: "50%",
+        clipPath: "circle(40%)",
       })
       .to(el, {
         scale: 1,
         filter: "saturate(4) brightness(0.4) grayscale(1)",
         duration: 4,
-        borderRadius: "0%",
+        clipPath: "circle(100%)",
       })
       .to(el, {
         filter: "saturate(4) brightness(0.1) grayscale(1)",
@@ -119,6 +119,7 @@ const Container = styled.div`
 
     width: 100%;
     filter: saturate(4) brightness(0.9);
+    clip-path: circle(40%);
   }
 
   @media screen and (max-width: 800px) {

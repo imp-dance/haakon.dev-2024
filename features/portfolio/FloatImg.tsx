@@ -1,6 +1,5 @@
 "use client";
 import { useGSAP } from "@gsap/react";
-import { styled } from "@pigment-css/react";
 import Image from "next/image";
 import { useRef } from "react";
 import { gsap } from "../../services/gsap";
@@ -57,16 +56,3 @@ export function FloatImg(props: { src: string; alt: string }) {
     />
   );
 }
-
-const StyledMark = styled.div`
-  color: var(--text-1);
-  background: var(--surface-3);
-  width: max-content;
-  transform: rotate(4deg);
-  padding: var(--size-1);
-  border-radius: var(--radius-2);
-  float: right;
-  text-shadow: none;
-  font-size: var(--font-size-1);
-  user-select: none;
-`;
