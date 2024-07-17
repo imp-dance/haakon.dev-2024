@@ -13,7 +13,7 @@ export function FadeSection(props: { children: ReactNode }) {
         scrollTrigger: {
           trigger: ref.current,
           start: "top 95%",
-          end: "bottom 5%",
+          end: "bottom 1%",
           scrub: 1,
         },
       })

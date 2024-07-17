@@ -2,6 +2,7 @@
 title: 2024 Redesign
 date: 2024-06-10
 summary: Yet another redesign
+img: /24-website.jpg
 ---
 
 It was about time for a new redesign/revamp of this website (I think this is the... fifth redesign?). The last version of my portfolio was made using NextJS pages router, and this time around I really wanted to try out RSC via NextJS's app router - so I did.
@@ -35,9 +36,9 @@ One benefit over Wordpress is that I can more easily preview the articles as I'm
 
 I've kept [`giscus`](https://giscus.app/) for the comment section, as it is nice and simple solution to adding some form of reader-feedback on my articles. It's loaded in a client component, of course.
 
-### Less motion all around?
+### Motion? More like GSAP
 
-My previous iteration heavily utilized the [`motion`](https://motion.dev/) library to add page transitions and animations. I've decided to remove motion entirely, and scale down on the animations generally. This is mostly because I wanted the website to feel faster and more snappy.
+My previous iteration heavily utilized the [`motion`](https://motion.dev/) library to add page transitions and animations. I've decided to remove motion entirely, and use GSAP for animations instead. I found GSAP easier to integrate cleanly, and with the ScrollTrigger plugin, it allows me to write seamless scrollytelling.
 
 ### Open Props rock
 

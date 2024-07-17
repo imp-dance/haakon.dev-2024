@@ -2,6 +2,7 @@
 title: Some interesting Typescript tips & tricks
 date: 2023-03-10
 summary: Typescript is great, for many reasons. I think everyone will agree with that statement if they’ve given it a proper try.
+img: /images/ts-lettermark-blue.svg
 ---
 
 Typescript is great, for many reasons. I think everyone will agree with that statement if they’ve given it a proper try. While writing type-safe NPM-packages, I’ve learnt a few tips and tricks that can help you utilize it for it’s full worth.

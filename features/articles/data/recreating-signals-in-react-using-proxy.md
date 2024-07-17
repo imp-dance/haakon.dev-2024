@@ -3,6 +3,7 @@ title: Recreating Signals for React using Proxy
 date: 2024-06-04
 summary: >
   Proxies in Javascript are really interesting. What if we could recreate signals in React by utilizing them?
+img: https://preview.redd.it/fc4x6a195rtb1.jpg?auto=webp&s=77e30d580f9d64a3f643f2e8701cec6d461c57b8
 ---
 
 So Javascript has this interesting feature called Proxy. This will allow you to intercept value-getting and -setting on a given object.

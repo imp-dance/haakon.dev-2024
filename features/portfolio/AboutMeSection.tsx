@@ -9,6 +9,8 @@ import { Mark } from "./Mark";
 import { TypeWithScroll } from "./TypeWithScroll";
 
 const age = getAge();
+const yearsInWebDev = age - 13; // Started at 13
+const proYearsInWebDev = age - 18; // Started professionally at 18
 
 export function AboutMeSection() {
   return (
@@ -25,8 +27,9 @@ export function AboutMeSection() {
             Suldal
           </Link>{" "}
           with my girlfriend and our two cats. For about{" "}
-          {age - 13} years I have been doing web development, and
-          professionally for the last {age - 18} of them.
+          {yearsInWebDev} years I have been doing web
+          development, and professionally for the last{" "}
+          {proYearsInWebDev} of them.
         </p>
         <p>
           When working from home, in teams, along designers,

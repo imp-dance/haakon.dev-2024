@@ -1,4 +1,4 @@
-import { styled } from "@pigment-css/react";
+import { keyframes, styled } from "@pigment-css/react";
 import { formatDistance } from "date-fns";
 import { Metadata } from "next";
 import { ExternalIcon } from "../../../components/svg/ExternalIcon";
@@ -89,15 +89,28 @@ const GithubLink = styled("a")`
   margin-right: 0;
 `;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--size-3);
+  animation: ${() => fadeIn} 0.15s var(--ease-in-out-1);
 
   & > header {
     display: flex;
     flex-direction: column;
     gap: var(--size-2);
+    padding: var(--size-4) 0 var(--size-5);
     & h1 {
       font-size: var(--font-size-fluid-3);
       color: var(--text-pink-2);

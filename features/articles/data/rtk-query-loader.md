@@ -2,6 +2,7 @@
 title: RTK Query Loader
 date: 2023-06-01
 summary: A NPM package that lets you write components as if they're already loaded.
+img: https://ryfylke.dev/static/logo-dm.svg
 ---
 
 RTK Query Loader is a NPM package that I have written and maintained for over a year now. I wanted to write an article about the experience, stuff I've learned and where this package is at now.

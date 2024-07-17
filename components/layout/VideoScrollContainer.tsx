@@ -80,12 +80,10 @@ const animations = createAnimationMap({
         opacity: 0,
         duration: 0.2,
         scale: 0.6,
-        borderRadius: "32px",
       })
       .to(el, {
         opacity: 1,
         duration: 0.5,
-        borderRadius: "0%",
       });
   },
 });

@@ -1,8 +1,9 @@
 import { styled } from "@pigment-css/react";
-import { formatDistance } from "date-fns";
 import { Metadata } from "next";
 import { ExternalIcon } from "../../components/svg/ExternalIcon";
 import { ButtonLink } from "../../components/ui/Button";
+import { ArticleListItem } from "../../features/articles/ArticleListItem";
+import { ArticleListTitle } from "../../features/articles/ArticleListTitle";
 import { getArticles } from "../../features/articles/server-utils";
 
 export const metadata: Metadata = {
@@ -26,40 +27,11 @@ export default async function ArticlesPage() {
       >
         ← Portfolio
       </ButtonLink>
-      <h1
-        style={{
-          paddingInline: "var(--size-5)",
-          color: "var(--text-5)",
-        }}
-      >
-        Articles
-      </h1>
+      <ArticleListTitle>Articles</ArticleListTitle>
       <List>
-        {articles.map((article) => (
+        {articles.map((article, index) => (
           <li key={article.name}>
-            <StyledButtonLink
-              title={article.frontMatter.title}
-              href={`/articles/${article.name.replace(
-                ".md",
-                ""
-              )}`}
-              variant="ghost"
-            >
-              <Title>{article.frontMatter.title}</Title>
-              <p
-                style={{
-                  color: "var(--text-6)",
-                }}
-              >
-                {formatDistance(
-                  new Date(article.frontMatter.date),
-                  new Date(),
-                  {
-                    addSuffix: true,
-                  }
-                )}
-              </p>
-            </StyledButtonLink>
+            <ArticleListItem article={article} index={index} />
           </li>
         ))}
         <li style={{ padding: "var(--size-3) var(--size-5)" }}>
@@ -77,28 +49,10 @@ export default async function ArticlesPage() {
   );
 }
 
-const StyledButtonLink = styled(ButtonLink)`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  transition: transform 0.2s var(--ease-out-1);
-
-  &:hover {
-    transform: scale(1.01);
-  }
-  &:active {
-    transform: scale(0.99);
-  }
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--size-4);
-  & h1 {
-    font-size: var(--font-size-fluid-3);
-  }
 `;
 
 const List = styled.ul`
@@ -108,8 +62,29 @@ const List = styled.ul`
   flex-direction: column;
   gap: var(--size-2);
 
+  &:hover li {
+    opacity: 0.25;
+  }
+
   & li {
     max-inline-size: 100%;
+    transition: transform 0.15s var(--ease-elastic-out-1),
+      opacity 0.15s var(--ease-elastic-out-1);
+
+    &:hover {
+      transform: scale(1.02);
+      opacity: 1;
+    }
+
+    &:has(+ li:hover),
+    &:hover + li {
+      opacity: 0.5;
+    }
+
+    &:hover + li + li,
+    &:has(+ li + li:hover) {
+      opacity: 0.3;
+    }
 
     & .btn:hover {
       text-decoration: none;
@@ -118,12 +93,4 @@ const List = styled.ul`
       }
     }
   }
-`;
-
-const Title = styled.h3`
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  font-size: var(--font-size-fluid-2);
 `;
