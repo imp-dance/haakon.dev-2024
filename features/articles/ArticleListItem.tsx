@@ -32,8 +32,9 @@ export function ArticleListItem(props: {
       gsap.timeline().from(imgRef.current, {
         opacity: 0,
         delay: index ? index * 0.04 : 0,
-        duration: 0.25,
+        duration: 1,
         translateY: "-100%",
+        ease: "bounce.out",
       });
     }
   });

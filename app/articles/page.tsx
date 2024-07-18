@@ -57,10 +57,14 @@ const Container = styled.div`
 
 const List = styled.ul`
   list-style: none;
-  padding: 0;
+  padding: var(--size-4);
+  margin: calc(var(--size-4) * -1);
+  margin-top: 0;
+  padding-top: 0;
   display: flex;
   flex-direction: column;
   gap: var(--size-2);
+  overflow: hidden;
 
   &:hover li {
     opacity: 0.25;

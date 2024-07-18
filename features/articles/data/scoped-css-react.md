@@ -3,6 +3,7 @@ title: scoped-css-react
 date: 2024-6-22
 summary: >
   "styled-syntax" CSS-in-JS solution using `@scope`
+img: /images/caniusescope.jpg
 ---
 
 I'm a big fan of `styled-components`-like syntax, and by that I mean...

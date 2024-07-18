@@ -32,6 +32,17 @@ export default async function PortfolioItemPage(
 
   return (
     <Container>
+      <ButtonLink
+        size="sm"
+        variant="ghost"
+        style={{
+          justifyContent: "flex-start",
+          color: "var(--text-5)",
+        }}
+        href="/"
+      >
+        ← Portfolio
+      </ButtonLink>
       <h2>
         <span>{portfolioItem.frontMatter.title}</span>
         {portfolioItem.frontMatter.goto && (

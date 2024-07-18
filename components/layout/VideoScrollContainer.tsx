@@ -47,6 +47,12 @@ const animations = createAnimationMap({
           start: "top top",
           end: "bottom 100%",
           scrub: 1.5,
+          snap: {
+            snapTo: "labels",
+            duration: { min: 0.1, max: 0.5 },
+            delay: 0.2,
+            ease: "power1.inOut",
+          },
         },
       })
       .from(el, {

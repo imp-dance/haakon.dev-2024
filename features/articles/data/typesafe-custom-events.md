@@ -3,6 +3,7 @@ date: 2023-07-10
 title: Typesafe Custom Events
 summary: >
   Here’s a useful abstraction on top of custom events that let you more easily set up typesafe channels to communicate between.
+img: /images/ts-lettermark-blue.svg
 ---
 
 Here’s a useful abstraction on top of custom events that let you more easily set up typesafe channels to communicate between.
