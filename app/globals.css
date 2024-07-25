@@ -6,6 +6,13 @@
   --bg-contrast: var(--gray-12);
   --text-highlight-1: var(--gradient-5);
   --text-highlight-2: var(--pink-2);
+  --text-highlight-anim: linear-gradient(
+      90deg,
+      var(--pink-2),
+      var(--pink-6),
+      var(--pink-2)
+    )
+    0 0 / 400% 100%;
   --text-subtle-highlight: var(--gradient-9);
   --text-1: var(--gray-1);
   --text-2: var(--gray-2);
@@ -126,6 +133,13 @@ body.light {
   --bg-contrast: var(--gray-1);
   --text-subtle-highlight: var(--gradient-8);
   --text-highlight-1: var(--gradient-11);
+  --text-highlight-anim: linear-gradient(
+      90deg,
+      var(--pink-7),
+      var(--pink-10),
+      var(--pink-7)
+    )
+    0 0 / 400% 100%;
   --text-highlight-2: var(--pink-7);
   --text-1: var(--gray-12);
   --text-2: var(--gray-11);
@@ -285,5 +299,11 @@ tbody tr:nth-child(2n):hover td {
   to {
     opacity: 1;
     filter: grayscale(70%);
+  }
+}
+
+@keyframes move-bg {
+  to {
+    background-position: var(--bg-size) 0;
   }
 }

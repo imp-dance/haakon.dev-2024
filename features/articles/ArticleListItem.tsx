@@ -44,6 +44,30 @@ export function ArticleListItem(props: {
       title={article.frontMatter.title}
       href={`/articles/${article.name.replace(".md", "")}`}
       variant="ghost"
+      data-index={props.index}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          e.stopPropagation();
+          const target =
+            document.querySelector<HTMLButtonElement>(
+              `[data-index="${(props.index ?? 0) + 1}"]`
+            );
+          if (target) {
+            target.focus();
+          }
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          e.stopPropagation();
+          const target =
+            document.querySelector<HTMLButtonElement>(
+              `[data-index="${(props.index ?? 0) - 1}"]`
+            );
+          if (target) {
+            target.focus();
+          }
+        }
+      }}
     >
       {article.frontMatter.img ? (
         // Purely decorative image

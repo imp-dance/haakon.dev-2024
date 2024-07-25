@@ -49,6 +49,7 @@ export function ButtonLink(
     title?: string;
     target?: string;
     buttonRef?: React.Ref<HTMLAnchorElement>;
+    onKeyDown?: React.KeyboardEventHandler;
   }
 ) {
   const className = classNames(

@@ -4,13 +4,16 @@ import { MeSVG } from "../../components/svg/MeSVG";
 import { ButtonLink } from "../../components/ui/Button";
 import { getAge } from "../../utils/getAge";
 import { ContactDialog } from "./ContactDialog";
+import { FallingCharacters } from "./FallingCharacters";
 
 export function Header() {
   return (
     <Container id="top">
       <div>
         <h1>
-          <div>Hi, my name is</div>
+          <div>
+            <FallingCharacters>Hi, my name is</FallingCharacters>
+          </div>
         </h1>
         <h1>
           <span>Håkon Underbakke</span>
@@ -126,11 +129,15 @@ const Container = styled.header`
       overflow: hidden;
 
       & span {
-        background: var(--text-highlight-1);
+        background: var(--text-highlight-anim);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         display: block;
         animation-delay: 0.1s !important;
+        animation: var(--animation-fade-in) forwards,
+          var(--animation-slide-in-up) forwards,
+          move-bg 14s linear infinite !important;
+        --bg-size: 400%;
       }
 
       & div {

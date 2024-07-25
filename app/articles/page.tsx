@@ -66,27 +66,33 @@ const List = styled.ul`
   gap: var(--size-2);
   overflow: hidden;
 
-  &:hover li {
+  &:hover li,
+  &:focus-within li {
     opacity: 0.25;
   }
 
   & li {
     max-inline-size: 100%;
     transition: transform 0.15s var(--ease-elastic-out-1),
-      opacity 0.15s var(--ease-elastic-out-1);
+      opacity 0.4s var(--ease-elastic-out-1);
 
-    &:hover {
+    &:hover,
+    &:focus-within {
       transform: scale(1.02);
       opacity: 1;
     }
 
     &:has(+ li:hover),
+    &:has(+ li:focus-within),
+    &:focus-within + li,
     &:hover + li {
       opacity: 0.5;
     }
 
     &:hover + li + li,
-    &:has(+ li + li:hover) {
+    &:focus-within + li + li,
+    &:has(+ li + li:hover),
+    &:has(+ li + li:focus-within) {
       opacity: 0.3;
     }
 
