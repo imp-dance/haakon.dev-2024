@@ -11,7 +11,7 @@ export function ArticleListItem(props: {
   article: Article;
   index?: number;
 }) {
-  const ref = useRef<HTMLAnchorElement>(null);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const { article, index } = props;
@@ -23,10 +23,9 @@ export function ArticleListItem(props: {
         opacity: 0,
         delay: index ? index * 0.02 : 0,
       })
-      .to(ref.current, {
+      .to(buttonRef.current, {
         opacity: 1,
         delay: index ? index * 0.02 : 0,
-        duration: 0.05,
       });
     if (imgRef.current) {
       gsap.timeline().from(imgRef.current, {
@@ -37,10 +36,11 @@ export function ArticleListItem(props: {
         ease: "bounce.out",
       });
     }
-  });
+  }, [index]);
+
   return (
     <StyledButtonLink
-      buttonRef={ref}
+      buttonRef={buttonRef}
       title={article.frontMatter.title}
       href={`/articles/${article.name.replace(".md", "")}`}
       variant="ghost"
