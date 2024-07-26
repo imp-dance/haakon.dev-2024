@@ -7,6 +7,8 @@ img: https://ryfylke.dev/static/logo-dm.svg
 
 RTK Query Loader is a NPM package that I have written and maintained for over a year now. I wanted to write an article about the experience, stuff I've learned and where this package is at now.
 
+## Origins
+
 It all started with an abstraction at work which looked something like this:
 
 ::: window
@@ -25,57 +27,45 @@ const App = () => (
 
 :::
 
+### Pros & Cons
+
 This was very helpful, some parts of it I loved but other parts of the pattern were very annoying.
 
 - I have to create a wrapper, and an internal `<LoadedComponent>` whenever I use the pattern
 - Setting up loading/error views all the time is annoying, and I mostly reuse the loading and error view anyways
 - I have to manually type data, and specify that it is `NonNullable`
 
-::: window
-routes/user.tsx
+So I wanted to rethink and redesign this pattern a bit to be more reusable and elegant.
 
-```tsx
-// all of this is just boilerplate
-// to give my component data
-const UserPage = () => {
-  const query = useSomeQuery();
-  return (
-    <Loader
-      queries={[query]}
-      onSuccess={(data) => <LoadedUserPage data={data} />}
-    />
-  );
-};
+## HOC
 
-const LoadedUserPage = (props: { data: SomeType }) => {
-  // ... finally have my data loaded
-};
-```
-
-:::
-
-And so a thought was born...
+> I know, I know, we do not want to go back to the days of wrapping your React components with multiple layers of higher order components - but just take a look at this:
 
 ::: window
 drafts.tsx
 
 ```tsx
-// what if I had a higher order component...
-// and I guess it must take in some sort of config
-const Component = loaded(..., config);
+const loader = createLoader(...); // somewhere
 
-// it should be clear that it is a HOC
+// Component.tsx
 const Component = withLoader((props, data) => {
     return <div>...</div>
 }, loader);
-// mm that's more like it
 ```
 
 :::
 
+Higher order components are one of the few use cases that make sense when doing loading on the client side.
+
+> Why?
+
+Because we want to be able to write the component **as if it has loaded already** - I don't want to have lots of checks inside of the body to see if the query data is defined, supply fallbacks, cast types, nested loading spinners, etc... The only way to achieve this is to simply await mounting the component until the data is ensured to have loaded. Higher order components allow for this pattern.
+
 ### Creating an initial design
 
-Using the old implementation (`RTKLoader`) as a reference, I started working on a design. This was what I first landed on:
+Using the old implementation as a reference, I started working on a design.
+
+The first iteration of the design was flawed, but definitely better than what we started with:
 
 ::: window
 drafts.tsx
@@ -99,16 +89,16 @@ const Component = withLoader((props, data) => {
 
 :::
 
-> When using the old design, `as const` was a requirement to get proper types in the component. Otherwise, the return-type of `queries` would just be `UseQueryResult[]` instead of `[UseQueryResult<T>, UseQueryResult<B>]`
+> #### Lesson learned ✅
+>
+> I found that defining terms, such as a "**_loader_**" or a "**_consumer_**" helps people wrap their head around what is going on and how to use the API.
 
-I found that defining terms, such as a "_loader_" or a "_consumer_" helps people wrap their head around what is going on.
-
-> I also renamed `queries` to `useQueries` around this point to make it more clear that this argument is in fact a hook.
-
-So this design solved atleast one of my initial issues: I no longer have to create a wrapper component. But it's also very limiting:
+So this design solved atleast one of my initial issues: I no longer have to create a wrapper component. But it's still not feature complete, and after having used this API for a while I had annoyances with it.
 
 - I can't pass arguments to the loader
-- I still have to manually declare loading/error states for every component
+- I still have to manually declare loading/error states for every component/loader
+- It's not obvious that the `queries` argument is a hook
+- It's tedious and easy to forget to use `as const` when returning from `queries`.
 
 ### Passing arguments
 
@@ -119,19 +109,22 @@ examples/args.tsx
 
 ```tsx
 type ComponentProps = {
-    userId: string;
-    // ...other props
+  userId: string;
 };
 
 const loader = createLoader({
-    queriesArg: (props: ComponentProps) => props.userId,
-    useQueries: (userId) => [...] as const,
-})
+  queriesArg: (props: ComponentProps) => props.userId,
+  useQueries: (userId) => [useGetUser(userId)] as const,
+});
 ```
 
 :::
 
-Now that we can pass arguments, how do we solve not having to redeclare loading and error states excessively? I ended up going with `.extend` to create a copy of the loader that inherits certain properties.
+There you go, we now have a way for loaders to utilize their consumers' props inside the loader.
+
+## Extending existing loaders
+
+Now this was a really challenging Typescript task, but after a lot of use of generics and tinkering with the code - I was able to implement the feature.
 
 ::: window
 examples/extend.tsx
@@ -149,11 +142,15 @@ const userLoader = baseLoader.extend({
 
 :::
 
-### Rounding up the changes in a major version
+This allows for a very nice pattern where you create a base loader with default loading and error states, and extend from that. This will more easily allow you to configure all loaders at once as well - and reuse and extend existing loaders.
+
+In my own experience, I have set up a `baseLoader`, as well as a `baseRouteLoader` and `baseDialogLoader` (both extended from `baseLoader`). You can set it up however you want.
+
+### Rethinking some of the API
 
 At this point, I was about 4 months and 4 versions into writing the package. I felt it was time for a major update. This also meant that I could take a look back at the interface and fix things that were bothering me. Notably, having to specify `as const` after the `useQueries` argument.
 
-I solved this by returning an object instead of an array. I also added `deferredQueries` as a optional way of returning queries from the loader - meaning that the queries don't block the consumer from loading.
+I solved this by returning an object instead of an array. I also implemented `deferredQueries` as an optional way of returning queries from the loader - hinting that the queries should not block the consumer from loading.
 
 ::: window
 examples/v1.tsx
@@ -164,13 +161,21 @@ const loader = baseLoader.extend({
     queries: {
       user: useGetUserQuery(),
     },
+    deferredQueries: {
+      extraData: useGetGiantDataset(),
+    },
+    payload: {
+      any: {
+        arbitrary: "data",
+      },
+    },
   }),
 });
 ```
 
 :::
 
-Sure it might be a bit more to write, but I definitely still prefer this to the old design of returning a read only array.
+Now this is starting to look more feature complete. Adding `payload` as a way to pass _anything_ from the loader to the consumer opens up the possibility for stateful and controlled loaders as well. 🔥
 
 ### Maintaining the package
 
