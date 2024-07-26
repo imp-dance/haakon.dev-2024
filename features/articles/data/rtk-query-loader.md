@@ -55,17 +55,28 @@ const Component = withLoader((props, data) => {
 
 :::
 
-Higher order components are one of the few use cases that make sense when doing loading on the client side.
+Data-loading is one of the few cases where HOC make sense, in my opinion.
 
-> Why?
+We want to be able to write the component **as if the data has loaded already** - I don't want to...
 
-Because we want to be able to write the component **as if it has loaded already** - I don't want to have lots of checks inside of the body to see if the query data is defined, supply fallbacks, cast types, nested loading spinners, etc... The only way to achieve this is to simply await mounting the component until the data is ensured to have loaded. Higher order components allow for this pattern.
+- 💩 Have lots of checks inside of the body to see if the data is defined
+- 💩 Supply fallback values,
+- 💩 Cast types
+- 💩 Have lots of inline ternary loading states (`data ? (...) : null`)
+
+The only way to achieve this is to simply await mounting the component until the data exists, and treat it more as a prop. Higher order components allow for this pattern.
 
 ### Creating an initial design
 
-Using the old implementation as a reference, I started working on a design.
+I started working on a new design by using the old implementation as reference.
 
-The first iteration of the design was flawed, but definitely better than what we started with:
+::: window
+
+> #### Lesson learned ✅
+>
+> I found that defining terms, such as a "**_loader_**" and "**_consumer_**" helps people wrap their head around what is going on and how it all plays together.
+
+:::
 
 ::: window
 drafts.tsx
@@ -74,7 +85,6 @@ drafts.tsx
 // You create a "loader"
 const loader = createLoader({
   // it needs: queries, loading state, error state
-  // rtk queries are hooks, so it should be a hook.
   queries: () => [useSomeQuery(), useSomeOtherQuery()] as const,
   onLoading: () => <div>Loading...</div>,
   onError: () => <div>Error!</div>,
@@ -89,16 +99,12 @@ const Component = withLoader((props, data) => {
 
 :::
 
-> #### Lesson learned ✅
->
-> I found that defining terms, such as a "**_loader_**" or a "**_consumer_**" helps people wrap their head around what is going on and how to use the API.
-
 So this design solved atleast one of my initial issues: I no longer have to create a wrapper component. But it's still not feature complete, and after having used this API for a while I had annoyances with it.
 
-- I can't pass arguments to the loader
-- I still have to manually declare loading/error states for every component/loader
+- You can't pass arguments to the loader from the consumer
+- I still have to manually declare loading/error states for every individual loader
 - It's not obvious that the `queries` argument is a hook
-- It's tedious and easy to forget to use `as const` when returning from `queries`.
+- Adding `as const` is tedious and easy to forget.
 
 ### Passing arguments
 
@@ -114,17 +120,22 @@ type ComponentProps = {
 
 const loader = createLoader({
   queriesArg: (props: ComponentProps) => props.userId,
+  // `queries` -> `useQueries` for clarity
   useQueries: (userId) => [useGetUser(userId)] as const,
 });
 ```
 
 :::
 
+![Passing arguments illustration](https://rtk-query-loader.ryfylke.dev/assets/images/queriesArg-207621a6c91c7e0661fadc4fac4879ab.png)
+
 There you go, we now have a way for loaders to utilize their consumers' props inside the loader.
+
+We have also hinted at the fact that the `queries` argument is a loader by renaming it to `useQueries`.
 
 ## Extending existing loaders
 
-Now this was a really challenging Typescript task, but after a lot of use of generics and tinkering with the code - I was able to implement the feature.
+Now this was a really challenging (and interesting) Typescript task that taught me a lot about generics, but after a lot of work and debugging - I was able to implement the feature while maintaining the strong types.
 
 ::: window
 examples/extend.tsx
@@ -181,11 +192,11 @@ Now this is starting to look more feature complete. Adding `payload` as a way to
 
 When dealing with component loading, it is kind of critical that you don't push bugs. For this reason, I ended up writing a test suite of about 30 tests that verify that everything is working correctly in the package.
 
-I also wrote [extensive documentation](https://rtk-query-loader.ryfylke.dev/) for the package by using Docusaurus.
+I also wrote [extensive documentation](https://rtk-query-loader.ryfylke.dev/) by using Docusaurus. I'm very pleased with how that turned out, and have had some nice feedback on it.
 
 ### Final thoughts
 
-Writing RTK Query Loader taught me a lot about typescript, package maintenance and writing good documentation. I've also just really enjoyed writing a cohesive API that solves a concrete issue that _I cared about_.
+Writing RTK Query Loader taught me a bunch about Typescript, package maintenance, open source and writing good documentation. I've also **really enjoyed** writing a cohesive API that solves a concrete issue that _I cared about_.
 
 **Do I still use the package?**
 
