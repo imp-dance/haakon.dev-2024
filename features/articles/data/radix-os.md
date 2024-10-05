@@ -27,6 +27,16 @@ Some features include...
 
 Click any of these links to [view the source](https://github.com/imp-dance/radix-os), or [check out the demo](https://imp-dance.github.io/radix-os/).
 
+### Drag & Drop
+
+[`dnd kit`](https://dndkit.com/) was a great solution for implementing drag and drop. Previously, I have implemented this manually by listening to all relevant events, tracking mouse position while dragging, etc. `dnd kit` allows me to think in simpler terms (`X` is _draggable_, `Y` is _droppable_). This made it trivial to add options for where you can drag and drop folders.
+
+I would love to look more into dragging _between different apps_, as the overflow of the current application window would make this difficult to implement currently.
+
+It is also possible to rearrange the icons on the desktop by dragging and dropping, but this grid-like behaviour has many issues that I have yet to resolve.
+
 ### Persisting data
 
 I decided to only use local storage for persisting data between reloads, instead of hosting a proper backend and requiring login for public use. To do this easily with Zustand, I used [persist](https://zustand.docs.pmnd.rs/integrations/persisting-store-data) with `createJSONStorage(() => localStorage)`.
+
+Believe it or not, this is my first time using Zustand. Seems like a good option for client-side state, in the few scenarios I normally need that.
