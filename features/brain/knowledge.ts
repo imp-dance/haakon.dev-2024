@@ -144,6 +144,10 @@ export const knowledgeData: Array<{
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
+    subject: "Hue API V2",
+    knowledgeLevel: KnowledgeLevel.someExperience,
+  },
+  {
     subject: "Radix UI",
     knowledgeLevel: KnowledgeLevel.readAbout,
   },
