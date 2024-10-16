@@ -31,11 +31,13 @@ Some features include...
 
 ### Drag & Drop
 
-[`dnd kit`](https://dndkit.com/) was a great solution for implementing drag and drop. Previously, I have implemented this manually by listening to all relevant events, tracking mouse position while dragging, etc. `dnd kit` allows me to think in simpler terms (`X` is _draggable_, `Y` is _droppable_). This made it trivial to add options for where you can drag and drop folders.
+I have manually implemented drag & drop enough times to know that I was better off using a library here, so I did a bit of research and landed on [dnd kit](https://dndkit.com/).
+
+[`dnd kit`](https://dndkit.com/) ended up being a great solution. The package allows me to think in simpler terms (`X` is _draggable_, `Y` is _droppable_). Adding restrictions to the draggable elements was straight forward enough, by utilizing [modifiers](https://docs.dndkit.com/api-documentation/modifiers).
 
 I would love to look more into dragging _between different apps_, as the overflow of the current application window would make this difficult to implement currently.
 
-It is also possible to rearrange the icons on the desktop by dragging and dropping, but this grid-like behaviour has many issues that I have yet to resolve.
+It is also possible to rearrange the icons on the desktop by dragging and dropping, but this grid-like behaviour has a few issues that I have yet to resolve. 💩
 
 ### Persisting data
 
@@ -95,7 +97,7 @@ fs "Documents/My cool file" --ex browser
 
 #### Referencing files & folders
 
-In the Zustand store, most actions utilize a string path to reference a file or folder. I utilize a couple of helper functions that I wrote to work with paths:
+In the Zustand store, I designed most of the actions to take in a string path to reference files or folders. I utilize a couple of helper functions that I wrote to work with these paths in the store, and in the terminal app:
 
 - **`findNodeByPath(path: string, tree: FsNode)`**
   - Takes a tree-structure and a string path, and returns the node if found
@@ -107,8 +109,6 @@ In the Zustand store, most actions utilize a string path to reference a file or 
       "../Images"
     ); // "Home/Images"
     ```
-
-I could have gone for a simple ID property and a recursive search to find nodes, but I ended up going for this path based solution.
 
 ### Window management
 
