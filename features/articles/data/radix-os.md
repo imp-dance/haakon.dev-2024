@@ -128,3 +128,61 @@ type WindowStore = {
 `windowOrder` determines the Z index of the windows, and the `activeWindow` is the currently focused window (as indicated in the multi tasking bar).
 
 The windows themselves are shell components that are draggable within the desktop bounds. If shift is held down while dragging the windows, "drop-zones" appear. Dropping the window in one of these zones will tile it accordingly.
+
+## Creating an NPM package
+
+After working on the project for a while, I realised it could be useful to be able to easily swap out the file system, and to customize which applications are available.
+Then it could be published as an NPM package in the form of a React component that can be configured with props.
+
+To do this, I had to rewrite the file system to be asynchronous - and expose the interface so methods can be implemented however wanted. The existing zustand integration is exported from the package as well so it can be easily set up with a client-side store.
+
+I also had to do a bit of refactoring to make passing applications work properly. Apps can now be created using a `createApp` method:
+
+```tsx
+import { createApp, useWindowStore, useFs } from "radix-os";
+import { useAppLauncher } from "../lib/radixos";
+import { Box } from "@radix-ui/themes";
+
+const MyCustomApp = createApp((props) => {
+  const hasFile = props.file !== undefined;
+  if (hasFile) {
+    const { file, path } = props.file;
+    // ... was opened by a file
+  }
+  const windowState = props.appWindow;
+  const windowStore = useWindowStore();
+  const fileSystem = useFs();
+  const { launch, open } = useAppLauncher();
+
+  return <Box>...</Box>;
+});
+```
+
+Apps can then be passed when setting up RadixOS:
+
+```tsx
+import {
+  RadixOS,
+  setupApps,
+  fsZustandIntegration,
+} from "radix-os";
+
+const applications = setupApps({
+  appId: "customapp",
+  appName: "Custom App",
+  component: MyCustomApp,
+  defaultWindowSettings: {
+    title: "Custom App",
+  },
+});
+
+function App() {
+  return (
+    <RadixOS
+      fs={fsZustandIntegration}
+      applications={applications}
+      desktopShortcuts={[]}
+    />
+  );
+}
+```
