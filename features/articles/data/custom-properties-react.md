@@ -3,7 +3,7 @@ title: Custom properties in React's style tag
 date: 2024-11-19
 summary: >
   Have you ever met the dreaded Object literal may only specify known properties, and '"--test"' does not exist in type 'Properties<string | number, string & {}>'? Fixing this is actually quite simple
-img: /koding-no.svg
+img: /images/ts-lettermark-blue.svg
 ---
 
 ## TL;DR
