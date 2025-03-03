@@ -22,6 +22,7 @@ export async function parseArticleMd(
       date: string;
       summary: string;
       img?: string;
+      draft?: boolean;
     },
     html,
   };
@@ -49,7 +50,7 @@ export async function getArticles(): Promise<Article[]> {
       // @ts-ignore
       new Date(b.frontMatter.date) - new Date(a.frontMatter.date)
   );
-  return files;
+  return files.filter((file) => !file.frontMatter.draft);
 }
 
 export async function getArticle(

@@ -24,8 +24,16 @@ export const knowledgeData: Array<{
     knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
+    subject: "Remix",
+    knowledgeLevel: KnowledgeLevel.experienced,
+  },
+  {
     subject: "Node.js",
     knowledgeLevel: KnowledgeLevel.someExperience,
+  },
+  {
+    subject: "Tailwind",
+    knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
     subject: "Bun",
@@ -257,7 +265,7 @@ export const knowledgeData: Array<{
   },
   {
     subject: "Jira",
-    knowledgeLevel: KnowledgeLevel.someExperience,
+    knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
     subject: "ContractExpress Author",

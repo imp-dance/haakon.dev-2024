@@ -5,6 +5,7 @@ export type Article = {
     date: string;
     summary: string;
     img?: string;
+    draft?: boolean;
   };
   html: string;
 };
