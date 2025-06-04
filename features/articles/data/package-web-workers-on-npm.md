@@ -1,17 +1,17 @@
 ---
-title: Using web workers in NPM packages
+title: Packaging web workers for NPM
 date: 2025-6-2
 summary: >
   asdf
 img: /images/ww.png
 ---
 
-So I found myself utilizing a web worker in a project that I intended to publish as a NPM package. Based on my very limited experience of reading about web workers, I knew this could be difficult. I had two assumptions:
+I recently found myself utilizing a web worker in a project that I intended to publish as an NPM package. Based on my very limited experience working with web workers, I knew this could be difficult. I had two assumptions:
 
 - Web workers need to be separate javascript files
 - You need to load them from a given url.
 
-Take this example:
+If you search online, most examples you find will look something like this:
 
 :::window
 /index.html
@@ -42,7 +42,7 @@ self.onmessage = (e) => {
 
 :::
 
-For this to work when publishing your package, you'd need to ensure that the worker file is bundled separately, and you might run various issues depending on your consumer's build system.
+For this to work when publishing your package, you'd need to ensure that the worker file is bundled separately, then you have to resolve the URL that the web worker should be loaded from. You might run into various issues depending on your and your consumers' build systems.
 
 You ideally want to just have the worker code somewhere close-by in the codebase and import it using relative paths. So how can we achieve this, and completely skip around the issues around bundling?
 
