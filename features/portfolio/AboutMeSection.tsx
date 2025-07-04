@@ -185,7 +185,7 @@ export function AboutMeSection() {
               </TypeWithScroll>
               <p>
                 <FloatImg
-                  src="/images/hakon-outside-rr.jpg"
+                  src="/images/profil.jpeg"
                   alt="Picture of me back in Suldal"
                 />
                 In 2021, I started my own company - Ryfylke React
@@ -233,7 +233,7 @@ export function AboutMeSection() {
                   Koding.no
                 </Link>
                 , other open source projects like{" "}
-                <Link href="https://arc.net/l/quote/thnkjtdq">
+                <Link href="https://rtk-query-loader.ryfylke.dev/">
                   RTK Query Loader
                 </Link>
                 , as well as a company I co-founded with a couple

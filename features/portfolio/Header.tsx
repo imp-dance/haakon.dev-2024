@@ -3,12 +3,14 @@ import { ChevronDownIcon } from "../../components/svg/ChevronDownIcon";
 import { MeSVG } from "../../components/svg/MeSVG";
 import { ButtonLink } from "../../components/ui/Button";
 import { getAge } from "../../utils/getAge";
+import { CommitAnimations } from "./CommitAnimations";
 import { ContactDialog } from "./ContactDialog";
 import { FallingCharacters } from "./FallingCharacters";
 
 export function Header() {
   return (
     <Container id="top">
+      <CommitAnimations />
       <div>
         <h1>
           <div>

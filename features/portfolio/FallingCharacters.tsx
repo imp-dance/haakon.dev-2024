@@ -6,6 +6,7 @@ import { gsap } from "../../services/gsap";
 export function FallingCharacters(props: { children: string }) {
   return (
     <>
+      <div className="sr-only">{props.children}</div>
       {props.children.split("").map((char, index) => (
         <FallingCharacter key={index}>{char}</FallingCharacter>
       ))}
@@ -40,6 +41,7 @@ function FallingCharacter(props: { children: string }) {
         display: "inline-block",
         minWidth: props.children === " " ? "0.2em" : undefined,
       }}
+      aria-hidden="true"
     >
       {props.children}
     </div>

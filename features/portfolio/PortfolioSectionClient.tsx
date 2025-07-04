@@ -55,6 +55,10 @@ export function PortfolioSectionClient(props: {
                 files.map((file) => file.frontMatter.id)
               );
             }}
+            role="radio"
+            aria-checked={
+              expanded.length === files.length ? true : false
+            }
           >
             Expanded
           </Button>
@@ -64,6 +68,8 @@ export function PortfolioSectionClient(props: {
             onClick={() => {
               setExpanded([]);
             }}
+            role="radio"
+            aria-checked={expanded.length === 0 ? true : false}
           >
             Condensed
           </Button>

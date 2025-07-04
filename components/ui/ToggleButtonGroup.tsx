@@ -5,7 +5,11 @@ export function ToggleButtonGroup(
     children: React.ReactNode;
   } & React.HTMLAttributes<HTMLDivElement>
 ) {
-  return <Container {...props}>{props.children}</Container>;
+  return (
+    <Container {...props} role="radiogroup">
+      {props.children}
+    </Container>
+  );
 }
 
 const Container = styled.div`

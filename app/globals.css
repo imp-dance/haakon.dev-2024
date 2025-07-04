@@ -307,3 +307,34 @@ tbody tr:nth-child(2n):hover td {
     background-position: var(--bg-size) 0;
   }
 }
+
+@keyframes commit-msg {
+  0% {
+    transform: translate(10px, 50px) scale(1);
+    opacity: 0;
+    animation-timing-function: var(--ease-bounce-2);
+  }
+  33% {
+    transform: translate(-10px, 50px) scale(1);
+    opacity: 0.3;
+    animation-timing-function: var(--ease-bounce-2);
+  }
+  45% {
+    transform: translate(-10px, -20px) scale(0.5);
+    filter: blur(1px);
+    opacity: 0;
+    animation-timing-function: var(--ease-spring-1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
