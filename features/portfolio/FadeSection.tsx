@@ -2,10 +2,13 @@
 
 import { useGSAP } from "@gsap/react";
 import { styled } from "@pigment-css/react";
-import { ReactNode, useRef } from "react";
+import { CSSProperties, ReactNode, useRef } from "react";
 import { gsap } from "../../services/gsap";
 
-export function FadeSection(props: { children: ReactNode }) {
+export function FadeSection(props: {
+  children: ReactNode;
+  style?: CSSProperties;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   useGSAP(() => {
     gsap
@@ -35,7 +38,11 @@ export function FadeSection(props: { children: ReactNode }) {
         duration: 1,
       });
   });
-  return <Container ref={ref}>{props.children}</Container>;
+  return (
+    <Container style={props.style} ref={ref}>
+      {props.children}
+    </Container>
+  );
 }
 
 const Container = styled.div`

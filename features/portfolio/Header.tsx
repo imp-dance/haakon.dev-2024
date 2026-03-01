@@ -29,7 +29,7 @@ export function Header() {
           I have been doing front-end focused web development
           professionally for about {getAge() - 18} years. These
           days, I mostly work with <code>React</code> and{" "}
-          <code>Typescript</code>.
+          <code>Typescript</code>
         </Subtext>
         <div
           style={{
@@ -136,7 +136,8 @@ const Container = styled.header`
         -webkit-text-fill-color: transparent;
         display: block;
         animation-delay: 0.1s !important;
-        animation: var(--animation-fade-in) forwards,
+        animation:
+          var(--animation-fade-in) forwards,
           var(--animation-slide-in-up) forwards,
           move-bg 14s linear infinite !important;
         --bg-size: 400%;
@@ -150,7 +151,8 @@ const Container = styled.header`
       & > div {
         opacity: 0;
 
-        animation: var(--animation-fade-in) forwards,
+        animation:
+          var(--animation-fade-in) forwards,
           var(--animation-slide-in-up) forwards;
         animation-timing-function: var(--ease-out-3);
         animation-duration: 0.3s;
