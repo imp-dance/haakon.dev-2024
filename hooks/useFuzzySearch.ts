@@ -8,16 +8,12 @@ export function useFuzzySearch<T>(data: T[], search: string) {
         keys: ["subject"],
         threshold: 0.3,
       }),
-    [data]
+    [data],
   );
 
-  const processedData = useMemo(
-    () =>
-      search
-        ? [...fuse.search(search)].map((i) => i.item)
-        : data,
-    [search, fuse, data]
-  );
+  const processedData = search
+    ? [...fuse.search(search)].map((i) => i.item)
+    : data;
 
   return processedData;
 }

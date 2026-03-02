@@ -17,11 +17,20 @@ export default function BrainPage() {
             ← Portfolio
           </ButtonLink>
         </div>
-        <h1 style={{ color: "var(--text-5)" }}>
-          Search my brain 🧠
+        <h1
+          style={{
+            color: "var(--text-4)",
+            marginBlock: "var(--size-5)",
+          }}
+        >
+          🧠 Search my brain
         </h1>
       </div>
-      <p>
+      <p
+        style={{
+          color: "var(--text-5)",
+        }}
+      >
         This list includes some of the technologies and packages
         that I know of, which might be relevant if you are
         considering me for a project.

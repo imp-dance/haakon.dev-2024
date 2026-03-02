@@ -1,6 +1,6 @@
 "use client";
 import { styled } from "@pigment-css/react";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { TableVirtuoso } from "react-virtuoso";
 import { useFuzzySearch } from "../../hooks/useFuzzySearch";
 import { knowledgeData } from "./knowledge";
@@ -22,10 +22,10 @@ const orderByKnowledgeLevel = [
 export default function KnowledgeTable() {
   const [search, setSearch] = useState("");
   const searchedList = useFuzzySearch(knowledgeData, search);
-  const data = searchedList.sort(
+  const data = searchedList.toSorted(
     (a, b) =>
       orderByKnowledgeLevel.indexOf(b.knowledgeLevel) -
-      orderByKnowledgeLevel.indexOf(a.knowledgeLevel)
+      orderByKnowledgeLevel.indexOf(a.knowledgeLevel),
   );
 
   return (
@@ -36,38 +36,59 @@ export default function KnowledgeTable() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         autoFocus
+        style={{
+          padding: "var(--size-3)",
+          fontSize: "1.25rem",
+          fontWeight: "bold",
+        }}
       />
       <Table
         className="anim-fadedown"
         fixedHeaderContent={() => (
           <tr>
-            <th>Subject</th>
             <th
               style={{
-                width: 240,
-                minWidth: 240,
-                maxWidth: 240,
+                fontSize: "0.875rem",
+                color: "var(--text-5)",
+              }}
+            >
+              Subject
+            </th>
+            <th
+              style={{
+                width: 120,
+                minWidth: 120,
+                maxWidth: 120,
+                fontSize: "0.875rem",
+                color: "var(--text-5)",
               }}
             >
               Knowledge level
             </th>
           </tr>
         )}
-        style={{ height: 500, borderRadius: 0 }}
+        style={{ height: 500, borderRadius: 4 }}
         data={data}
         itemContent={(_index, row: (typeof data)[number]) => (
-          <>
-            <td>{row.subject}</td>
+          <Fragment key={row.subject}>
             <td
               style={{
-                width: 240,
-                minWidth: 240,
-                maxWidth: 240,
+                fontSize: "1rem",
+                fontWeight: "bold",
+              }}
+            >
+              {row.subject}
+            </td>
+            <td
+              style={{
+                width: 120,
+                minWidth: 120,
+                maxWidth: 120,
               }}
             >
               <RenderKnowledgeLevel level={row.knowledgeLevel} />
             </td>
-          </>
+          </Fragment>
         )}
       />
     </>
@@ -79,13 +100,85 @@ const RenderKnowledgeLevel = (props: {
 }) => {
   switch (props.level) {
     case KnowledgeLevel.heardAbout:
-      return <span>👂🏻 Have heard about it</span>;
+      return (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+        >
+          👂🏻
+          <span
+            style={{
+              color: "var(--text-5)",
+              fontSize: "0.875rem",
+            }}
+          >
+            Have heard about it
+          </span>
+        </div>
+      );
     case KnowledgeLevel.readAbout:
-      return <span>👨🏻‍🏫 Have read about it</span>;
+      return (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+        >
+          👨🏻‍🏫
+          <span
+            style={{
+              color: "var(--text-5)",
+              fontSize: "0.875rem",
+            }}
+          >
+            Have read about it
+          </span>
+        </div>
+      );
     case KnowledgeLevel.someExperience:
-      return <span>👍 Have a bit of experience</span>;
+      return (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+        >
+          👍
+          <span
+            style={{
+              color: "var(--text-5)",
+              fontSize: "0.875rem",
+            }}
+          >
+            A bit of experience
+          </span>
+        </div>
+      );
     case KnowledgeLevel.experienced:
-      return <span>🔥 Have lots of experience!</span>;
+      return (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+        >
+          🔥
+          <span
+            style={{
+              color: "var(--text-5)",
+              fontSize: "0.875rem",
+            }}
+          >
+            Lots of experience!
+          </span>
+        </div>
+      );
     default:
       return null;
   }

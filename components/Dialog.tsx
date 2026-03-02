@@ -91,7 +91,8 @@ const StyledDialog = styled.dialog`
   margin: auto;
   padding: var(--size-5);
   width: min(100%, 500px);
-  animation: var(--animation-fade-in-bloom) forwards,
+  animation:
+    var(--animation-fade-in-bloom) forwards,
     scaleInDialog 0.4s forwards;
   animation-timing-function: var(--ease-out-3);
   animation-duration: 0.3s;
@@ -111,6 +112,10 @@ const StyledDialog = styled.dialog`
       gap: var(--size-1);
       color: var(--text-6);
     }
+  }
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
   }
 
   @keyframes scaleInDialog {
