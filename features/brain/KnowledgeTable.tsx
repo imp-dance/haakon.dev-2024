@@ -22,7 +22,7 @@ const orderByKnowledgeLevel = [
 export default function KnowledgeTable() {
   const [search, setSearch] = useState("");
   const searchedList = useFuzzySearch(knowledgeData, search);
-  const data = searchedList.toSorted(
+  const data = [...searchedList].sort(
     (a, b) =>
       orderByKnowledgeLevel.indexOf(b.knowledgeLevel) -
       orderByKnowledgeLevel.indexOf(a.knowledgeLevel),

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 export default async function ArticlesPage() {
   const articles = await getArticles();
+
   return (
     <Container>
       <ButtonLink
@@ -73,7 +74,8 @@ const List = styled.ul`
 
   & li {
     max-inline-size: 100%;
-    transition: transform 0.15s var(--ease-elastic-out-1),
+    transition:
+      transform 0.15s var(--ease-elastic-out-1),
       opacity 0.4s var(--ease-elastic-out-1);
 
     &:hover,

@@ -65,9 +65,9 @@ Web workers are neat. They let us offload expensive work to another thread, maki
 
 I figured if I just posted a message with the base64 encoded string, and waited for a decoded blob back from the worker - this could work. If you wrap this logic in a promise, it's easy for the component to show a loading state while the worker is doing the hard work.
 
-**Next problem**
+After trying out this new code in excitement - I'm met with a **white screen of death**. The page crashed. After a bit of research, I realised the issue was that I was sending a _huge_ string to the worker, all at once, seemingly freezing up the tab.
 
-After trying out this new code in excitement - I'm met with a white screen of death. The page crashed. After a bit of research, I realised the issue was that I was sending a _huge_ string to the worker, all at once, seemingly freezing up the tab.
+![Meme showing conversation between main thread and me](/images/main-thread-meme.jpg)
 
 My approach to solving this was to split up the string into chunks that I could send to the worker one by one until the worker had the entire thing. Once the worker had received the whole string, it would do the work and post a response.
 
@@ -75,7 +75,13 @@ My approach to solving this was to split up the string into chunks that I could 
 
 _Until I tried opening two files in quick succession_ 💩
 
+![Illustration of buffer corruption](/images/buffer.jpg)
+
 But, solving this last problem was a piece of cake. Instead of having a global buffer for the base64 string in the worker, I made it into an object that could be indexed into by "request id". This way I could create an ID for every "request" and pass it along with the messages, ensuring that the worker appended the content onto the correct buffer.
+
+![Illustration of data flow](/images/ww-fs-explain.jpg)
+
+As you can see in the above illustration, I could have moved the _encoding_ step as well to a web worker but based on experience testing the solution this wasn't really nessecary. Using the FileReader API ensures that the UI still runs smoothly while encoding the file as base64. Moving the decoding to a web worker was non-negotiable though, user-experience wise.
 
 ### That's a lot of talk and not much code.
 
