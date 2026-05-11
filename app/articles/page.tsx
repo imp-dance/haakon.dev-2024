@@ -5,6 +5,7 @@ import RSSIcon from "../../components/svg/RSSIcon";
 import { ButtonLink } from "../../components/ui/Button";
 import { ArticleListItem } from "../../features/articles/ArticleListItem";
 import { ArticleListTitle } from "../../features/articles/ArticleListTitle";
+import { NoAiTag } from "../../features/articles/NoAiTag";
 import { getArticles } from "../../features/articles/server-utils";
 
 export const metadata: Metadata = {
@@ -29,8 +30,10 @@ export default async function ArticlesPage() {
       >
         ← Portfolio
       </ButtonLink>
-      <ArticleListTitle>Articles</ArticleListTitle>
-
+      <ArticleTitleContainer>
+        <ArticleListTitle>Articles</ArticleListTitle>
+        <NoAiTag>All handwritten ✔</NoAiTag>
+      </ArticleTitleContainer>
       <List>
         {articles.map((article, index) => (
           <li key={article.name}>
@@ -71,6 +74,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--size-4);
+`;
+
+const ArticleTitleContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--size-5);
 `;
 
 const List = styled.ul`
