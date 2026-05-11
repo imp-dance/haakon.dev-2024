@@ -2,7 +2,7 @@
 title: Sending notifications from Expo is 💋
 date: 2026-05-10
 summary: >
-  Summary coming...
+  If you have delayed implementing notifications, let me show you how easy it is...
 img: /images/expo-banner.png
 ---
 

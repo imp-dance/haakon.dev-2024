@@ -2,7 +2,7 @@
 title: Packaging web workers for NPM
 date: 2025-6-2
 summary: >
-  asdf
+  Package up web workers for easy publishing through NPM
 img: /images/ww.png
 ---
 
@@ -107,7 +107,7 @@ const worker = `
 `;
 
 const workerInstance = new Worker(
-  `data:application/javascript,${encodeURIComponent(worker)}`
+  `data:application/javascript,${encodeURIComponent(worker)}`,
 );
 workerInstance.postMessage("Hello from the main thread!");
 workerInstance.onmessage = (e) => {

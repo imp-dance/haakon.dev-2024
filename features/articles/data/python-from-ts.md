@@ -2,7 +2,7 @@
 title: Python from a Typescript developer's perspective
 date: 2026-05-11
 summary: >
-  What's Python like from the perspective of a Typescript developer?
+  Array methods, slicing, comprehension, expression vs statement - what does Python look like from a Typescript developer's perspective?
 img: /images/py-v-js.jpeg
 draft: false
 ---

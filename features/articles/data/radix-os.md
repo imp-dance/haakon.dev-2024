@@ -2,7 +2,7 @@
 title: Radix OS
 date: 2024-10-5
 summary: >
-  Radix OS is a operating system simulated in browser, built using Radix, Zustand and React.
+  Radix OS is a operating system simulated in browser, built using Radix, Zustand and React! Let me take you through the journey of development
 img: /images/radix-os.jpg
 ---
 
@@ -106,7 +106,7 @@ In the Zustand store, I designed most of the actions to take in a string path to
   - ```typescript
     const path = parseRelativePath(
       "Home/Documents",
-      "../Images"
+      "../Images",
     ); // "Home/Images"
     ```
 

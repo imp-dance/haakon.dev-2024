@@ -1,7 +1,7 @@
 ---
 title: 2024 Redesign
 date: 2024-06-10
-summary: Yet another redesign
+summary: Gotta redesign the portfolio every once in a while, right?!
 img: /24-website.jpg
 ---
 

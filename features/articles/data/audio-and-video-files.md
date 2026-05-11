@@ -2,7 +2,7 @@
 title: Implementing audio/video in RadixOS
 date: 2025-6-3
 summary: >
-  asdf
+  Encoding and decoding files for my simulated operating system in React
 img: /images/radix-os.jpg
 ---
 

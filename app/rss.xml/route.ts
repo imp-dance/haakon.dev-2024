@@ -13,8 +13,8 @@ export async function GET() {
       return `
         <item>
           <title><![CDATA[${article.frontMatter.title}]]></title>
-          <link>${baseUrl}/posts/${slug}</link>
-          <guid>${baseUrl}/posts/${slug}</guid>
+          <link>${baseUrl}/articles/${slug}</link>
+          <guid>${baseUrl}/articles/${slug}</guid>
           <pubDate>${pubDate}</pubDate>
           <description><![CDATA[${article.frontMatter.summary ?? ""}]]></description>
         </item>`;
@@ -24,9 +24,9 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Håkon Svennes Underbakke</title>
+    <title>Articles - Håkon Svennes Underbakke</title>
     <link>${baseUrl}</link>
-    <description>I have been doing front-end focused web development professionally for about 11 years. These days, I mostly work with React and Typescript.</description>
+    <description>A blog focused on the development of a Norwegian frontend engineer.</description>
     <language>en-us</language>
     <atom:link href="${baseUrl}/rss.xml" rel="self" type="application/rss+xml" />
     ${items}

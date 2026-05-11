@@ -2,7 +2,7 @@
 title: Koding.no
 date: 2023-8-2
 summary: >
-  This article is about a Norwegian educational initiative that I helped start up, Koding.no. For this reason, the article is written in Norwegian.
+  A Norwegian educational initiative that I helped start up: Koding.no. Article is in Norwegian.
 img: /koding-no.svg
 ---
 
