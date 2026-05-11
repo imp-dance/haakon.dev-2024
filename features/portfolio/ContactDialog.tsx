@@ -1,4 +1,5 @@
 "use client";
+import { styled } from "@pigment-css/react";
 import { contactMe } from "../../actions/contact-me";
 import { Dialog } from "../../components/Dialog";
 import { MeLeaningSVG } from "../../components/svg/MeLeaningSVG";
@@ -131,6 +132,30 @@ export function ContactDialog(props: {
             />
           )}
         </label>
+        <p
+          style={{
+            paddingRight: "7rem",
+            color: "var(--text-6)",
+            fontSize: "0.875rem",
+          }}
+        >
+          You can also reach me at...
+        </p>
+        <ul
+          style={{
+            margin: 0,
+            marginBlock: "calc(var(--size-3) * -1)",
+          }}
+        >
+          <li>
+            <SocialLink
+              href="https://www.linkedin.com/in/hakonunderbakke/"
+              target="_blank"
+            >
+              Linkedin
+            </SocialLink>
+          </li>
+        </ul>
         <Button
           variant="primary"
           type="button"
@@ -161,6 +186,12 @@ export function ContactDialog(props: {
     </Dialog>
   );
 }
+
+const SocialLink = styled.a`
+  font-size: 0.875rem;
+  color: var(--text-1);
+  text-decoration: underline;
+`;
 
 function ErrorMessage(props: { message: string }) {
   return (

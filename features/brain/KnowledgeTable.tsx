@@ -56,9 +56,9 @@ export default function KnowledgeTable() {
             </th>
             <th
               style={{
-                width: 120,
-                minWidth: 120,
-                maxWidth: 120,
+                width: 190,
+                minWidth: 190,
+                maxWidth: 190,
                 fontSize: "0.875rem",
                 color: "var(--text-5)",
               }}
@@ -187,10 +187,12 @@ const RenderKnowledgeLevel = (props: {
 const Table = styled(TableVirtuoso)`
   width: 100%;
   border-radius: 0px;
+  overscroll-behavior: contain;
 
   & table {
     width: 100%;
     border-radius: 0px;
+    table-layout: fixed;
     --nice-inner-radius: 0px;
   }
 

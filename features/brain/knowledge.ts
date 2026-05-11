@@ -24,16 +24,13 @@ export const knowledgeData: Array<{
     knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
-    subject: "Remix",
+    subject:
+      "Remix (the old framework, now called React Router)",
     knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
     subject: "Node.js",
     knowledgeLevel: KnowledgeLevel.someExperience,
-  },
-  {
-    subject: "Tailwind",
-    knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
     subject: "Bun",
@@ -57,7 +54,7 @@ export const knowledgeData: Array<{
   },
   {
     subject: "Tailwind CSS",
-    knowledgeLevel: KnowledgeLevel.someExperience,
+    knowledgeLevel: KnowledgeLevel.experienced,
   },
   {
     subject: "SCSS (sass, less)",
@@ -66,6 +63,14 @@ export const knowledgeData: Array<{
   {
     subject: "Svelte",
     knowledgeLevel: KnowledgeLevel.readAbout,
+  },
+  {
+    subject: "React Native",
+    knowledgeLevel: KnowledgeLevel.someExperience,
+  },
+  {
+    subject: "Expo",
+    knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
     subject: "React",
@@ -88,8 +93,8 @@ export const knowledgeData: Array<{
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
-    subject: "Remix",
-    knowledgeLevel: KnowledgeLevel.someExperience,
+    subject: "Remix (the new framework currently in beta)",
+    knowledgeLevel: KnowledgeLevel.readAbout,
   },
   {
     subject: "Solid",
@@ -176,10 +181,6 @@ export const knowledgeData: Array<{
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
-    subject: "React Native",
-    knowledgeLevel: KnowledgeLevel.readAbout,
-  },
-  {
     subject: "RxJS",
     knowledgeLevel: KnowledgeLevel.heardAbout,
   },
@@ -224,6 +225,14 @@ export const knowledgeData: Array<{
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
+    subject: "Web Workers",
+    knowledgeLevel: KnowledgeLevel.someExperience,
+  },
+  {
+    subject: "Web Audio API",
+    knowledgeLevel: KnowledgeLevel.readAbout,
+  },
+  {
     subject: "Tanstack Start",
     knowledgeLevel: KnowledgeLevel.heardAbout,
   },
@@ -236,7 +245,7 @@ export const knowledgeData: Array<{
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
-    subject: "Framer motion",
+    subject: "Framer Motion",
     knowledgeLevel: KnowledgeLevel.someExperience,
   },
   {
