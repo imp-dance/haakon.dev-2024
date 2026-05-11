@@ -1,6 +1,7 @@
 import { styled } from "@pigment-css/react";
 import { Metadata } from "next";
 import { ExternalIcon } from "../../components/svg/ExternalIcon";
+import RSSIcon from "../../components/svg/RSSIcon";
 import { ButtonLink } from "../../components/ui/Button";
 import { ArticleListItem } from "../../features/articles/ArticleListItem";
 import { ArticleListTitle } from "../../features/articles/ArticleListTitle";
@@ -29,13 +30,20 @@ export default async function ArticlesPage() {
         ← Portfolio
       </ButtonLink>
       <ArticleListTitle>Articles</ArticleListTitle>
+
       <List>
         {articles.map((article, index) => (
           <li key={article.name}>
             <ArticleListItem article={article} index={index} />
           </li>
         ))}
-        <li style={{ padding: "var(--size-3) var(--size-5)" }}>
+        <li
+          style={{
+            padding: "var(--size-3) var(--size-5)",
+            display: "flex",
+            gap: "var(--size-5)",
+          }}
+        >
           <ButtonLink
             variant="subtle"
             target="_blank"
@@ -43,6 +51,15 @@ export default async function ArticlesPage() {
           >
             Articles from my old blog
             <ExternalIcon />
+          </ButtonLink>
+
+          <ButtonLink
+            variant="subtle"
+            target="_blank"
+            href="/rss.xml"
+          >
+            RSS Feed
+            <RSSIcon />
           </ButtonLink>
         </li>
       </List>
