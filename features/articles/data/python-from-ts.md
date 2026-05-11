@@ -90,8 +90,7 @@ a = 1
 a += 2 # still doesn't return anything
 a -= 1 # nothing!
 
-b := 5 # This, however, returns: 5
-c = (b := 6) # now b and c are both: 6
+c = (b := 6) # both b and c are now: 6
 ```
 
 This might not be super useful for daily work, but it was a peculiarity that I took notice to.
