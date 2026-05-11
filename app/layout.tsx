@@ -30,6 +30,12 @@ export default function RootLayout({
           href="https://haakon.underbakke.net/assets/faviconet.png"
         />
         <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Håkon Svennes Underbakke"
+          href="/rss.xml"
+        />
+        <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
         />
