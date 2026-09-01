@@ -1,10 +1,3 @@
-import Mailjet from "node-mailjet";
-
-const mailjet = Mailjet.apiConnect(
-  process.env.MAILJET_API_KEY as string,
-  process.env.MAILJET_SECRET as string
-);
-
 export async function sendMail({
   from,
   email,
@@ -14,6 +7,15 @@ export async function sendMail({
   email: string;
   message: string;
 }) {
+  // This module is reached from a client component through a Server Action.
+  // Keep Mailjet dynamic so Pigment's build-time evaluator never loads its
+  // browser (AMD) bundle while processing the client component.
+  const { default: Mailjet } = await import("node-mailjet");
+  const mailjet = Mailjet.apiConnect(
+    process.env.MAILJET_API_KEY as string,
+    process.env.MAILJET_SECRET as string
+  );
+
   return await mailjet
     .post("send", { version: "v3.1" })
     .request({

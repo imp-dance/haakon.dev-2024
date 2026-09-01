@@ -3,15 +3,13 @@ import { ChevronDownIcon } from "../../components/svg/ChevronDownIcon";
 import { MeSVG } from "../../components/svg/MeSVG";
 import { ButtonLink } from "../../components/ui/Button";
 import { getAge } from "../../utils/getAge";
-import { CommitAnimations } from "./CommitAnimations";
 import { ContactDialog } from "./ContactDialog";
 import { FallingCharacters } from "./FallingCharacters";
 
 export function Header() {
   return (
     <Container id="top">
-      <CommitAnimations />
-      <div>
+      <div className="hero-content">
         <h1>
           <div>
             <FallingCharacters>Hi, my name is</FallingCharacters>
@@ -89,8 +87,6 @@ const Subtext = styled.p`
     -webkit-background-clip: none;
     -webkit-text-fill-color: var(--text-1);
     font-size: var(--font-size-fluid-0);
-    transform: translateY(-2px);
-    display: inline-block;
   }
 `;
 
@@ -115,7 +111,7 @@ const Container = styled.header`
     animation-duration: 3s;
     stroke: var(--pink-5);
   }
-  & > div {
+  & > .hero-content {
     margin-top: auto;
     max-width: 580px;
     display: flex;
