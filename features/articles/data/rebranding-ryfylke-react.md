@@ -4,7 +4,7 @@ date: 2026-07-21
 summary: >
   It's time to think different
 img: /images/react-render-counter.jpg
-draft: false
+draft: true
 ---
 
 ## I've been going through some changes
