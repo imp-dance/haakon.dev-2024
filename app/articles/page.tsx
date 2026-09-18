@@ -11,7 +11,7 @@ import { getArticles } from "../../features/articles/server-utils";
 export const metadata: Metadata = {
   title: "Articles | Håkon Underbakke",
   description:
-    "I'm a Norwegian frontend developer currently doing contract work for my own company, Ryfylke React AS. ",
+    "I'm a product engineer that turns ideas from vague problems into polished, useful software.",
 };
 
 export default async function ArticlesPage() {

@@ -19,15 +19,12 @@ export function Header() {
           <span>Håkon Underbakke</span>
         </h1>
         <Subtext>
-          I&apos;m a Norwegian frontend developer currently doing
-          contract work for my own company,{" "}
-          <strong>Ryfylke React AS</strong>.
+          I&apos;m a product engineer that turns ideas from vague
+          problems into polished, useful software.
         </Subtext>
         <Subtext>
           I have been doing front-end focused web development
-          professionally for about {getAge() - 18} years. These
-          days, I mostly work with <code>React</code> and{" "}
-          <code>Typescript</code>
+          work professionally for about {getAge() - 18} years.
         </Subtext>
         <div
           style={{
